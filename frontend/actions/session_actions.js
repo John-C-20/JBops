@@ -8,7 +8,7 @@ export const RECEIVE_ERRORS = "RECEIVE_ERRORS"
 
 const receiveCurrentUser = (currentUser) => ({
     type: RECEIVE_CURRENT_USER,
-    currentUser
+    user: currentUser
 })
 
 const logoutCurrentUser = () => ({

@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {signup, login, logout, fetchUsers} from "./util/session_api_util"
+import {signup, login, logout, RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_ERRORS} from "./actions/session_actions"
+import configureStore from "./store/store";
+
+const store = configureStore();
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -16,4 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
 window.signup = signup
 window.login = login
 window.logout = logout 
-window.fetchUsers = fetchUsers 
+window.RECEIVE_CURRENT_USER = RECEIVE_CURRENT_USER
+window.LOGOUT_CURRENT_USER = LOGOUT_CURRENT_USER
+window.RECEIVE_ERRORS = RECEIVE_ERRORS
+window.dispatch = store.dispatch
+window.getState = store.getState 
+
