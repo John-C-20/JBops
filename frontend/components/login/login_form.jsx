@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default class SignupForm extends React.Component {
+export default class LoginForm extends React.Component {
     constructor(props) {
         super(props) 
         this.state = this.props.user; 
-        this.state.password = '' 
         this.onSubmit = this.onSubmit.bind(this) 
     }
 
@@ -20,31 +19,23 @@ export default class SignupForm extends React.Component {
     render() {
         return(
         <div> 
-            <h1>SIGN UP IDIOT</h1>
+            <h1>LOG IN ALREADY</h1>
             <form onSubmit={this.onSubmit}>
                 <label>
-                Email 
+                Enter Username or Email! 
                 <br /> 
-                <input type="text" onChange={this.onChange("email")} value={this.state.email}/>
+                <input type="text" onChange={this.onChange("name_or_email")} value={this.state.name_or_email}/>
                 </label>
                 <br /> 
-                
-                <label>
-                Username 
-                <br /> 
-                <input type="text" onChange={this.onChange("username")} value={this.state.username}/>
-                </label>
-                <br /> 
-
 
                 <label> 
-                Password   
+                Password 
                 <br />
                 <input type="text" onChange={this.onChange("password")} value={this.state.password}/>
                 </label> 
-                <br /> 
                 <br />
-                <button>Sign Up!</button>
+                <br />
+                <button>Log In!</button>
             </form>
         </div> 
         )}
