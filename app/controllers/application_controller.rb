@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
     end
 
     def ensure_logged_in 
-        redirect_to new_session_url unless logged_in? 
+        unless logged_in? 
+            render json: ['Current user not found'], status: 404
+        end
     end
 
     def login!(user) 

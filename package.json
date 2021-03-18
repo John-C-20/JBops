@@ -40,5 +40,6 @@
   "bugs": {
     "url": "https://github.com/John-C-20/JBops/issues"
   },
-  "homepage": "https://github.com/John-C-20/JBops#readme"
+  "homepage": "https://github.com/John-C-20/JBops#readme",
+  "devDependencies": {}
 }
