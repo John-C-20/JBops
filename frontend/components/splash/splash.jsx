@@ -21,7 +21,8 @@ export default class Splash extends React.Component {
             return(
             <div>
                 <h2>hello {this.props.currentUser.username}</h2>
-                <br />
+                    <p>DOB: {this.props.currentUser.dob_month}-{this.props.currentUser.dob_day}-{this.props.currentUser.dob_year}</p>
+                <p>gender: {this.props.currentUser.gender}</p>
                 <button onClick={this.props.logout}>Log Out</button>
             </div>)
         }

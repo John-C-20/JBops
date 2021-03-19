@@ -5,7 +5,11 @@ import {signup, clearErrors} from '../../actions/session_actions';
 const mstp = (state) => ({
     user: { 
         username: '',
-        email: ''
+        email: '',
+        dob_month: '',
+        dob_day: '',
+        dob_year: '',
+        gender: ''
     },
     errors: state.errors.session, 
     formType: "Sign Up" 

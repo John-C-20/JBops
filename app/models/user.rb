@@ -3,6 +3,7 @@ class User < ApplicationRecord
     validates :username, :email, uniqueness: true 
     validates :password, length: {minimum: 6, allow_nil: true}
 
+    validates :dob_month, :dob_day, :dob_year, :gender, presence: true  
 
     attr_reader :password 
 

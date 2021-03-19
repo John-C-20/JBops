@@ -46,7 +46,7 @@ export default class LoginForm extends React.Component {
                 {this.errors()} 
                 <br />
                 <label>
-                Enter Username or Email! 
+                Email address or username
                 <br /> 
                 <input type="text" onChange={this.onChange("name_or_email")} value={this.state.name_or_email}/>
                 </label>
@@ -59,8 +59,14 @@ export default class LoginForm extends React.Component {
                 </label> 
                 <br />
                 <br />
+                    <a href="https://www.spotify.com/us/password-reset/">forgot your password?</a>
+                <br /> 
+                <br />
                 <button>Log In!</button>
             </form>
+
+            <p>Don't have an account?</p>
+            <Link to="/signup">SIGN UP FOR JBOPS</Link>
         </div> 
         )}
 }
