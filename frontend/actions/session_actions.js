@@ -4,6 +4,7 @@ import * as SessionAPIUtil from '../util/session_api_util';
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER"
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER"
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS"
+export const CLEAR_ERRORS = "CLEAR_ERRORS"
 
 
 const receiveCurrentUser = (currentUser) => ({
@@ -15,6 +16,10 @@ const logoutCurrentUser = () => ({
     type: LOGOUT_CURRENT_USER
 })
 
+export const clearErrors = () => ({
+    type: CLEAR_ERRORS
+})
+
 export const receiveErrors = (errors) => ({
     //errors is an array of error messages
     type: RECEIVE_ERRORS,
@@ -24,12 +29,12 @@ export const receiveErrors = (errors) => ({
 
 export const signup = (user) => dispatch => (
     SessionAPIUtil.signup(user)
-    .then(result => dispatch(receiveCurrentUser(result)))
+        .then(result => dispatch(receiveCurrentUser(result)), error => dispatch(receiveErrors(error.responseJSON)))
 )
 
 export const login = (user) => dispatch => (
     SessionAPIUtil.login(user)
-    .then(result => dispatch(receiveCurrentUser(result)))
+    .then(result => dispatch(receiveCurrentUser(result)), error => dispatch(receiveErrors(error.responseJSON)))
 )
 
 export const logout = () => dispatch => (
