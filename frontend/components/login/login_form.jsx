@@ -38,35 +38,45 @@ export default class LoginForm extends React.Component {
         const hi = "xd"
     
         return(
-            <div> 
-            <Link to="/">Back to Splash Page</Link>
-            <br />
-            <h1>LOG IN ALREADY</h1>
-            <form onSubmit={this.onSubmit}>
-                {this.errors()} 
+            <div className="login"> 
+                <Link className="loginForm" to="/">Go back</Link>
+                <h1 className="signupForm"><img className="spotify_icon" src={window.iconURL}></img>&nbsp;JBOPS</h1>
                 <br />
-                <label>
-                Email address or username
-                <br /> 
-                <input type="text" onChange={this.onChange("name_or_email")} value={this.state.name_or_email}/>
-                </label>
-                <br /> 
+                <div className="mini-header loginForm">To continue, log in to Jbops.</div>
 
-                <label> 
-                Password 
-                <br />
-                <input type="text" onChange={this.onChange("password")} value={this.state.password}/>
-                </label> 
-                <br />
-                <br />
-                    <a href="https://www.spotify.com/us/password-reset/">forgot your password?</a>
-                <br /> 
-                <br />
-                <button>Log In!</button>
-            </form>
+                <form onSubmit={this.onSubmit}>
+                    <div>
+                        {this.errors()} 
+                    </div>
+                    <br /> 
 
-            <p>Don't have an account?</p>
-            <Link to="/signup">SIGN UP FOR JBOPS</Link>
+                    <div>
+                        <label htmlFor="name_or_email" className="mini-header">
+                            Email address or username
+                        </label>
+                    </div>
+                    <input type="text" id="name_or_email" onChange={this.onChange("name_or_email")} value={this.state.name_or_email}/>
+                    <br /> 
+                    <br /> 
+
+                    <div>
+                    <label htmlFor="password" className="mini-header">  
+                    Password 
+                    </label> 
+                    </div>
+                    <input id="password" type="text" onChange={this.onChange("password")} value={this.state.password}/>
+                    <br />
+                    <br />
+                        <a href="https://www.spotify.com/us/password-reset/">forgot your password?</a>
+                    <br /> 
+                    <br />
+                    <button className="login">Log In!</button>
+                </form>
+
+                <div className="loginForm">
+                    Don't have an account?
+                <Link className="signupLink" to="/signup">SIGN UP FOR JBOPS</Link>
+                </div>
         </div> 
         )}
 }

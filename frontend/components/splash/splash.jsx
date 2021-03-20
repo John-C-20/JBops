@@ -10,13 +10,26 @@ export default class Splash extends React.Component {
     render() {
         const sessionLinks = () => {
             return(
-            <div>
+            <div className="splash">
                 <div className="navbar">
-                <Link to="/signup">Sign Up!</Link>
-                <Link to="/login">Login</Link>
-                </div> 
-            </div>)
-        }
+                    <ul>
+                        <li><Link to="/signup"><button className="signup">Sign Up</button></Link></li>
+                        <li><Link to="/login"><button className="login">Log In</button></Link></li>
+                    </ul> 
+                </div>
+
+                <div className="sidebar">
+                    <ul>
+                        <li> this will be the logo</li>
+                        <li> this will be the home button</li>
+                        <li> this will be the search component</li>
+                        <li>this will be the library button</li>
+                    </ul>
+                </div>
+
+                <div className="content"></div>
+            </div>
+            )}
     
         const personalGreeting = () => {
             return(
