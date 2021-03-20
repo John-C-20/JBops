@@ -10,10 +10,11 @@ export default class Splash extends React.Component {
     render() {
         const sessionLinks = () => {
             return(
-            <div> 
+            <div>
+                <div className="navbar">
                 <Link to="/signup">Sign Up!</Link>
-                <br />
                 <Link to="/login">Login</Link>
+                </div> 
             </div>)
         }
     

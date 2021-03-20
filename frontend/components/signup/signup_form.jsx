@@ -16,7 +16,7 @@ export default class SignupForm extends React.Component {
 
     onSubmit(e) { 
         e.preventDefault() 
-        this.props.action(this.state).then(this.props.history.push("/"))
+        this.props.action(this.state)
     }
 
     onChange(field) {
@@ -42,79 +42,111 @@ export default class SignupForm extends React.Component {
 
     render() {
         return(
-        <div> 
-            <Link to="/">Back to Splash Page</Link> 
-            <br /> 
-            <h1>SIGN UP IDIOT</h1>
+        <div className="signup"> 
+            <Link className="signupForm" to="/">Go back</Link> 
+            
+            <h1 className="signupForm"><img className="spotify_icon" src={window.iconURL}></img>&nbsp;JBOPS</h1>
             <form onSubmit={this.onSubmit}>
+                <div>
                 {this.errors()}
+                </div>
                 <br />
-                <label>
-                What's your email? 
-                <br /> 
-                <input type="text" onChange={this.onChange("email")} value={this.state.email}/>
+
+                <div>
+                <label htmlFor="email" className="mini-header">
+                What's your email?
                 </label>
+                </div>
+                <input id="email" type="text" onChange={this.onChange("email")} value={this.state.email}/>
                 <br /> 
                 <br /> 
 
-                <label> 
-                Create a password   
-                <br />
-                <input type="text" onChange={this.onChange("password")} value={this.state.password}/>
+                <div>
+                <label htmlFor="password" className="mini-header">
+                Create a password
                 </label> 
+                </div>
+                <input id="password" type="text" onChange={this.onChange("password")} value={this.state.password}/>
                 <br /> 
                 <br /> 
 
-                <label>
-                What should we call you? 
-                <br /> 
-                <input type="text" onChange={this.onChange("username")} value={this.state.username}/>
+                <div>
+                <label htmlFor="username" className="mini-header">
+                What should we call you?
                 </label>
+                </div>
+                <input id="username" type="text" onChange={this.onChange("username")} value={this.state.username}/>
                 <br /> 
                 <br /> 
 
-                <label>
+                <label htmlFor="date" className="mini-header">
                     What's your date of birth? 
-                    <br /> 
-                    Month &nbsp;
-                    <select onChange={this.onChange('dob_month')} defaultValue={""}>
-                        <option value="" disabled></option>  
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
-                    </select>
-                    &nbsp; Day &nbsp; 
-                    <input type="text" onChange={this.onChange('dob_day')} value={this.state.dob_day}/>
-                    &nbsp; Year &nbsp;
-                    <input type="text" onChange={this.onChange('dob_year')} value={this.state.dob_year} />
-                </label>
+                </label> 
+
+            
+                <div id="date">
+                    <div>
+                        <div>
+                            Month 
+                        </div>
+
+                        <select id="month" onChange={this.onChange('dob_month')} defaultValue={""}>
+                            <option value="" disabled></option>  
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+
+                    
+                    
+                <div>
+                    <div>
+                        Day  
+                    </div>
+                    <input id="day" type="text" onChange={this.onChange('dob_day')} value={this.state.dob_day}/>
+                </div>
+                    
+                 <div>   
+                    <div>
+                        Year
+                    </div>
+                    <input id="year" type="text" onChange={this.onChange('dob_year')} value={this.state.dob_year} />
+                </div>
+
+                </div>
                 <br />
                 <br />
-                <label>
+                
+                <div>
+                <label htmlFor="date" className="mini-header">
                     What's your gender? 
-                    <br /> 
+                </label> 
+                </div>
                     <input type="radio" onClick={this.onClick} value="male"/>&nbsp;Male&nbsp; 
                     <input type="radio" onClick={this.onClick} value="female"/>&nbsp;Female&nbsp;
                     <input type="radio" onClick={this.onClick} value="non-binary"/>&nbsp;Non-binary&nbsp;
-                </label>
+                
                 <br /> 
                 <br /> 
 
-                <button>Sign Up</button>
+                <button className="signup">Sign Up</button>
                 <br />
                 <br />
             
             </form>
-            Have an account? <Link to="/login">Log in.</Link>
+            <div className="signupForm">
+            Have an account? <Link className="loginLink" to="/login">Log in.</Link>
+            </div>
         </div> 
         )}
 }

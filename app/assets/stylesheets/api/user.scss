@@ -1,3 +1,121 @@
 // Place all the styles related to the api::user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.spotify_icon {
+    width: 50px;
+}
+
+body {
+    font-family: spotify-circular, Helvetica, Arial, sans-serif;
+    color: rgb(24,24,24);
+    display: block;
+    margin: 0px auto;
+    
+}
+
+div.signup {
+    max-width: 450px;
+    display: block; 
+    margin: 0px auto;
+}
+
+.mini-header {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.25px;
+    display: flex;
+    padding-bottom: 8px;
+}
+
+#email, #password, #username {
+    border: 0px;
+    box-shadow: rgb(189, 189, 189) 0px 0px 0px 1px inset;
+    border-radius: 4px;
+    line-height: 20px;
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+
+}
+
+#date {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 15px;
+}
+
+#month {
+    display: block;
+    border: none;
+    box-shadow: rgb(189, 189, 189) 0px 0px 0px 1px inset;
+    border-radius: 4px;
+    line-height: 20px;
+    padding: 14px 44px 14px 14px; 
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+
+#day, #year {
+    box-shadow:rgb(189, 189, 189) 0px 0px 0px 1px inset;
+    margin-top: 8px;
+    border-radius: 4px;
+    padding: 13px; 
+    border: none; 
+    display: block;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.signupForm { 
+    display:block;
+    text-align:center;
+}
+
+.signupForm img {
+    vertical-align: -12px;
+}
+
+.loginLink {
+    color: #1DB954
+}
+
+button.signup {
+    border: 0px;
+    border-radius: 500px;
+    cursor: default;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transition-duration: 33ms;
+    transition-property: background-color, border-color, color, box-shadow, filter, transform;
+    user-select: none;
+    vertical-align: middle;
+    transform: translate3d(0px, 0px, 0px);
+    padding: 17px 48px;
+    background-color: rgb(29, 185, 84);
+    color: rgb(255, 255, 255);
+    width: 100%
+}
+
+div.navbar {
+    background-color: rgb(0,0,0);
+    height: 60px;
+    display: flex;
+    position: relative; 
+    width: 100%;
+    max-width: none;
+    align-items: center;
+    padding: 16px;
+
+
+}
