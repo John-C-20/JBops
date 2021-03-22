@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'; 
+import JbopsContainer from '../../components/jbops/jbops_container';
 
 export default class Splash extends React.Component {
     constructor (props) {
@@ -26,10 +27,14 @@ export default class Splash extends React.Component {
                         <li>this will be the library button</li>
                     </ul>
                 </div>
+
+                <div className="jbops">
+                    <JbopsContainer /> 
+                </div> 
             </div>
             )}
     
-        const personalGreeting = () => {
+        const loggedInUI = () => {
             return(
             // <div>
             //     <h2>hello {this.props.currentUser.username}</h2>
@@ -54,15 +59,16 @@ export default class Splash extends React.Component {
                     </ul>
                 </div>
 
-                <div className="deletethisuserinfolater">
+                <div className="jbops">
                     <div>DOB: {this.props.currentUser.dob_month}-{this.props.currentUser.dob_day}-{this.props.currentUser.dob_year}</div>
                     <div>Gender: {this.props.currentUser.gender}</div>
+                    <JbopsContainer /> 
                 </div>
             </div>
             )}
        
         return (
-            this.props.currentUser ? personalGreeting() : sessionLinks()
-            )
+            this.props.currentUser ? loggedInUI() : sessionLinks()
+        )
     }
 }
