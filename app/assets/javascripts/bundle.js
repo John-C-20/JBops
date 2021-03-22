@@ -103,6 +103,52 @@ function _setPrototypeOf(o, p) {
 
 /***/ }),
 
+/***/ "./frontend/actions/playlist_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/playlist_actions.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_PLAYLISTS": () => (/* binding */ GET_PLAYLISTS),
+/* harmony export */   "GET_PLAYLIST": () => (/* binding */ GET_PLAYLIST),
+/* harmony export */   "fetchPlaylists": () => (/* binding */ fetchPlaylists),
+/* harmony export */   "fetchPlaylist": () => (/* binding */ fetchPlaylist)
+/* harmony export */ });
+/* harmony import */ var _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/playlist_api_util */ "./frontend/util/playlist_api_util.js");
+
+var GET_PLAYLISTS = 'GET_PLAYLISTS';
+var GET_PLAYLIST = 'GET_PLAYLIST';
+
+var getPlaylists = function getPlaylists(playlists) {
+  return {
+    type: GET_PLAYLISTS,
+    playlists: playlists
+  };
+};
+
+var getPlaylist = function getPlaylist(playlist) {
+  return {
+    type: GET_PLAYLIST,
+    playlist: playlist
+  };
+};
+
+var fetchPlaylists = function fetchPlaylists() {
+  return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPlaylists().then(function (playlists) {
+    return dispatch(getPlaylists(playlists));
+  });
+};
+var fetchPlaylist = function fetchPlaylist(playListId) {
+  return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPlaylists(playListId).then(function (playlist) {
+    return dispatch(getPlaylist(playlist));
+  });
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -577,7 +623,9 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var loggedIn = function loggedIn() {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " hehe hoho this will be a playlist component "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " it will contain main song components "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_songs_song_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " hehe hoho this will be a playlist component "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          src: "https://jbops-seeds.s3.amazonaws.com/kboo.png"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " it will contain main song components "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_songs_song_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
       };
 
       var loggedOut = function loggedOut() {
@@ -1174,12 +1222,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _playlists_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./playlists_reducer */ "./frontend/reducers/playlists_reducer.js");
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  playlists: _playlists_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1204,6 +1255,46 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
   session: _reducers_session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/playlists_reducer.js":
+/*!************************************************!*\
+  !*** ./frontend/reducers/playlists_reducer.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
+
+
+var playlistsReducer = function playlistsReducer() {
+  var defaultState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(defaultState);
+  var newState = Object.assign({}, defaultState);
+
+  switch (action.type) {
+    case _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__.GET_PLAYLISTS:
+      action.playlists.forEach(function (playlist) {
+        newState[playlist.id] = playlist;
+      });
+      return newState;
+
+    case _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__.GET_PLAYLIST:
+      newState[action.playlist.id] = action.playlist;
+      return newState;
+
+    default:
+      return defaultState;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (playlistsReducer);
 
 /***/ }),
 
@@ -1372,6 +1463,31 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/playlist_api_util.js":
+/*!********************************************!*\
+  !*** ./frontend/util/playlist_api_util.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchPlaylists": () => (/* binding */ fetchPlaylists),
+/* harmony export */   "fetchPlaylist": () => (/* binding */ fetchPlaylist)
+/* harmony export */ });
+var fetchPlaylists = function fetchPlaylists() {
+  return $.ajax({
+    url: '/api/playlists/'
+  });
+};
+var fetchPlaylist = function fetchPlaylist(playlistId) {
+  return $.ajax({
+    url: "/api/playlists/".concat(playlistId)
+  });
+};
 
 /***/ }),
 

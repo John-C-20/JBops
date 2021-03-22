@@ -12,6 +12,7 @@ export default class Playlist extends React.Component {
         const loggedIn = () => (
             <div>
                 <div> hehe hoho this will be a playlist component </div>
+                <img src="https://jbops-seeds.s3.amazonaws.com/kboo.png" />
                 <div> it will contain main song components </div>
                 <SongContainer />
             </div>
