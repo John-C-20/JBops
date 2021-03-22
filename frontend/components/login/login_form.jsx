@@ -64,7 +64,7 @@ export default class LoginForm extends React.Component {
                     Password 
                     </label> 
                     </div>
-                    <input id="password" type="text" onChange={this.onChange("password")} value={this.state.password}/>
+                    <input id="password" type="password" onChange={this.onChange("password")} value={this.state.password}/>
                     <br />
                     <br />
                         <a href="https://www.spotify.com/us/password-reset/">Forgot your password?</a>

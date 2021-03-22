@@ -66,7 +66,7 @@ export default class SignupForm extends React.Component {
                 Create a password
                 </label> 
                 </div>
-                <input id="password" type="text" onChange={this.onChange("password")} value={this.state.password}/>
+                <input id="password" type="password" onChange={this.onChange("password")} value={this.state.password}/>
                 <br /> 
                 <br /> 
 

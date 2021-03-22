@@ -342,7 +342,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "mini-header"
       }, "Password")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "password",
-        type: "text",
+        type: "password",
         onChange: this.onChange("password"),
         value: this.state.password
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
@@ -566,7 +566,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         className: "mini-header"
       }, "Create a password")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "password",
-        type: "text",
+        type: "password",
         onChange: this.onChange("password"),
         value: this.state.password
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -780,9 +780,33 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       };
 
       var personalGreeting = function personalGreeting() {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "hello ", _this.props.currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "DOB: ", _this.props.currentUser.dob_month, "-", _this.props.currentUser.dob_day, "-", _this.props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "gender: ", _this.props.currentUser.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          onClick: _this.props.logout
-        }, "Log Out"));
+        return (
+          /*#__PURE__*/
+          // <div>
+          //     <h2>hello {this.props.currentUser.username}</h2>
+          //         <p>DOB: {this.props.currentUser.dob_month}-{this.props.currentUser.dob_day}-{this.props.currentUser.dob_year}</p>
+          //     <p>gender: {this.props.currentUser.gender}</p>
+          //     <button onClick={this.props.logout}>Log Out</button>
+          // </div>)
+          react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "splash"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "navbar"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            style: {
+              color: "#fff"
+            }
+          }, _this.props.currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            onClick: _this.props.logout
+          }, "Log Out")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "sidebar"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+            className: "logo",
+            src: window.logoUrl
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the home button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the search component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "this will be the library button"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "deletethisuserinfolater"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "DOB: ", _this.props.currentUser.dob_month, "-", _this.props.currentUser.dob_day, "-", _this.props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Gender: ", _this.props.currentUser.gender)))
+        );
       };
 
       return this.props.currentUser ? personalGreeting() : sessionLinks();
