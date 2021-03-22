@@ -67,15 +67,28 @@ export default class LoginForm extends React.Component {
                     <input id="password" type="text" onChange={this.onChange("password")} value={this.state.password}/>
                     <br />
                     <br />
-                        <a href="https://www.spotify.com/us/password-reset/">forgot your password?</a>
+                        <a href="https://www.spotify.com/us/password-reset/">Forgot your password?</a>
                     <br /> 
                     <br />
+
+
+                    <div className="login-container">
+                        <div>
+                            <input type="checkbox"/> &nbsp; <label>Remember me</label>
+                        </div>
                     <button className="login">Log In!</button>
+                    </div>
+
+                    <br />
                 </form>
 
+                <br /> 
                 <div className="loginForm">
-                    Don't have an account?
-                <Link className="signupLink" to="/signup">SIGN UP FOR JBOPS</Link>
+                    <p>
+                        Don't have an account?
+                    </p>
+                    <Link className="signupLink" to="/signup"><button>SIGN UP FOR JBOPS</button></Link>
+                 
                 </div>
         </div> 
         )}

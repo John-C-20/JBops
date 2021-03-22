@@ -1,4 +1,24 @@
-body .content {
-    background-color: #1e1e1e;
-    padding: 35%;
+html {
+    height: 100%;
 }
+
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+div.app {
+    height: 100%;
+}
+
+div.splash {
+    height: 100%; 
+    background-color: #1e1e1e;
+}
+
+
+
+

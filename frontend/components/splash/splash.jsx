@@ -26,8 +26,6 @@ export default class Splash extends React.Component {
                         <li>this will be the library button</li>
                     </ul>
                 </div>
-
-                <div className="content"></div>
             </div>
             )}
     

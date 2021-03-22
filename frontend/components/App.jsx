@@ -6,7 +6,7 @@ import {Route, Switch, Link}  from 'react-router-dom'
 import AuthRoute from '../util/route_util'
 
 const App = () => (
-    <div>
+    <div className="app">
         <Switch>
         <Route exact path="/" component={SplashContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />

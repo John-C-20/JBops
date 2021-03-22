@@ -28,6 +28,11 @@ div.signup, div.login {
     padding-bottom: 8px;
 }
 
+div.login .mini-header.loginForm {
+    font-size: 16px;
+    font-weight: 900;
+}
+
 #email, #password, #username, #name_or_email {
     border: 0px;
     box-shadow: rgb(189, 189, 189) 0px 0px 0px 1px inset;
@@ -104,6 +109,83 @@ button.signup {
     padding: 17px 48px;
     background-color: rgb(29, 185, 84);
     color: rgb(255, 255, 255);
-    width: 100%
+    width: 100%;
 }
 
+.login form a {
+    color: #616467;
+
+}
+
+.login form button.login {
+    display: block;
+    width: 45%;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 16px 48px 18px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border-width: 0;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    color: #fff;
+    background-color: #15883e;
+
+    cursor: pointer;
+
+}
+
+.login form button.login:hover {
+    background-color: #1db954;
+}
+
+.login .login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login .login-container div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login form {
+    border-bottom: 1px solid #d9dadc;
+    
+}
+
+div.loginForm p {
+    display: block;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: normal;
+}
+
+div.loginForm button {
+    padding: 16px 14px 18px;
+    color: #646467;
+    box-shadow: inset 0 0 0 2px #646467;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    width: 100%;
+    border: 1px solid transparent;
+}
+
+div.login-container label {
+    font-weight: 500;
+    color: #616467;
+}
