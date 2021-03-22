@@ -1112,7 +1112,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
             src: window.logoUrl
           })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the home button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the search component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "this will be the library button"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "jbops"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "DOB: ", _this.props.currentUser.dob_month, "-", _this.props.currentUser.dob_day, "-", _this.props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Gender: ", _this.props.currentUser.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_1__.default, null)))
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "DOB: ", _this.props.currentUser.dob_month, "-", _this.props.currentUser.dob_day, "-", _this.props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Gender: ", _this.props.currentUser.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "hi")))
         );
       };
 

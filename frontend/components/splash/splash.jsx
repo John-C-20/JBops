@@ -63,6 +63,7 @@ export default class Splash extends React.Component {
                     <div>DOB: {this.props.currentUser.dob_month}-{this.props.currentUser.dob_day}-{this.props.currentUser.dob_year}</div>
                     <div>Gender: {this.props.currentUser.gender}</div>
                     <JbopsContainer /> 
+                    <div>hi</div>
                 </div>
             </div>
             )}
