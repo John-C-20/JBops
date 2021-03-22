@@ -773,7 +773,10 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           className: "login"
         }, "Log In"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "sidebar"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the logo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the home button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the search component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "this will be the library button"))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "logo",
+          src: window.logoUrl
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the home button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, " this will be the search component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "this will be the library button"))));
       };
 
       var personalGreeting = function personalGreeting() {

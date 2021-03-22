@@ -20,7 +20,7 @@ export default class Splash extends React.Component {
 
                 <div className="sidebar">
                     <ul>
-                        <li> this will be the logo</li>
+                        <li><img className="logo" src={window.logoUrl} /></li>
                         <li> this will be the home button</li>
                         <li> this will be the search component</li>
                         <li>this will be the library button</li>

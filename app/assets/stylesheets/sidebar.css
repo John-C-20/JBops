@@ -13,3 +13,14 @@ div.sidebar {
     font-weight: 700;
 }
 
+div.sidebar ul li {
+    margin: 0;
+    list-style: none;
+    margin-left: -14px;
+}
+
+div.sidebar .logo {
+    width: 99%;
+    margin-left: -13px;
+    margin-top: -18px;
+}
