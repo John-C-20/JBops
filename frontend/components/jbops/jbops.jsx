@@ -17,13 +17,9 @@ export default class Jbops extends React.Component {
 
         const loggedOut = () => (
             <div className="playlists">
-            <h1>please sign up or log in</h1>
-                <div className="top-playlists">
-                    <div>
-                        top playlists go here but you need to sign it to listen
-                    </div>
-                    <PlaylistContainer /> 
-                </div>
+                <h1>please sign up or log in</h1>
+                <h1>this will be overarching component</h1>
+                <div className="top-playlists"><PlaylistContainer /></div>
             </div>
         )
 

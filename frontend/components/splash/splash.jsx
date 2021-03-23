@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'; 
+import UserDropdown from './user_dropdown'
 import JbopsContainer from '../../components/jbops/jbops_container';
 
 export default class Splash extends React.Component {
@@ -42,12 +43,9 @@ export default class Splash extends React.Component {
             //     <p>gender: {this.props.currentUser.gender}</p>
             //     <button onClick={this.props.logout}>Log Out</button>
             // </div>)
-            <div className="splash">
-                <div className="navbar">
-                    <ul>
-                        <li style={{color: "#fff"}}>{this.props.currentUser.username}</li>
-                        <li><button onClick={this.props.logout}>Log Out</button></li>
-                    </ul>
+            <div className="splash logged-in">
+                <div className="navbar logged-in">
+                    <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
                 </div>
 
                 <div className="sidebar">
@@ -60,8 +58,6 @@ export default class Splash extends React.Component {
                 </div>
 
                 <div className="jbops">
-                    <div>DOB: {this.props.currentUser.dob_month}-{this.props.currentUser.dob_day}-{this.props.currentUser.dob_year}</div>
-                    <div>Gender: {this.props.currentUser.gender}</div>
                     <JbopsContainer /> 
                     <div>hi</div>
                 </div>

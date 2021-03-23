@@ -1,3 +1,44 @@
 // Place all the styles related to the playlists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.homepage .playlist_row {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.homepage .playlist_row .block {
+    display: block;
+    padding: 20px 20px 60px 20px;
+    text-decoration: none;
+    background-color: #161616;
+    -webkit-transition: color 1s;
+    -moz-transition:    color 1s;
+    -ms-transition:     color 1s;
+    -o-transition:      color 1s;
+    transition:         color 1s;
+}
+
+.homepage .playlist_row .block:hover {
+    background-color: #262626;
+}
+
+.homepage .playlist_row img {
+   width: 150px;
+   height: 150px;
+}
+
+.homepage .playlist_row .title{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 34px;
+    letter-spacing: normal;
+}
+
+.homepage .playlist_row a:link {
+    text-decoration: none;
+}

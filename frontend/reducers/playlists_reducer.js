@@ -6,10 +6,10 @@ const playlistsReducer = (defaultState = {}, action) => {
 
     switch (action.type) {
         case GET_PLAYLISTS:
-            action.playlists.forEach((playlist) => {
-                newState[playlist.id] = playlist
-            })
-            return newState;
+            // action.playlists.forEach((playlist) => {
+            //     newState[playlist.id] = playlist
+            // })
+            return action.playlists;
         case GET_PLAYLIST: 
             newState[action.playlist.id] = action.playlist
             return newState;

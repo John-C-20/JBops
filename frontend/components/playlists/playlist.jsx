@@ -1,33 +1,46 @@
 import React from 'react';
 import SongContainer from '../songs/song_container';
+import {Link} from 'react-router-dom'
 
 
 export default class Playlist extends React.Component {
     constructor(props) {
         super(props)
+    }
 
+    componentDidMount() {
+        this.props.getPlaylists();
     }
 
     render() {
-        const loggedIn = () => (
-            <div>
-                <div> hehe hoho this will be a playlist component </div>
-                <img src="https://jbops-seeds.s3.amazonaws.com/kboo.png" />
-                <div> it will contain main song components </div>
-                <SongContainer />
-            </div>
-        )
+        let playlists = [] ; 
 
-        const loggedOut = () => (
-            <div>
-                <div> hehe hoho this will be a playlist component but u need to sign in</div>
-                <div> it will contain main song components but u need to sign in </div>
-                <SongContainer />
-            </div>
-        )
+
+        if (this.props.playlists) {
+            playlists = this.props.playlists
+        }   
+
+        const playlist_row = () => (
+            playlists.map(playlist => (
+                <Link key={playlist.id} to={this.props.currentUser ? `/playlist/${playlist.id}` : "/login"}>
+                    <div className="block">
+                        <img src={playlist.artUrl} />
+                        <div className="title">
+                            {playlist.playlist_name}
+                        </div>
+                    </div>
+                </Link>
+            )))
+                        
+
 
         return (
-            this.props.currentUser ? loggedIn() : loggedOut() 
+            <div className="homepage">
+                <div className="playlist_row">
+                    {playlist_row()}    
+                </div>
+                <div> hehe hoho this will be a playlist component </div>
+                <div> it will contain main song components </div>
+            </div>
         )
-    }
-}
+}}

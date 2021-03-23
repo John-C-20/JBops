@@ -9,15 +9,19 @@ require 'open-uri'
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-playlists = [
-playlist1 = Playlist.create(playlist_name: "KBOO", user_id: 1, artwork_url: "https://jbops-seeds.s3.amazonaws.com/kboo.png"),
-playlist2 = Playlist.create(playlist_name: "Today's Top Hits", user_id: 1, artwork_url: "https://jbops-seeds.s3.amazonaws.com/todays_top_hits.png"),
-playlist3 = Playlist.create(playlist_name: "Most Necessary", user_id: 1, artwork_url: "https://jbops-seeds.s3.amazonaws.com/most+necessary.png"),
-playlist4 = Playlist.create(playlist_name: "mint", user_id: 1, artwork_url: "https://jbops-seeds.s3.amazonaws.com/mint.png"),
-playlist5 = Playlist.create(playlist_name: "Hot Country", user_id: 1, artwork_url: "https://jbops-seeds.s3.amazonaws.com/hot+country.png"),
-]
+playlist1 = Playlist.create(playlist_name: "KBOO", user_id: 1)
+playlist1.playlist_artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/kboo.png"), filename: "kboo.png")
 
-playlists.each do |playlist| 
-    file = open(playlist.artwork_url)
-    playlist.playlist_artwork.attach(io: file, filename: playlist.artwork_url.split('/')[-1])
-end
+playlist2 = Playlist.create(playlist_name: "Today's Top Hits", user_id: 1)
+playlist2.playlist_artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/todays_top_hits.png"), filename: "todays_top_hits.png")
+
+playlist3 = Playlist.create(playlist_name: "Most Necessary", user_id: 1)
+playlist3.playlist_artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/most+necessary.png"), filename: "most necessary.png")
+
+playlist4 = Playlist.create(playlist_name: "mint", user_id: 1)
+playlist4.playlist_artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/mint.png"), filename: "mint.png")
+
+playlist5 = Playlist.create(playlist_name: "Hot Country", user_id: 1)
+playlist5.playlist_artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/hot+country.png"), filename: "hot country.png")
+
+

@@ -13,12 +13,12 @@ const getPlaylist = (playlist) => ({
     playlist
 })
 
-export const fetchPlaylists = () => (
+export const fetchPlaylists = () => dispatch => (
     PlaylistAPIUtil.fetchPlaylists()
     .then((playlists) => dispatch(getPlaylists(playlists)))
 )
 
-export const fetchPlaylist = (playListId) => (
+export const fetchPlaylist = (playListId) => dispatch => (
     PlaylistAPIUtil.fetchPlaylists(playListId)
     .then((playlist) => dispatch(getPlaylist(playlist)))
 )
