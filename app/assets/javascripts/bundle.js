@@ -755,8 +755,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mstp = function mstp(state, ownProps) {
   return {
-    currentUser: state.entities.users[state.session.currentUserId] // songs: state.entities
-    // need to add a song slice of state first 
+    currentUser: state.entities.users[state.session.currentUserId],
+    songs: state.entities // need to add a song slice of state first 
 
   };
 };

@@ -1,6 +1,8 @@
 class Song < ApplicationRecord
     validates :song_title, :album_id, null: false 
 
+    has_one_attached :musicUrl
+
     has_many :playlistings,
     foreign_key: :song_id,
     class_name: :PlaylistSong

@@ -3,7 +3,7 @@ import PlaylistDetail from './playlist_detail';
 
 const mstp = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.currentUserId],
-    // songs: state.entities
+    songs: state.entities
     // need to add a song slice of state first 
 })
 
