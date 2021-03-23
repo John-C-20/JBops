@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-
+import {Link} from 'react-router-dom'
 
 const UserDropdown = (props) => (
     <div className="dropdown">
@@ -12,7 +10,7 @@ const UserDropdown = (props) => (
         <div id="myDropdown" className="dropdown-content">
             <p>DOB: {props.currentUser.dob_month}/{props.currentUser.dob_day}/{props.currentUser.dob_year}</p>
             <p>Gender: {props.currentUser.gender}</p>
-            <button onClick={props.logout}>Log Out</button>
+            <Link to='/'><button onClick={props.logout}>Log Out</button></Link>
         </div>
     </div>
 )

@@ -1,14 +1,19 @@
 import {connect} from 'react-redux'
 import PlaylistDetail from './playlist_detail'; 
+import {fetchPlaylist} from '../../actions/playlist_actions'
+import {logout} from '../../actions/session_actions'
+
+
+
 
 const mstp = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.currentUserId],
-    songs: state.entities
-    // need to add a song slice of state first 
+    playlist: state.entities.playlists[ownProps.match.params.playlistId]
 })
 
 const mdtp = dispatch => ({
-
+    getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
+    logout: () => dispatch(logout())
 })
 
-export default connect(mstp, null)(PlaylistDetail)
+export default connect(mstp, mdtp)(PlaylistDetail)
