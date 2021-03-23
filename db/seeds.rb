@@ -56,3 +56,6 @@ playlistSong5 = PlaylistSong.create(playlist_id: 1, song_id: 5)
 playlistSong6 = PlaylistSong.create(playlist_id: 1, song_id: 6)
 playlistSong7 = PlaylistSong.create(playlist_id: 1, song_id: 7)
 playlistSong8 = PlaylistSong.create(playlist_id: 1, song_id: 8)
+
+Artist.create(name: "BLACKPINK", bio: "Blackpink in your area")
+Album.create(album_title: "THE ALBUM", artist_id: 1, album_year: 2020)

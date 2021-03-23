@@ -1,6 +1,7 @@
 import React from 'react' 
-import SongContainer from '../songs/song_container'
 import UserDropdown from '../splash/user_dropdown'
+import {Link} from 'react-router-dom'
+import Sidebar from '../splash/sidebar'
 
 export default class PlaylistDetail extends React.Component {
     constructor(props) {
@@ -12,39 +13,33 @@ export default class PlaylistDetail extends React.Component {
     }
 
     render() {
-        let songs = [];
         let playlist = [];
-
+        let songRows = [];
+        
         if (this.props.playlist) {
-            playlist = this.props.playlist
-            songs = Object.values(this.props.playlist.songs)
+            playlist = this.props.playlist.playlist_name
+
+
+            if (this.props.playlist.songs) {
+                const songs = Object.values(this.props.playlist.songs) 
+                songRows = songs.map(song => <li key={song.id}>{song.song_title}</li>)
+            }
         }
-
-        const songRows = () => (
-            songs.map(song => <li key={song.id}>{song.song_title}</li>)
-        )
-
+        
         return(
                 <div className="splash logged-in">
                     <div className="navbar logged-in">
                         <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} />
                     </div>
 
-                    <div className="sidebar">
-                        <ul>
-                            <li><img className="logo" src={window.logoUrl} /></li>
-                            <li> this will be the home button</li>
-                            <li> this will be the search component</li>
-                            <li>this will be the library button</li>
-                        </ul>
-                    </div>
+                    <Sidebar />
 
                     <div className="jbops">
-                        <h1>{playlist.playlist_name}</h1>
+                        <h1>{playlist}</h1>
+                        <h3>Click to add songs to playlist</h3>
                         <ul>
-                            {songRows()} 
+                            {songRows} 
                         </ul>
-                        <SongContainer />
                     </div>
                 </div>
             )}

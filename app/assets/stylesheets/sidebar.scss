@@ -13,6 +13,10 @@ div.sidebar {
     font-weight: 700;
 }
 
+div.sidebar ul {
+    margin-left: -2px;
+}
+
 div.sidebar ul li {
     margin: 0;
     list-style: none;
@@ -21,6 +25,28 @@ div.sidebar ul li {
 
 div.sidebar .logo {
     width: 99%;
-    margin-left: -13px;
-    margin-top: -18px;
+    margin-left: -11px;
+    margin-top: -24px;
+    margin-bottom: 12px;
 }
+
+div.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #b3b3b3;
+}
+
+div.sidebar li {
+    padding: 6px 0 6px 0;
+}
+
+
+div.sidebar a:link {
+    text-decoration: none;
+}
+
+div.sidebar a:hover {
+    color: #fff
+}
+

@@ -18,7 +18,7 @@ export const fetchPlaylists = () => dispatch => (
     .then((playlists) => dispatch(getPlaylists(playlists)))
 )
 
-export const fetchPlaylist = (playListId) => dispatch => (
-    PlaylistAPIUtil.fetchPlaylists(playListId)
+export const fetchPlaylist = (playListId) => dispatch => {
+    return (PlaylistAPIUtil.fetchPlaylists(playListId)
     .then((playlist) => dispatch(getPlaylist(playlist)))
-)
+    )}
