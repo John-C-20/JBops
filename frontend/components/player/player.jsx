@@ -63,11 +63,6 @@ export default class Player extends React.Component {
             currentSongId = this.props.currentSong.id
         }
         
-        
-        
-        // if (this.songRef.current) {
-        //     this.songRef.current.play();
-        // }
         return(
             <div className="player">
                 <audio key={currentSongId} ref={this.songRef}>
