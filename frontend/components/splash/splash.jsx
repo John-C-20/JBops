@@ -31,9 +31,7 @@ export default class Splash extends React.Component {
                     <JbopsContainer /> 
                 </div> 
 
-                <div className="player">
-                    <Player />
-                </div>
+                <Player />
             </div>
             )}
     
