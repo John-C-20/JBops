@@ -1,3 +1,18 @@
 // Place all the styles related to the songs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.song {
+    display: flex;
+    align-items: center;
+}
+
+.song p {
+    margin-left: 15px;
+}
+
+.song button {
+    background-color: transparent;
+    border-radius: 500px;
+    border-color: transparent;
+}

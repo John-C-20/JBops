@@ -19,7 +19,7 @@ export const fetchSongs = () => dispatch => (
 )
 
 export const fetchSong = (songId) => dispatch => {
-    return (SongAPIUtil.fetchSongs(songId)
+    return (SongAPIUtil.fetchSong(songId)
         .then((song) => dispatch(getSong(song)))
     )
 }

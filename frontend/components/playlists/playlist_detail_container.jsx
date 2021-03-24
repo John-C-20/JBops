@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import PlaylistDetail from './playlist_detail'; 
 import {fetchPlaylist} from '../../actions/playlist_actions'
 import {logout} from '../../actions/session_actions'
-
+import { fetchSong } from '../../actions/song_actions'
 
 
 
@@ -13,6 +13,7 @@ const mstp = (state, ownProps) => ({
 
 const mdtp = dispatch => ({
     getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
+    fetchSong: songId => dispatch(fetchSong(songId)),
     logout: () => dispatch(logout())
 })
 

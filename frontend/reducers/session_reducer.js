@@ -5,15 +5,15 @@ import {
 
 import {GET_SONG} from '../actions/song_actions'
 
-const sessionReducer = (defaultState = {currentUserId: null}, action) => {
+const sessionReducer = (defaultState = {currentUserId: null, currentSongId: null}, action) => {
     Object.freeze(defaultState)
     switch (action.type) {
         case RECEIVE_CURRENT_USER: 
-            return {currentUserId: action.user.id} 
+            return Object.assign({}, defaultState, {currentUserId: action.user.id})
         case LOGOUT_CURRENT_USER: 
-            return {currentUserId: null}
+            return Object.assign({}, defaultState, {currentUserId: null})
         case GET_SONG: 
-            return {currentSongId: action.song.id}
+            return Object.assign({}, defaultState, {currentSong: action.song})
         default:
             return defaultState 
     }

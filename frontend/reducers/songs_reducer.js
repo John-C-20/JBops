@@ -1,16 +1,20 @@
-import { GET_SONGS, GET_SONG } from '../actions/song_actions'
+// import { GET_SONGS } from '../actions/song_actions'
 
-const songsReducer = (defaultState = {}, action) => {
-    Object.freeze(defaultState)
 
-    switch (action.type) {
-        case GET_SONGS:
-            return action.songs;
-        case GET_SONG:
-            return action.song;
-        default:
-            return defaultState;
-    }
-}
+// //we might not even need a songs reducer 
 
-export default songsReducer;
+// const songsReducer = (defaultState = {}, action) => {
+//     Object.freeze(defaultState)
+
+//     switch (action.type) {
+//         case GET_SONGS:
+//             return action.songs;
+//         default:
+//             return defaultState;
+//     }
+// }
+
+// export default songsReducer;
+
+
+//maybe need this for search component 
