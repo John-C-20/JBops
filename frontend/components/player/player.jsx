@@ -7,7 +7,7 @@ export default class Player extends React.Component {
         this.songRef = React.createRef();
         this.muteRef = React.createRef();
         this.volumeRef = React.createRef();
-        this.songs = this.props.songs //this is an object, {songId: SongObj}
+        this.currentSong = this.props.currentSong //this is an object, {songId: SongObj}
 
         this.state = {
             currentSong: null,
@@ -20,7 +20,7 @@ export default class Player extends React.Component {
         this.muteSound = this.muteSound.bind(this)
         this.changeVolume = this.changeVolume.bind(this)
 
-        console.log(this.props.songs)
+        console.log(this.props.currentSong, "player component has mounted")
     }
 
     muteSound (e) {
@@ -32,8 +32,18 @@ export default class Player extends React.Component {
     }
 
     render() {
+        let currentSong = ""
+
+        if (this.props.currentSong) {
+            currentSong = this.props.currentSong.song_title
+        }
+
         return(
             <div className="player">
+
+                <div className="track_name">
+                    {currentSong}
+                </div>
 
                 <div className="left">
                     <img id="track_img"></img>

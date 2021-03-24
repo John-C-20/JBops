@@ -15,12 +15,6 @@ export default class Splash extends React.Component {
     }
     
     render() {
-        let songs = {};
-
-        if (this.props.songs) {
-            songs = (this.props.songs)
-        }
-
         const sessionLinks = () => {
             return(
             <div className="splash">
@@ -38,7 +32,7 @@ export default class Splash extends React.Component {
                 </div> 
 
                 <div className="player">
-                    <Player songs={songs} />
+                    <Player />
                 </div>
             </div>
             )}
@@ -57,7 +51,7 @@ export default class Splash extends React.Component {
                     <div>hi</div>
                 </div>
 
-                <Player songs={songs}/>
+                <Player currentSong={this.props.currentSong}/>
             </div>
             )}
        

@@ -5,6 +5,7 @@ import { fetchSongs } from '../../actions/song_actions'
 
 const mstp = state => ({
     currentUser: state.entities.users[state.session.currentUserId],
+    currentSong: state.session.currentSong,
     songs: state.entities.songs
 })
 

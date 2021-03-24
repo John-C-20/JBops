@@ -9,9 +9,12 @@
 
 .song p {
     margin-left: 15px;
+    color: #fff;
+    font-size: 16px;
+    
 }
 
-.song button {
+button.song {
     background-color: transparent;
     border-radius: 500px;
     border-color: transparent;

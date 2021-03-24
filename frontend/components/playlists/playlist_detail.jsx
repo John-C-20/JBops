@@ -25,10 +25,21 @@ export default class PlaylistDetail extends React.Component {
 
             if (this.props.playlist.songs) {
                 const songs = Object.values(this.props.playlist.songs) 
-                songRows = songs.map(song => <Song key={song.id} fetchSong={this.fetchSong} song={song} />)
+                
+                songRows = songs.map(song => {
+                    return (
+                    <button className="song" key={song.id} onClick={() => this.fetchSong(song.id)}>
+                        <Song fetchSong={this.fetchSong} song={song} />
+                    </button>
+                    )
+                })
             }
         }
         
+        // debugger 
+
+        console.log(this.props.currentSong, "currentSong of playlist detail")
+
         return(
                 <div className="splash logged-in">
                     <div className="navbar logged-in">
@@ -45,7 +56,7 @@ export default class PlaylistDetail extends React.Component {
                         </ul>
                     </div>
 
-                    <Player /> 
+                    <Player currentSong={this.props.currentSong} /> 
                 </div>
             )}
     }

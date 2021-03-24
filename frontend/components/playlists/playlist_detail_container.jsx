@@ -8,6 +8,7 @@ import { fetchSong } from '../../actions/song_actions'
 
 const mstp = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.currentUserId],
+    currentSong: state.session.currentSong,
     playlist: state.entities.playlists[ownProps.match.params.playlistId]
 })
 
