@@ -4,7 +4,7 @@ import LoginFormContainer from './login/login_form_container';
 import PlaylistDetailContainer from './playlists/playlist_detail_container';
 import SplashContainer from './splash/splash_container';
 import {Route, Switch, Link}  from 'react-router-dom'
-import AuthRoute from '../util/route_util'
+import {AuthRoute, ProtectedRoute} from '../util/route_util'
 
 const App = () => (
     <div className="app">
@@ -12,7 +12,7 @@ const App = () => (
         <Route exact path="/" component={SplashContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
         <AuthRoute path="/login" component={LoginFormContainer} />
-        <Route path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
+        <ProtectedRoute path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
         </Switch>
             
         

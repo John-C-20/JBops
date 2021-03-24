@@ -17,11 +17,22 @@ div.player .center, div.player .right {
     color: #b3b3b3
 }
 
+div.player .left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff
+}
+
+div.player .center {
+    position: fixed;
+    left: 50%;
+    margin-left: -100px;
+}
 
 div.player .center svg, div.player .center i {
     margin: 0 15px 0 15px;
 }
-
 
 
 .fa.fa-play-circle {
@@ -32,3 +43,16 @@ div.player .center svg, div.player .center i {
 svg {
     fill: #b3b3b3
 }
+
+input[type=range] {
+  -webkit-appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #535353;
+  color: #b3b3b3;
+}
+
+// input[type=range]::-webkit-slider-thumb {
+//  -webkit-appearance: none;
+//  display: none;
+// }

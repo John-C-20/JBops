@@ -10,17 +10,38 @@ export default class Player extends React.Component {
         this.currentSong = this.props.currentSong //this is an object, {songId: SongObj}
 
         this.state = {
-            currentSong: null,
+            currentSong: this.currentSong,
             duration: 0.0,
             currentTime: 0.0,
-            playStatus: false,
-            volume: 0.5
+            playStatus: (this.songRef.current ? true : false),
+            volume: 50
         }
 
+        this.handlePlay = this.handlePlay.bind(this)
         this.muteSound = this.muteSound.bind(this)
         this.changeVolume = this.changeVolume.bind(this)
 
-        console.log(this.props.currentSong, "player component has mounted")
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount: this.state.currentSong", this.state.currentSong)
+        console.log("componentDidMount: current song", this.props.currentSong)
+        console.log("componentDidMount: this.songRef.current", this.songRef.current)
+    }
+
+    handlePlay(){
+        console.log("this.state.currentSong", this.state.currentSong)
+        console.log("this.props.currentSong", this.props.currentSong)
+        console.log("this.songRef.current", this.songRef.current)
+        console.log("this.state.playStatus", this.state.playStatus)
+
+        if (this.state.playStatus) {
+            this.songRef.current.pause();
+            this.setState({playStatus: false})
+        } else {
+            this.songRef.current.play();
+            this.setState({playStatus: true})
+        }
     }
 
     muteSound (e) {
@@ -28,25 +49,36 @@ export default class Player extends React.Component {
     }
 
     changeVolume (e) {
-        //change volumn
+        this.setState({volume: e.currentTarget.value})
     }
 
     render() {
+        let currentSongTitle = ""
         let currentSong = ""
+        let currentSongId = 0
 
         if (this.props.currentSong) {
-            currentSong = this.props.currentSong.song_title
+            currentSong = this.props.currentSong
+            currentSongTitle = this.props.currentSong.song_title
+            currentSongId = this.props.currentSong.id
         }
-
+        
+        
+        
+        // if (this.songRef.current) {
+        //     this.songRef.current.play();
+        // }
         return(
             <div className="player">
-
-                <div className="track_name">
-                    {currentSong}
-                </div>
+                <audio key={currentSongId} ref={this.songRef}>
+                    <source src={currentSong.musicUrl} type="audio/mpeg"/>
+                </audio>
 
                 <div className="left">
                     <img id="track_img"></img>
+                    <div className="track_name">
+                        {currentSongTitle}
+                    </div>
                 </div>
 
                 <div className="center">
@@ -58,7 +90,7 @@ export default class Player extends React.Component {
                         <path d="M13 2.5L5 7.119V3H3v10h2V8.881l8 4.619z" fill="%23b3b3b3"></path>
                     </svg>
 
-                    <i className="fa fa-play-circle" aria-hidden="true" id="play_circle"></i>
+                    <i onClick={this.handlePlay} className="fa fa-play-circle" aria-hidden="true" id="play_circle"></i>
                 
                     <svg role="img" id="step-forward" height="16" width="16" viewBox="0 0 16 16" className="Svg-ulyrgf-0 hJgLcF">
                         <path d="M11 3v4.119L3 2.5v11l8-4.619V13h2V3z" fill="%23b3b3b3"></path>
@@ -71,7 +103,7 @@ export default class Player extends React.Component {
 
                 <div className="right">
                     <i className="fa fa-volume-up" id="volume_icon" aria-hidden="true" onClick={this.muteSound} ref={this.muteRef}></i>
-                    <input type="range" min="0" max="100" value="50" onChange={this.changeVolume} />
+                    <input type="range" min="0" max="100" value={this.state.volume} onChange={this.changeVolume} />
                 </div>
             </div>
         )

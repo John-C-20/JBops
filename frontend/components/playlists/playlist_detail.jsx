@@ -36,10 +36,6 @@ export default class PlaylistDetail extends React.Component {
             }
         }
         
-        // debugger 
-
-        console.log(this.props.currentSong, "currentSong of playlist detail")
-
         return(
                 <div className="splash logged-in">
                     <div className="navbar logged-in">

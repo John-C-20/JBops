@@ -315,13 +315,13 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_4__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__.default, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__.AuthRoute, {
     path: "/signup",
     component: _signup_signup_form_container__WEBPACK_IMPORTED_MODULE_1__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__.default, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__.AuthRoute, {
     path: "/login",
     component: _login_login_form_container__WEBPACK_IMPORTED_MODULE_2__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__.ProtectedRoute, {
     path: "/playlist/:playlistId",
     component: _playlists_playlist_detail_container__WEBPACK_IMPORTED_MODULE_3__.default
   })));
@@ -682,44 +682,87 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.currentSong = _this.props.currentSong; //this is an object, {songId: SongObj}
 
     _this.state = {
-      currentSong: null,
+      currentSong: _this.currentSong,
       duration: 0.0,
       currentTime: 0.0,
-      playStatus: false,
-      volume: 0.5
+      playStatus: _this.songRef.current ? true : false,
+      volume: 50
     };
+    _this.handlePlay = _this.handlePlay.bind(_assertThisInitialized(_this));
     _this.muteSound = _this.muteSound.bind(_assertThisInitialized(_this));
     _this.changeVolume = _this.changeVolume.bind(_assertThisInitialized(_this));
-    console.log(_this.props.currentSong, "player component has mounted");
     return _this;
   }
 
   _createClass(Player, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("componentDidMount: this.state.currentSong", this.state.currentSong);
+      console.log("componentDidMount: current song", this.props.currentSong);
+      console.log("componentDidMount: this.songRef.current", this.songRef.current);
+    }
+  }, {
+    key: "handlePlay",
+    value: function handlePlay() {
+      console.log("this.state.currentSong", this.state.currentSong);
+      console.log("this.props.currentSong", this.props.currentSong);
+      console.log("this.songRef.current", this.songRef.current);
+      console.log("this.state.playStatus", this.state.playStatus);
+
+      if (this.state.playStatus) {
+        this.songRef.current.pause();
+        this.setState({
+          playStatus: false
+        });
+      } else {
+        this.songRef.current.play();
+        this.setState({
+          playStatus: true
+        });
+      }
+    }
+  }, {
     key: "muteSound",
     value: function muteSound(e) {//mute sound 
     }
   }, {
     key: "changeVolume",
-    value: function changeVolume(e) {//change volumn
+    value: function changeVolume(e) {
+      this.setState({
+        volume: e.currentTarget.value
+      });
     }
   }, {
     key: "render",
     value: function render() {
+      var currentSongTitle = "";
       var currentSong = "";
+      var currentSongId = 0;
 
       if (this.props.currentSong) {
-        currentSong = this.props.currentSong.song_title;
-      }
+        currentSong = this.props.currentSong;
+        currentSongTitle = this.props.currentSong.song_title;
+        currentSongId = this.props.currentSong.id;
+      } // if (this.songRef.current) {
+      //     this.songRef.current.play();
+      // }
+
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "track_name"
-      }, currentSong), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        key: currentSongId,
+        ref: this.songRef
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("source", {
+        src: currentSong.musicUrl,
+        type: "audio/mpeg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "track_img"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "track_name"
+      }, currentSongTitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
         role: "img",
@@ -742,6 +785,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         d: "M13 2.5L5 7.119V3H3v10h2V8.881l8 4.619z",
         fill: "%23b3b3b3"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        onClick: this.handlePlay,
         className: "fa fa-play-circle",
         "aria-hidden": "true",
         id: "play_circle"
@@ -777,7 +821,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         type: "range",
         min: "0",
         max: "100",
-        value: "50",
+        value: this.state.volume,
         onChange: this.changeVolume
       })));
     }
@@ -1019,10 +1063,8 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
             }));
           });
         }
-      } // debugger 
+      }
 
-
-      console.log(this.props.currentSong, "currentSong of playlist detail");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1106,8 +1148,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./frontend/components/App.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./frontend/components/App.jsx");
 
 
 
@@ -1117,7 +1159,7 @@ var Root = function Root(_ref) {
   var store = _ref.store;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_3__.default, null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Root);
@@ -2052,7 +2094,8 @@ var fetchPlaylist = function fetchPlaylist(playlistId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "AuthRoute": () => (/* binding */ AuthRoute),
+/* harmony export */   "ProtectedRoute": () => (/* binding */ ProtectedRoute)
 /* harmony export */ });
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
@@ -2077,6 +2120,22 @@ var Auth = function Auth(_ref) {
   });
 };
 
+var Protected = function Protected(_ref2) {
+  var Component = _ref2.component,
+      path = _ref2.path,
+      loggedIn = _ref2.loggedIn,
+      exact = _ref2.exact;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Route, {
+    path: path,
+    exact: exact,
+    render: function render(props) {
+      return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Redirect, {
+        to: "/login"
+      });
+    }
+  });
+};
+
 var mapStateToProps = function mapStateToProps(state) {
   return {
     loggedIn: Boolean(state.session.currentUserId)
@@ -2084,7 +2143,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var AuthRoute = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_0__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, null)(Auth));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuthRoute);
+var ProtectedRoute = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_0__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, null)(Protected));
 
 /***/ }),
 
