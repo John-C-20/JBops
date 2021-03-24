@@ -8,8 +8,7 @@ import {logout} from '../../actions/session_actions'
 
 const mstp = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.currentUserId],
-    playlist: state.entities.playlists[ownProps.match.params.playlistId],
-    songs: state.entities.songs
+    playlist: state.entities.playlists[ownProps.match.params.playlistId]
 })
 
 const mdtp = dispatch => ({

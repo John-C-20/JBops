@@ -1,7 +1,7 @@
 import React from 'react' 
 import UserDropdown from '../splash/user_dropdown'
-import {Link} from 'react-router-dom'
 import Sidebar from '../splash/sidebar'
+import Player from '../player/player'
 
 export default class PlaylistDetail extends React.Component {
     constructor(props) {
@@ -41,6 +41,8 @@ export default class PlaylistDetail extends React.Component {
                             {songRows} 
                         </ul>
                     </div>
+
+                    <Player /> 
                 </div>
             )}
     }

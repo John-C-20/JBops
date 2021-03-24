@@ -3,14 +3,24 @@ import {Link} from 'react-router-dom';
 import UserDropdown from './user_dropdown'
 import JbopsContainer from '../../components/jbops/jbops_container';
 import Sidebar from './sidebar'
+import Player from '../player/player';
 
 export default class Splash extends React.Component {
     constructor (props) {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.fetchSongs()
+    }
     
     render() {
+        let songs = {};
+
+        if (this.props.songs) {
+            songs = (this.props.songs)
+        }
+
         const sessionLinks = () => {
             return(
             <div className="splash">
@@ -26,6 +36,10 @@ export default class Splash extends React.Component {
                 <div className="jbops">
                     <JbopsContainer /> 
                 </div> 
+
+                <div className="player">
+                    <Player songs={songs} />
+                </div>
             </div>
             )}
     
@@ -42,6 +56,8 @@ export default class Splash extends React.Component {
                     <JbopsContainer /> 
                     <div>hi</div>
                 </div>
+
+                <Player songs={songs}/>
             </div>
             )}
        

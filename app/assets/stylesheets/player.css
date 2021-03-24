@@ -1,0 +1,34 @@
+div.player {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    padding: 25px;
+    background-color: #181818;
+}
+
+div.player .center, div.player .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b3b3b3
+}
+
+
+div.player .center svg, div.player .center i {
+    margin: 0 15px 0 15px;
+}
+
+
+
+.fa.fa-play-circle {
+    color: #fff;
+    font-size: 36px;
+}
+
+svg {
+    fill: #b3b3b3
+}
