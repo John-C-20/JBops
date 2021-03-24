@@ -8,12 +8,6 @@ require 'open-uri'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Playlist.destroy_all
-Song.destroy_all
-PlaylistSong.destroy_all
-Artist.destroy_all
-Album.destroy_all
-
 playlist1 = Playlist.create(playlist_name: "KBOO", user_id: 1)
 playlist1.playlist_artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/kboo.png"), filename: "kboo.png")
 

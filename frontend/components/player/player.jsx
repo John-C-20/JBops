@@ -23,17 +23,17 @@ export default class Player extends React.Component {
 
     }
 
-    componentDidMount() {
-        console.log("componentDidMount: this.state.currentSong", this.state.currentSong)
-        console.log("componentDidMount: current song", this.props.currentSong)
-        console.log("componentDidMount: this.songRef.current", this.songRef.current)
-    }
+    // componentDidMount() {
+    //     console.log("componentDidMount: this.state.currentSong", this.state.currentSong)
+    //     console.log("componentDidMount: current song", this.props.currentSong)
+    //     console.log("componentDidMount: this.songRef.current", this.songRef.current)
+    // }
 
     handlePlay(){
-        console.log("this.state.currentSong", this.state.currentSong)
-        console.log("this.props.currentSong", this.props.currentSong)
-        console.log("this.songRef.current", this.songRef.current)
-        console.log("this.state.playStatus", this.state.playStatus)
+        // console.log("this.state.currentSong", this.state.currentSong)
+        // console.log("this.props.currentSong", this.props.currentSong)
+        // console.log("this.songRef.current", this.songRef.current)
+        // console.log("this.state.playStatus", this.state.playStatus)
 
         if (this.state.playStatus) {
             this.songRef.current.pause();
