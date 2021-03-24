@@ -7,40 +7,32 @@ export default class Player extends React.Component {
         this.songRef = React.createRef();
         this.muteRef = React.createRef();
         this.volumeRef = React.createRef();
-        this.currentSong = this.props.currentSong //this is an object, {songId: SongObj}
 
         this.state = {
-            currentSong: this.currentSong,
+            currentSong: this.props.currentSong,
             duration: 0.0,
             currentTime: 0.0,
-            playStatus: (this.songRef.current ? true : false),
+            // playStatus: true,
             volume: 50
         }
 
         this.handlePlay = this.handlePlay.bind(this)
         this.muteSound = this.muteSound.bind(this)
         this.changeVolume = this.changeVolume.bind(this)
-
     }
 
-    // componentDidMount() {
-    //     console.log("componentDidMount: this.state.currentSong", this.state.currentSong)
-    //     console.log("componentDidMount: current song", this.props.currentSong)
-    //     console.log("componentDidMount: this.songRef.current", this.songRef.current)
-    // }
-
     handlePlay(){
-        // console.log("this.state.currentSong", this.state.currentSong)
-        // console.log("this.props.currentSong", this.props.currentSong)
-        // console.log("this.songRef.current", this.songRef.current)
-        // console.log("this.state.playStatus", this.state.playStatus)
-
-        if (this.state.playStatus) {
-            this.songRef.current.pause();
-            this.setState({playStatus: false})
-        } else {
+        // if (this.state.playStatus) {
+        if (this.songRef.current.paused) {
             this.songRef.current.play();
-            this.setState({playStatus: true})
+            // this.setState({ playStatus: true })
+            // this.songRef.current.pause();
+            // this.setState({playStatus: false})
+        } else {
+            // this.songRef.current.play();
+            // this.setState({playStatus: true})
+            this.songRef.current.pause();
+            // this.setState({ playStatus: false})
         }
     }
 
@@ -52,6 +44,13 @@ export default class Player extends React.Component {
         this.setState({volume: e.currentTarget.value})
     }
 
+    // autoPlay() {
+    //     if (this.songRef.current) {
+    //         this.songRef.current.play()
+    //         this.setState({ playStatus: true })
+    //     }
+    // }
+
     render() {
         let currentSongTitle = ""
         let currentSong = ""
@@ -62,10 +61,10 @@ export default class Player extends React.Component {
             currentSongTitle = this.props.currentSong.song_title
             currentSongId = this.props.currentSong.id
         }
-        
+
         return(
             <div className="player">
-                <audio key={currentSongId} ref={this.songRef}>
+                <audio key={currentSongId} ref={this.songRef} autoPlay>
                     <source src={currentSong.musicUrl} type="audio/mpeg"/>
                 </audio>
 

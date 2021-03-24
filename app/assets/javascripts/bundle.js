@@ -679,43 +679,31 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.songRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.muteRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.volumeRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
-    _this.currentSong = _this.props.currentSong; //this is an object, {songId: SongObj}
-
     _this.state = {
-      currentSong: _this.currentSong,
+      currentSong: _this.props.currentSong,
       duration: 0.0,
       currentTime: 0.0,
-      playStatus: _this.songRef.current ? true : false,
+      // playStatus: true,
       volume: 50
     };
     _this.handlePlay = _this.handlePlay.bind(_assertThisInitialized(_this));
     _this.muteSound = _this.muteSound.bind(_assertThisInitialized(_this));
     _this.changeVolume = _this.changeVolume.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     console.log("componentDidMount: this.state.currentSong", this.state.currentSong)
-  //     console.log("componentDidMount: current song", this.props.currentSong)
-  //     console.log("componentDidMount: this.songRef.current", this.songRef.current)
-  // }
-
+  }
 
   _createClass(Player, [{
     key: "handlePlay",
     value: function handlePlay() {
-      // console.log("this.state.currentSong", this.state.currentSong)
-      // console.log("this.props.currentSong", this.props.currentSong)
-      // console.log("this.songRef.current", this.songRef.current)
-      // console.log("this.state.playStatus", this.state.playStatus)
-      if (this.state.playStatus) {
-        this.songRef.current.pause();
-        this.setState({
-          playStatus: false
-        });
+      // if (this.state.playStatus) {
+      if (this.songRef.current.paused) {
+        this.songRef.current.play(); // this.setState({ playStatus: true })
+        // this.songRef.current.pause();
+        // this.setState({playStatus: false})
       } else {
-        this.songRef.current.play();
-        this.setState({
-          playStatus: true
-        });
+        // this.songRef.current.play();
+        // this.setState({playStatus: true})
+        this.songRef.current.pause(); // this.setState({ playStatus: false})
       }
     }
   }, {
@@ -728,7 +716,13 @@ var Player = /*#__PURE__*/function (_React$Component) {
       this.setState({
         volume: e.currentTarget.value
       });
-    }
+    } // autoPlay() {
+    //     if (this.songRef.current) {
+    //         this.songRef.current.play()
+    //         this.setState({ playStatus: true })
+    //     }
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -746,7 +740,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
         className: "player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
         key: currentSongId,
-        ref: this.songRef
+        ref: this.songRef,
+        autoPlay: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("source", {
         src: currentSong.musicUrl,
         type: "audio/mpeg"
