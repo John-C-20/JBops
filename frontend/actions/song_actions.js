@@ -1,4 +1,4 @@
-import * as SongAPIUtil from '../util/Song_api_util';
+import * as SongAPIUtil from '../util/song_api_util';
 
 export const GET_SONGS = 'GET_SONGS'
 export const GET_SONG = 'GET_SONG'
