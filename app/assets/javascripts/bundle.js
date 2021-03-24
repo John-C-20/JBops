@@ -1421,11 +1421,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Splash)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _user_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_dropdown */ "./frontend/components/splash/user_dropdown.jsx");
-/* harmony import */ var _components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/jbops/jbops_container */ "./frontend/components/jbops/jbops_container.jsx");
-/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/splash/sidebar.jsx");
-/* harmony import */ var _player_player__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../player/player */ "./frontend/components/player/player.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _user_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_dropdown */ "./frontend/components/splash/user_dropdown.jsx");
+/* harmony import */ var _components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/jbops/jbops_container */ "./frontend/components/jbops/jbops_container.jsx");
+/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/splash/sidebar.jsx");
+/* harmony import */ var _player_player__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../player/player */ "./frontend/components/player/player.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1487,19 +1487,19 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           className: "splash"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
           to: "/signup"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "signup"
-        }, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        }, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
           to: "/login"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "login"
-        }, "Log In"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, "Log In"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "jbops"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_2__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "player"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_4__.default, {
           songs: songs
         })));
       };
@@ -1509,12 +1509,12 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           className: "splash logged-in"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar logged-in"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_user_dropdown__WEBPACK_IMPORTED_MODULE_2__.default, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_user_dropdown__WEBPACK_IMPORTED_MODULE_1__.default, {
           logout: _this.props.logout,
           currentUser: _this.props.currentUser
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "jbops"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "hi")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "hi")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_4__.default, {
           songs: songs
         }));
       };
@@ -1639,18 +1639,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-/* harmony import */ var _playlists_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./playlists_reducer */ "./frontend/reducers/playlists_reducer.js");
-/* harmony import */ var _songs_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./songs_reducer */ "./frontend/reducers/songs_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _playlists_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./playlists_reducer */ "./frontend/reducers/playlists_reducer.js");
+/* harmony import */ var _songs_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./songs_reducer */ "./frontend/reducers/songs_reducer.js");
 
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  playlists: _playlists_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  songs: _songs_reducer__WEBPACK_IMPORTED_MODULE_2__.default
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  playlists: _playlists_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
+  songs: _songs_reducer__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1724,18 +1724,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
-/* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
-/* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
+/* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
+/* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
 
 
 
 
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
-  entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_2__.default
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
+  entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
+  session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rootReducer);
 
@@ -1907,16 +1907,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
 
 
 
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_0__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_0__.default));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
