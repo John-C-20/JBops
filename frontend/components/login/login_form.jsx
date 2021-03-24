@@ -10,6 +10,7 @@ export default class LoginForm extends React.Component {
         super(props) 
         this.state = this.props.user; 
         this.onSubmit = this.onSubmit.bind(this) 
+        this.demoLogin = this.demoLogin.bind(this)
     }
 
     onSubmit(e) { 
@@ -20,6 +21,14 @@ export default class LoginForm extends React.Component {
 
     onChange(field) {
         return e => this.setState({ [field]: e.target.value })
+    }
+
+    demoLogin(e) {
+        e.preventDefault() 
+        this.props.action({
+            name_or_email: "Charm",
+            password: "password"
+        })
     }
 
     errors() {
@@ -43,6 +52,10 @@ export default class LoginForm extends React.Component {
                 <h1 className="signupForm"><img className="spotify_icon" src={window.iconURL}></img>&nbsp;JBOPS</h1>
                 <br />
                 <div className="mini-header loginForm">To continue, log in to Jbops.</div>
+
+                <div className="demo_login">
+                    <button onClick={this.demoLogin}>Demo Login</button>
+                </div>
 
                 <form onSubmit={this.onSubmit}>
                     <div>

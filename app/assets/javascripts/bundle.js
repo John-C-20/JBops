@@ -495,6 +495,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = _this.props.user;
     _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
+    _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -517,6 +518,15 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
+    }
+  }, {
+    key: "demoLogin",
+    value: function demoLogin(e) {
+      e.preventDefault();
+      this.props.action({
+        name_or_email: "Charm",
+        password: "password"
+      });
     }
   }, {
     key: "errors",
@@ -543,7 +553,11 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         src: window.iconURL
       }), "\xA0JBOPS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "mini-header loginForm"
-      }, "To continue, log in to Jbops."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, "To continue, log in to Jbops."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "demo_login"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.demoLogin
+      }, "Demo Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.onSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.errors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "name_or_email",
@@ -680,7 +694,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.muteRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.volumeRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.state = {
-      currentSong: _this.props.currentSong,
+      // currentSong: this.props.currentSong,
       duration: 0.0,
       currentTime: 0.0,
       // playStatus: true,

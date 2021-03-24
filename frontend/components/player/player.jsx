@@ -9,7 +9,7 @@ export default class Player extends React.Component {
         this.volumeRef = React.createRef();
 
         this.state = {
-            currentSong: this.props.currentSong,
+            // currentSong: this.props.currentSong,
             duration: 0.0,
             currentTime: 0.0,
             // playStatus: true,
