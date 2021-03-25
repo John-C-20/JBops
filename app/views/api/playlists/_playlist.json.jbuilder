@@ -5,7 +5,8 @@ json.songs do
             json.extract! song, :id, :song_title
 
             json.album do 
-                json.extract! song.album, :album_title, :album_year, :id, :artwork 
+                json.extract! song.album, :album_title, :album_year, :id 
+                json.artwork url_for(song.album.artwork) 
             end
         
             json.artist song.artist.name

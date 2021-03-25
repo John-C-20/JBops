@@ -780,12 +780,14 @@ var Player = /*#__PURE__*/function (_React$Component) {
       var currentSongId = 0;
       var playPause;
       var currentSongArtist = "";
+      var currentSongSrc;
 
       if (this.props.currentSong) {
         currentSong = this.props.currentSong;
         currentSongTitle = this.props.currentSong.song_title;
         currentSongId = this.props.currentSong.id;
         currentSongArtist = this.props.currentSong.artist.name;
+        currentSongSrc = this.props.currentSong.album.artwork;
       }
 
       if (!this.state.playStatus) {
@@ -818,7 +820,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        id: "track_img"
+        id: "track_img",
+        src: currentSongSrc
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "track_info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

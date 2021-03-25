@@ -60,12 +60,14 @@ export default class Player extends React.Component {
         let currentSongId = 0
         let playPause;
         let currentSongArtist =  ""
+        let currentSongSrc;
 
         if (this.props.currentSong) {
             currentSong = this.props.currentSong
             currentSongTitle = this.props.currentSong.song_title
             currentSongId = this.props.currentSong.id
             currentSongArtist = this.props.currentSong.artist.name
+            currentSongSrc = this.props.currentSong.album.artwork
         }
 
         if (!this.state.playStatus) {
@@ -90,7 +92,7 @@ export default class Player extends React.Component {
                 </audio>
 
                 <div className="left">
-                    <img id="track_img"></img>
+                    <img id="track_img" src={currentSongSrc}></img>
                     <div className="track_info">
                         <div className="track_name">
                             {currentSongTitle}
