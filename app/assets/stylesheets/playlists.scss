@@ -3,11 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.homepage .playlist_row {
+ul.playlist_row {
     display: flex;
     justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
+    overflow: auto;
+}
+
+.homepage .playlist_row li {
+    list-style: none;
 }
 
 .homepage .playlist_row .block {

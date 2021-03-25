@@ -86,13 +86,13 @@ div.login .mini-header.loginForm {
 }
 
 .loginLink {
-    color: #1DB954
+    color: #1DB954;
 }
 
 button.signup {
     border: 0px;
     border-radius: 500px;
-    cursor: default;
+    cursor: pointer;
     display: inline-block;
     font-size: 14px;
     font-weight: 700;
@@ -107,11 +107,15 @@ button.signup {
     vertical-align: middle;
     transform: translate3d(0px, 0px, 0px);
     padding: 17px 48px;
-    background-color: rgb(29, 185, 84);
+    background-color: #15883e;
     color: rgb(255, 255, 255);
     width: 100%;
 }
 
+button.signup:hover {
+    background-color: rgb(29, 185, 84);
+}
+    
 .login form a {
     color: #616467;
 
@@ -183,6 +187,36 @@ div.loginForm button {
     white-space: normal;
     width: 100%;
     border: 1px solid transparent;
+    cursor: pointer;
+}
+
+div.loginForm button:hover {
+    background-color:#626467;
+    color: #fff;
+}
+
+.demo_login button {
+    padding: 16px 14px 18px;
+    color: #fff;
+    background-color: #3b5998;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border-width: 0;
+    border-color: transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    width: 100%;
+    cursor: pointer;
+}
+
+.demo_login button:hover {
+    background-color: #3a61b3;
 }
 
 div.login-container label {

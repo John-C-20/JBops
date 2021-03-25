@@ -905,8 +905,9 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
 
       var playlist_row = function playlist_row() {
         return playlists.map(function (playlist) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-            key: playlist.id,
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            key: playlist.id
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
             to: _this.props.currentUser ? "/playlist/".concat(playlist.id) : "/login"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "block"
@@ -914,13 +915,13 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
             src: playlist.artUrl
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "title"
-          }, playlist.playlist_name)));
+          }, playlist.playlist_name))));
         });
       };
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "homepage"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "playlist_row"
       }, playlist_row()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " hehe hoho this will be a playlist component "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " it will contain main song components "));
     }

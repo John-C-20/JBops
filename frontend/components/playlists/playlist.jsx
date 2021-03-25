@@ -22,23 +22,25 @@ export default class Playlist extends React.Component {
 
         const playlist_row = () => (
             playlists.map(playlist => (
-                <Link key={playlist.id} to={this.props.currentUser ? `/playlist/${playlist.id}` : "/login"}>
-                    <div className="block">
-                        <img src={playlist.artUrl} />
-                        <div className="title">
-                            {playlist.playlist_name}
+                <li key={playlist.id}>
+                    <Link to={this.props.currentUser ? `/playlist/${playlist.id}` : "/login"}>
+                        <div className="block">
+                            <img src={playlist.artUrl} />
+                            <div className="title">
+                                {playlist.playlist_name}
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </li>
             )))
                         
 
 
         return (
             <div className="homepage">
-                <div className="playlist_row">
+                <ul className="playlist_row">
                     {playlist_row()}    
-                </div>
+                </ul>
                 <div> hehe hoho this will be a playlist component </div>
                 <div> it will contain main song components </div>
             </div>
