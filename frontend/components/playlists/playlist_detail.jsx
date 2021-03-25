@@ -29,7 +29,7 @@ export default class PlaylistDetail extends React.Component {
                 songRows = songs.map(song => {
                     return (
                     <button className="song" key={song.id} onClick={() => this.fetchSong(song.id)}>
-                        <Song fetchSong={this.fetchSong} song={song} />
+                        <Song song={song} />
                     </button>
                     )
                 })

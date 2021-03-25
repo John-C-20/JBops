@@ -1062,7 +1062,6 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
                 return _this2.fetchSong(song.id);
               }
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_songs_song__WEBPACK_IMPORTED_MODULE_4__.default, {
-              fetchSong: _this2.fetchSong,
               song: song
             }));
           });
@@ -1478,15 +1477,8 @@ var Song = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.songObj = _this.props.song;
-    _this.fetchSong = _this.props.fetchSong; // this.handleClick = this.handleClick.bind(this)
-
     return _this;
-  } // handleClick(e) {
-  //     debugger
-  //     this.fetchSong(this.songObj.id)
-  //     // onclick, dispatches an action to update the state.session.currentSong
-  // }
-
+  }
 
   _createClass(Song, [{
     key: "render",
