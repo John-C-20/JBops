@@ -47,7 +47,7 @@ export default class PlaylistDetail extends React.Component {
                     <div className="jbops">
                         <h1>{playlist}</h1>
                         <h3>Click to add songs to playlist</h3>
-                        <ul>
+                        <ul className="grid">
                             {songRows} 
                         </ul>
                     </div>

@@ -12,66 +12,93 @@ export default class Player extends React.Component {
             // currentSong: this.props.currentSong,
             duration: 0.0,
             currentTime: 0.0,
-            // playStatus: true,
-            volume: 50
+            playStatus: false,
+            volume: 50,
+            prevVolume: 0,
+            muted: false
         }
 
         this.handlePlay = this.handlePlay.bind(this)
         this.muteSound = this.muteSound.bind(this)
         this.changeVolume = this.changeVolume.bind(this)
+        this.playPause = this.playPause.bind(this)
     }
 
     handlePlay(){
-        // if (this.state.playStatus) {
         if (this.songRef.current.paused) {
             this.songRef.current.play();
-            // this.setState({ playStatus: true })
-            // this.songRef.current.pause();
-            // this.setState({playStatus: false})
+            this.setState({ playStatus: true })
         } else {
-            // this.songRef.current.play();
-            // this.setState({playStatus: true})
             this.songRef.current.pause();
-            // this.setState({ playStatus: false})
+            this.setState({ playStatus: false})
         }
     }
 
     muteSound (e) {
-        //mute sound 
+        if (this.state.muted) {
+            this.setState({volume: this.state.prevVolume, muted: false})
+            this.songRef.current.volume = (this.state.prevVolume/100)
+        } else {
+            this.setState({volume: 0, prevVolume: this.state.volume, muted: true})
+            this.songRef.current.volume = 0 
+        }
     }
-
+    
     changeVolume (e) {
         this.setState({volume: e.currentTarget.value})
+        this.songRef.current.volume =  (this.volumeRef.current.value / 100) 
     }
-
-    // autoPlay() {
-    //     if (this.songRef.current) {
-    //         this.songRef.current.play()
-    //         this.setState({ playStatus: true })
-    //     }
-    // }
-
+    
+    playPause(e) {
+        this.setState({playStatus: true})
+    }
+    
+    
     render() {
         let currentSongTitle = ""
         let currentSong = ""
         let currentSongId = 0
+        let playPause;
+        let currentSongArtist =  ""
 
         if (this.props.currentSong) {
             currentSong = this.props.currentSong
             currentSongTitle = this.props.currentSong.song_title
             currentSongId = this.props.currentSong.id
+            currentSongArtist = this.props.currentSong.artist.name
         }
 
+        if (!this.state.playStatus) {
+                playPause = <i onClick={this.handlePlay} 
+                    className="fa fa-play-circle" 
+                    aria-hidden="true" 
+                    id="play_circle"></i>
+            }
+        else {
+            playPause = <i onClick={this.handlePlay}
+                className="fa fa-pause-circle" 
+                aria-hidden="true"
+                id="pause_circle"></i>
+        }
+
+
+        console.log(this.props.currentSong)
         return(
             <div className="player">
-                <audio key={currentSongId} ref={this.songRef} autoPlay>
+                <audio key={currentSongId} ref={this.songRef} autoPlay onPlay={this.playPause}>
                     <source src={currentSong.musicUrl} type="audio/mpeg"/>
                 </audio>
 
                 <div className="left">
                     <img id="track_img"></img>
-                    <div className="track_name">
-                        {currentSongTitle}
+                    <div className="track_info">
+                        <div className="track_name">
+                            {currentSongTitle}
+                        </div>
+
+                        <div className="track_artist">
+                            {currentSongArtist}
+                        </div>
                     </div>
                 </div>
 
@@ -84,7 +111,7 @@ export default class Player extends React.Component {
                         <path d="M13 2.5L5 7.119V3H3v10h2V8.881l8 4.619z" fill="%23b3b3b3"></path>
                     </svg>
 
-                    <i onClick={this.handlePlay} className="fa fa-play-circle" aria-hidden="true" id="play_circle"></i>
+                    {playPause}
                 
                     <svg role="img" id="step-forward" height="16" width="16" viewBox="0 0 16 16" className="Svg-ulyrgf-0 hJgLcF">
                         <path d="M11 3v4.119L3 2.5v11l8-4.619V13h2V3z" fill="%23b3b3b3"></path>
@@ -97,7 +124,7 @@ export default class Player extends React.Component {
 
                 <div className="right">
                     <i className="fa fa-volume-up" id="volume_icon" aria-hidden="true" onClick={this.muteSound} ref={this.muteRef}></i>
-                    <input type="range" min="0" max="100" value={this.state.volume} onChange={this.changeVolume} />
+                    <input type="range" min="0" max="100"  ref={this.volumeRef} value={this.state.volume} onChange={this.changeVolume} />
                 </div>
             </div>
         )

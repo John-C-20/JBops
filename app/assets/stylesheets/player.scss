@@ -34,10 +34,17 @@ div.player .center svg, div.player .center i {
     margin: 0 15px 0 15px;
 }
 
+button.playPause {
+    color: transparent; 
+    background-color: transparent; 
+    border-color: transparent; 
+    cursor: default;
+}
 
-.fa.fa-play-circle {
+.fa.fa-play-circle, .fa.fa-pause-circle {
     color: #fff;
     font-size: 36px;
+    cursor: pointer;
 }
 
 svg {

@@ -5,15 +5,20 @@ export default class Song extends React.Component {
         super(props)
         
         this.songObj = this.props.song
+        this.songRef = React.createRef()
     }
 
     
     render() {
         return(
-            <div className="song">
-                <i className="fa fa-play-circle" aria-hidden="true" id="play_circle"> </i>
-                <p>{this.songObj.song_title}</p>
-            </div>
+            <ul className="song">
+                <li id="song_play">
+                    <i className="fa fa-play-circle" aria-hidden="true" id="play_circle"> </i>
+                </li>
+                <li id="song_title">{this.songObj.song_title}</li>
+                <li id="album_title">{this.songObj.album.album_title}</li>
+                <li id="album_year">{this.songObj.album.album_year}</li>
+            </ul>
         )
     }
 }

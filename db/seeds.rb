@@ -56,5 +56,8 @@ playlistSong6 = PlaylistSong.create(playlist_id: 1, song_id: 6)
 playlistSong7 = PlaylistSong.create(playlist_id: 1, song_id: 7)
 playlistSong8 = PlaylistSong.create(playlist_id: 1, song_id: 8)
 
-Artist.create(name: "BLACKPINK", bio: "Blackpink in your area")
-Album.create(album_title: "THE ALBUM", artist_id: 1, album_year: 2020)
+artist1 = Artist.create(name: "BLACKPINK", bio: "Blackpink in your area")
+
+album1 = Album.create(album_title: "THE ALBUM", artist_id: 1, album_year: 2020)
+album1.artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/BLACKPINK+-+THE+ALBUM/blackpink_the_album.png"), filename: "The Album")
+

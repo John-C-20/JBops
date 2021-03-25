@@ -2,20 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .song {
     display: flex;
     align-items: center;
 }
 
-.song p {
+ul.song {
+    padding-right: 40px;
+}
+
+ul.song {
+    display: flex;
+    // justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+
+.song li {
     margin-left: 15px;
     color: #fff;
     font-size: 16px;
-    
+    list-style: none;
 }
 
 button.song {
     background-color: transparent;
     border-radius: 500px;
     border-color: transparent;
+    // width: calc(100%-100px);
+}
+
+// #song_play {
+//     left: 10%;
+// }
+
+#song_title{
+    // width: 300px;
+    min-width: 250px;
+    width: 30%;
+    text-align: left;
+}
+
+#album_title {
+    min-width: 250px;
+}
+
+#album_year {
+    min-width: 250px;
 }
