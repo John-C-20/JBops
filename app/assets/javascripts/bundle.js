@@ -166,11 +166,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
 /* harmony export */   "CLEAR_ERRORS": () => (/* binding */ CLEAR_ERRORS),
+/* harmony export */   "SET_CURRENT_TIME": () => (/* binding */ SET_CURRENT_TIME),
+/* harmony export */   "SET_CURRENT_PROGRESS": () => (/* binding */ SET_CURRENT_PROGRESS),
 /* harmony export */   "clearErrors": () => (/* binding */ clearErrors),
 /* harmony export */   "receiveErrors": () => (/* binding */ receiveErrors),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "login": () => (/* binding */ login),
-/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */   "logout": () => (/* binding */ logout),
+/* harmony export */   "setCurrentTime": () => (/* binding */ setCurrentTime),
+/* harmony export */   "setCurrentProgress": () => (/* binding */ setCurrentProgress)
 /* harmony export */ });
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
 
@@ -178,6 +182,8 @@ var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
+var SET_CURRENT_TIME = "SET_CURRENT_TIME";
+var SET_CURRENT_PROGRESS = "SET_CURRENT_PROGRESS";
 
 var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
@@ -227,6 +233,18 @@ var logout = function logout() {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.logout().then(function (result) {
       return dispatch(logoutCurrentUser());
     });
+  };
+};
+var setCurrentTime = function setCurrentTime(currentTime) {
+  return {
+    type: SET_CURRENT_TIME,
+    currentTime: currentTime
+  };
+};
+var setCurrentProgress = function setCurrentProgress(currentProgress) {
+  return {
+    type: SET_CURRENT_PROGRESS,
+    currentProgress: currentProgress
   };
 };
 
@@ -662,9 +680,11 @@ var mdtp = function mdtp(dispatch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Player)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -688,6 +708,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+
+ // export default class Player extends React.Component {
 
 var Player = /*#__PURE__*/function (_React$Component) {
   _inherits(Player, _React$Component);
@@ -721,10 +743,24 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.updateCurrentTime = _this.updateCurrentTime.bind(_assertThisInitialized(_this));
     _this.changeCurrentTime = _this.changeCurrentTime.bind(_assertThisInitialized(_this));
     _this.onComplete = _this.onComplete.bind(_assertThisInitialized(_this));
+    _this.setCurrentTime = _this.setCurrentTime.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } //
+
 
   _createClass(Player, [{
+    key: "setCurrentTime",
+    value: function setCurrentTime() {
+      this.songRef.current.currentTime = this.props.currentTime;
+    } //
+
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.setCurrentTime(this.songRef.current.currentTime);
+      this.props.setProgress(this.state.progress);
+    }
+  }, {
     key: "updateCurrentTime",
     value: function updateCurrentTime(e) {
       this.setState({
@@ -802,7 +838,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
       var currentSongArtist = "";
       var currentSongSrc = "";
 
-      if (this.props.currentSong) {
+      if (this.props.currentSong && this.props.currentUser) {
         currentSong = this.props.currentSong;
         currentSongTitle = this.props.currentSong.song_title;
         currentSongId = this.props.currentSong.id;
@@ -829,6 +865,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        onLoadedMetadata: this.setCurrentTime,
         key: currentSongId,
         ref: this.songRef,
         autoPlay: true,
@@ -925,9 +962,29 @@ var Player = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Player;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component); // new code to refactor this.props.currentSong
 
 
+var mstp = function mstp(state) {
+  return {
+    currentSong: state.session.currentSong,
+    currentTime: state.session.currentTime,
+    currentUser: state.entities.users[state.session.currentUserId]
+  };
+};
+
+var mdtp = function mdtp(dispatch) {
+  return {
+    setCurrentTime: function setCurrentTime(time) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.setCurrentTime)(time));
+    },
+    setProgress: function setProgress(progress) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.setCurrentProgress)(progress));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mstp, mdtp)(Player));
 
 /***/ }),
 
@@ -1245,9 +1302,7 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
         d: "M7.999 3H6.999V7V8H7.999H9.999V7H7.999V3ZM7.5 0C3.358 0 0 3.358 0 7.5C0 11.642 3.358 15 7.5 15C11.642 15 15 11.642 15 7.5C15 3.358 11.642 0 7.5 0ZM7.5 14C3.916 14 1 11.084 1 7.5C1 3.916 3.916 1 7.5 1C11.084 1 14 3.916 14 7.5C14 11.084 11.084 14 7.5 14Z",
         fill: "currentColor"
-      })))), songRows)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_3__.default, {
-        currentSong: this.props.currentSong
-      }));
+      })))), songRows)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_3__.default, null));
     }
   }]);
 
@@ -2088,18 +2143,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
-/* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
-/* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
+/* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
+/* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
 
 
 
 
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
-  entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_2__.default
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
+  entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
+  session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rootReducer);
 
@@ -2162,7 +2217,9 @@ __webpack_require__.r(__webpack_exports__);
 var sessionReducer = function sessionReducer() {
   var defaultState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     currentUserId: null,
-    currentSongId: null
+    currentSongId: null,
+    currentTime: 0,
+    currentProgress: 0
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(defaultState);
@@ -2181,6 +2238,16 @@ var sessionReducer = function sessionReducer() {
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__.GET_SONG:
       return Object.assign({}, defaultState, {
         currentSong: action.song
+      });
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.SET_CURRENT_TIME:
+      return Object.assign({}, defaultState, {
+        currentTime: action.currentTime
+      });
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.SET_CURRENT_PROGRESS:
+      return Object.assign({}, defaultState, {
+        currentProgress: action.currentProgress
       });
 
     default:

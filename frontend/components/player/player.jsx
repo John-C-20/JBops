@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {setCurrentTime, setCurrentProgress} from '../../actions/session_actions'
 
-export default class Player extends React.Component {
+// export default class Player extends React.Component {
+class Player extends React.Component {
     constructor(props) {
         super(props)
 
@@ -27,6 +30,18 @@ export default class Player extends React.Component {
         this.updateCurrentTime = this.updateCurrentTime.bind(this)
         this.changeCurrentTime = this.changeCurrentTime.bind(this)
         this.onComplete = this.onComplete.bind(this)
+        this.setCurrentTime = this.setCurrentTime.bind(this)
+    }
+
+    //
+    setCurrentTime() {
+        this.songRef.current.currentTime = this.props.currentTime
+    }
+    //
+
+    componentWillUnmount() {
+        this.props.setCurrentTime(this.songRef.current.currentTime) 
+        this.props.setProgress(this.state.progress)
     }
 
     updateCurrentTime(e){
@@ -79,13 +94,13 @@ export default class Player extends React.Component {
         let currentSongArtist =  ""
         let currentSongSrc="";
 
-        if (this.props.currentSong) {
+        if (this.props.currentSong && this.props.currentUser) {
             currentSong = this.props.currentSong
             currentSongTitle = this.props.currentSong.song_title
             currentSongId = this.props.currentSong.id
             currentSongArtist = this.props.currentSong.artist.name
             currentSongSrc = this.props.currentSong.album.artwork
-        }
+        } 
 
         if (!this.state.playStatus) {
                 playPause = <i onClick={this.handlePlay} 
@@ -102,7 +117,7 @@ export default class Player extends React.Component {
 
         return(
             <div className="player">
-                <audio key={currentSongId} ref={this.songRef} autoPlay onPlay={this.playPause} onEnded={this.onComplete} onTimeUpdateCapture={this.updateCurrentTime} onTimeUpdate={this.updateCurrentTime}>
+                <audio onLoadedMetadata={this.setCurrentTime} key={currentSongId} ref={this.songRef} autoPlay onPlay={this.playPause} onEnded={this.onComplete} onTimeUpdateCapture={this.updateCurrentTime} onTimeUpdate={this.updateCurrentTime}>
                     <source src={currentSong.musicUrl} type="audio/mpeg"/>
                 </audio>
 
@@ -151,3 +166,17 @@ export default class Player extends React.Component {
         )
     }
 }
+
+// new code to refactor this.props.currentSong
+const mstp = state => ({
+    currentSong: state.session.currentSong,
+    currentTime: state.session.currentTime,
+    currentUser: state.entities.users[state.session.currentUserId]
+})
+
+const mdtp = dispatch => ({
+    setCurrentTime: (time) => dispatch(setCurrentTime(time)),
+    setProgress: (progress) => dispatch(setCurrentProgress(progress))
+})
+
+export default connect(mstp, mdtp)(Player);
