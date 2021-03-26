@@ -8,9 +8,11 @@ const UserDropdown = (props) => (
         </button>
         
         <div id="myDropdown" className="dropdown-content">
-            <p>DOB: {props.currentUser.dob_month}/{props.currentUser.dob_day}/{props.currentUser.dob_year}</p>
-            <p>Gender: {props.currentUser.gender}</p>
-            <Link to='/'><button onClick={props.logout}>Log Out</button></Link>
+            <div>DOB: {props.currentUser.dob_month} {props.currentUser.dob_day}, {props.currentUser.dob_year}</div>
+            <div>Gender: {props.currentUser.gender}</div>
+            <div>
+                <Link to='/' onClick={props.logout}>Log Out</Link>
+            </div>
         </div>
     </div>
 )

@@ -420,11 +420,6 @@ var Jbops = /*#__PURE__*/function (_React$Component) {
 
 
 
-/*#__PURE__*/
-react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-  className: "playlists"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_playlists_playlist_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
-
 /***/ }),
 
 /***/ "./frontend/components/jbops/jbops_container.jsx":
@@ -1022,7 +1017,7 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
         className: "homepage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "playlist_row"
-      }, playlist_row()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " hehe hoho this will be a playlist component "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " it will contain main song components "));
+      }, playlist_row()));
     }
   }]);
 
@@ -1226,7 +1221,7 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
         className: "text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Playlist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, playlist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "num_songs"
-      }, "".concat(songRows.length, " songs")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "".concat(songRows.length, " songs")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "grid"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "rows"
@@ -1884,7 +1879,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           currentUser: _this.props.currentUser
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "jbops"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "hi")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_player_player__WEBPACK_IMPORTED_MODULE_5__.default, {
           currentSong: _this.props.currentSong
         }));
       };
@@ -1968,9 +1963,8 @@ var UserDropdown = function UserDropdown(props) {
   }, props.currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "myDropdown",
     className: "dropdown-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "DOB: ", props.currentUser.dob_month, "/", props.currentUser.dob_day, "/", props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Gender: ", props.currentUser.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "DOB: ", props.currentUser.dob_month, " ", props.currentUser.dob_day, ", ", props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Gender: ", props.currentUser.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/",
     onClick: props.logout
   }, "Log Out"))));
 };

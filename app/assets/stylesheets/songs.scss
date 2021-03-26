@@ -58,11 +58,15 @@ div.grid {
 
 button.song {
     background-color: transparent;
-    border-radius: 500px;
+    border-radius: 5px;
     border-color: transparent;
     // padding: 10px 0;
     width: 100%;
     text-align: left;
+}
+
+button.song:hover {
+    background-color: transparentize($color: #fff, $amount: 0.99);
 }
 
 ul.song {

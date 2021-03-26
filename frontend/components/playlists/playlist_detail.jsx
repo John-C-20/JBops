@@ -116,8 +116,9 @@ export default class PlaylistDetail extends React.Component {
                                     {`${songRows.length} songs`}
                                 </div>
                             </div>
-
                         </div>
+
+                        <br />
 
                         <div className="grid">
                             <ul className="rows">

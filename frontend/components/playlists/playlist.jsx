@@ -41,8 +41,6 @@ export default class Playlist extends React.Component {
                 <ul className="playlist_row">
                     {playlist_row()}    
                 </ul>
-                <div> hehe hoho this will be a playlist component </div>
-                <div> it will contain main song components </div>
             </div>
         )
 }}

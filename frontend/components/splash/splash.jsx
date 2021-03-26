@@ -46,7 +46,6 @@ export default class Splash extends React.Component {
 
                 <div className="jbops">
                     <JbopsContainer /> 
-                    <div>hi</div>
                 </div>
 
                 <Player currentSong={this.props.currentSong}/>

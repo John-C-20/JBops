@@ -43,9 +43,3 @@ export default class Jbops extends React.Component {
 }
 
 
-
-<div className="playlists">
-    <h1></h1>
-    <h1></h1>
-    <PlaylistContainer /> 
-</div>
