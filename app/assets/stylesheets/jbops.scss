@@ -1,4 +1,8 @@
 .jbops {
-    color: #fff; 
+    color: #fff;
     margin-left: 232px;
+    height: inherit;
+    width: calc(100% - 232px);
+    overflow-y:auto;
 }
+

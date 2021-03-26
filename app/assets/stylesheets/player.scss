@@ -6,7 +6,8 @@ div.player {
     bottom: 0;
     position: fixed;
     width: 100%;
-    padding: 25px;
+    height: 89px;
+    padding: 0 25px 0 25px;
     background-color: #181818;
 }
 
@@ -18,13 +19,44 @@ div.player .center, div.player .right {
 }
 
 div.player .left {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    gap: 10px;
     align-items: center;
     color: #fff
 }
 
+div.player .left a {
+    text-decoration: none;
+}
+
+div.player .left a:link, div.player .left a:visited {
+    text-decoration: none;
+}
+
+div.player .left a:hover {
+    text-decoration: underline;
+}
+
+div.player .track_info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+div.player .left .track_name {
+    font-size: 14px;
+    color: #fff;
+}
+
+div.player .left .track_artist {
+    color: #b3b3b3; 
+    font-size: 11px;
+}
+
 div.player .center {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
     position: fixed;
     left: 50%;
     margin-left: -100px;
@@ -51,7 +83,7 @@ svg {
     fill: #b3b3b3
 }
 
-input[type=range] {
+input[type=range].volume {
   -webkit-appearance: none;
   height: 5px;
   border-radius: 5px;
@@ -59,7 +91,20 @@ input[type=range] {
   color: #b3b3b3;
 }
 
+input[type=range].currentTime {
+  -webkit-appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #535353;
+  color: #b3b3b3;
+  width: 150%;
+}
+
 #track_img {
     width: 70px;
     height: 70px;
+}
+
+.player .left img[src=""] {
+    display: none;
 }
