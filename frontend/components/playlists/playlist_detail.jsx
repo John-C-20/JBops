@@ -9,6 +9,7 @@ export default class PlaylistDetail extends React.Component {
         super(props)
 
         this.fetchSong = this.props.fetchSong
+
         // this.getAverageRGB = this.getAverageRGB.bind(this)
     }
 
@@ -147,7 +148,8 @@ export default class PlaylistDetail extends React.Component {
                         </div>
                     </div>
 
-                    <Player currentSong={this.props.currentSong} /> 
+                    {/* <Player currentSong={this.props.currentSong} />  */}
+                    <Player /> 
                 </div>
             )}
     }
