@@ -148,8 +148,7 @@ export default class PlaylistDetail extends React.Component {
                         </div>
                     </div>
 
-                    {/* <Player currentSong={this.props.currentSong} />  */}
-                    <Player /> 
+                    {/* <Player />  */}
                 </div>
             )}
     }

@@ -116,6 +116,7 @@ class Player extends React.Component {
         }
 
         return(
+            this.props.currentUser ? 
             <div className="player">
                 <audio onLoadedMetadata={this.setCurrentTime} key={currentSongId} ref={this.songRef} autoPlay onPlay={this.playPause} onEnded={this.onComplete} onTimeUpdateCapture={this.updateCurrentTime} onTimeUpdate={this.updateCurrentTime}>
                     <source src={currentSong.musicUrl} type="audio/mpeg"/>
@@ -163,6 +164,7 @@ class Player extends React.Component {
                     <input className="volume" type="range" min="0" max="100"  ref={this.volumeRef} value={this.state.volume} onChange={this.changeVolume} />
                 </div>
             </div>
+            : null
         )
     }
 }

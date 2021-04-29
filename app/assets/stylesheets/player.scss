@@ -9,6 +9,7 @@ div.player {
     height: 89px;
     padding: 0 25px 0 25px;
     background-color: #181818;
+    z-index: 100;
 }
 
 div.player .center, div.player .right {
