@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import PlaylistLinks from '../playlists/playlist_links';
 
 const Sidebar = () => (
     <div className="sidebar">
@@ -29,6 +30,8 @@ const Sidebar = () => (
                     <div>Your Library</div>
                 </Link>
             </li>
+
+            <PlaylistLinks />
         </ul>
     </div>
 )

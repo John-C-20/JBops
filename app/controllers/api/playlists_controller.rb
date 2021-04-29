@@ -9,6 +9,9 @@ class Api::PlaylistsController < ApplicationController
         end
     end
 
+    def user_index
+        @playlists 
+    end
 
     def index
         @playlists = Playlist.all 
