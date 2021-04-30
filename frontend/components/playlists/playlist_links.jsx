@@ -10,7 +10,7 @@ class PlaylistLink extends React.Component {
 
     render() {
         let playlists = ''
-        if (this.props.currentUser.playlists) {
+        if (this.props.currentUser) {
             playlists = Object.values(this.props.currentUser.playlists)
             .map((playlist, idx) => 
             <li className="playlist-link" key={idx}>
