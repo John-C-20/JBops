@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import UserDropdown from './user_dropdown'
 import JbopsContainer from '../../components/jbops/jbops_container';
 import Sidebar from './sidebar'
-import Player from '../player/player';
+import HistoryButtons from './history_buttons';
 
 export default class Splash extends React.Component {
     constructor (props) {
@@ -20,6 +20,7 @@ export default class Splash extends React.Component {
             <div className="splash">
                 <div className="navbar">
                     <ul>
+                        <li><HistoryButtons /></li>
                         <li><Link to="/signup"><button className="signup">Sign Up</button></Link></li>
                         <li><Link to="/login"><button className="login">Log In</button></Link></li>
                     </ul> 
@@ -31,7 +32,6 @@ export default class Splash extends React.Component {
                     <JbopsContainer /> 
                 </div> 
 
-                {/* <Player /> */}
             </div>
             )}
     
@@ -39,6 +39,7 @@ export default class Splash extends React.Component {
             return(
             <div className="splash logged-in">
                 <div className="navbar logged-in">
+                    <HistoryButtons />
                     <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
                 </div>
 

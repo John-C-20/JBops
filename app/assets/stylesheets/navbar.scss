@@ -55,5 +55,24 @@ div.navbar ul li button.login {
 
 div.navbar.logged-in {
     background-color: transparent;
+    display: flex;
+    justify-content: space-between;
 }
 
+.back, .forward {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    opacity: .6;
+    background-color: rgba(0,0,0,.7);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    margin-left: 16px;
+    margin-top: 15px;
+}
+
+.back > svg, .forward > svg {
+    align-self: center;
+}
