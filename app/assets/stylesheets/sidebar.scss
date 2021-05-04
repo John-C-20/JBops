@@ -40,7 +40,6 @@ div.sidebar li {
     padding: 6px 0 6px 0;
 }
 
-
 div.sidebar a:link {
     text-decoration: none;
 }
@@ -49,24 +48,13 @@ div.sidebar a:hover {
     color: #fff
 }
 
-.create-playlist {
-    background: none;
-    border: none;
-    transform: translate(-5px, 2px);
-}
-
 .create-wrapper {
     display: flex;
     height: 24px;
     width: 24px;
-    margin-right: 16px;
     justify-content: center;
     background-color: #b3b3b3;
     align-items: center;
-}
-
-.outer-create-wrapper {
-    display: flex;
 }
 
 .create-wrapper svg {
