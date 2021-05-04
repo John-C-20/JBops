@@ -169,7 +169,6 @@ class Player extends React.Component {
     }
 }
 
-// new code to refactor this.props.currentSong
 const mstp = state => ({
     currentSong: state.session.currentSong,
     currentTime: state.session.currentTime,
