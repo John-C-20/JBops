@@ -30,7 +30,21 @@ const Sidebar = () => (
                     <div>Your Library</div>
                 </Link>
             </li>
-
+            <br/>
+            <li>
+                <button className="create-playlist">
+                    <div className="outer-create-wrapper">
+                        <div className="create-wrapper">
+                            <svg role="img" height="12" width="12" viewBox="0 0 16 16" class="Svg-ulyrgf-0 dIsYZz">
+                                <path d="M14 7H9V2H7v5H2v2h5v5h2V9h5z"></path>
+                                <path fill="none" d="M0 0h16v16H0z"></path>
+                            </svg>
+                        </div>
+                        <span>Create Playlist</span>
+                    </div>
+                </button>
+            </li>
+            <br/>
             <PlaylistLinks />
         </ul>
     </div>

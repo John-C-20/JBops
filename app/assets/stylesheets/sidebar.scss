@@ -49,3 +49,34 @@ div.sidebar a:hover {
     color: #fff
 }
 
+.create-playlist {
+    background: none;
+    border: none;
+    transform: translate(-5px, 2px);
+}
+
+.create-wrapper {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    margin-right: 16px;
+    justify-content: center;
+    background-color: #b3b3b3;
+    align-items: center;
+}
+
+.outer-create-wrapper {
+    display: flex;
+}
+
+.create-wrapper svg {
+    fill: #000;
+}
+
+.outer-create-wrapper span {
+    display: flex;
+    align-items: center;
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 700;
+}
