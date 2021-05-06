@@ -11,13 +11,15 @@ class PlaylistLink extends React.Component {
     render() {
         let playlists = ''
         if (this.props.currentUser) {
-            playlists = Object.values(this.props.currentUser.playlists)
-            .map((playlist, idx) => 
-            <li className="playlist-link" key={idx}>
-                <Link to={`/playlist/${playlist.id}`}>
-                    {playlist.playlist_name}
-                </Link>
-            </li>)
+            if (this.props.currentUser.playlists) {
+                playlists = Object.values(this.props.currentUser.playlists)
+                .map((playlist, idx) => 
+                <li className="playlist-link" key={idx}>
+                    <Link to={`/playlist/${playlist.id}`}>
+                        {playlist.playlist_name}
+                    </Link>
+                </li>)
+            }
         }
 
         return (
