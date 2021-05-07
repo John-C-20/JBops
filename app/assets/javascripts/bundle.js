@@ -145,7 +145,7 @@ var fetchPlaylists = function fetchPlaylists() {
 };
 var fetchPlaylist = function fetchPlaylist(playListId) {
   return function (dispatch) {
-    return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPlaylist(playListId).then(function (playlist) {
+    return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPlaylists(playListId).then(function (playlist) {
       return dispatch(getPlaylist(playlist));
     });
   };
@@ -1199,12 +1199,6 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getPlaylist(this.props.match.params.playlistId);
-    }
-  }, {
-    key: "playSong",
-    value: function playSong(song) {
-      this.fetchSong(song.id);
-      this.queuePlaylist(this.props.match.params.playlistId);
     }
   }, {
     key: "render",
@@ -2405,8 +2399,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
 /* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
 /* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
-/* harmony import */ var _reducers_playlists_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/playlists_reducer */ "./frontend/reducers/playlists_reducer.js");
-
 
 
 
@@ -2414,8 +2406,7 @@ __webpack_require__.r(__webpack_exports__);
 var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
   entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
   session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__.default,
-  playlist: _reducers_playlists_reducer__WEBPACK_IMPORTED_MODULE_4__.default
+  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rootReducer);
 
