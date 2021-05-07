@@ -16,6 +16,11 @@ export default class PlaylistDetail extends React.Component {
         this.props.getPlaylist(this.props.match.params.playlistId)
     }
 
+    playSong(song) {
+        this.fetchSong(song.id) 
+        this.queuePlaylist(this.props.match.params.playlistId)
+    }
+
     render() {
         let playlist = [];
         let songRows = [];

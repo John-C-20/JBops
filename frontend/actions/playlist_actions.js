@@ -19,6 +19,6 @@ export const fetchPlaylists = () => dispatch => (
 )
 
 export const fetchPlaylist = (playListId) => dispatch => {
-    return (PlaylistAPIUtil.fetchPlaylists(playListId)
+    return (PlaylistAPIUtil.fetchPlaylist(playListId)
     .then((playlist) => dispatch(getPlaylist(playlist)))
     )}
