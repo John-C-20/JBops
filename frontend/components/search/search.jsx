@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import Sidebar from '../splash/sidebar';
+import HistoryButtons from '../splash/history_buttons';
+import UserDropdown from '../splash/user_dropdown';
+import {logout} from "../../actions/session_actions";
 
 // high level strategy:
 // if the state of search component is searching: render the current results 
@@ -16,7 +19,11 @@ class Search extends React.Component {
             <div>
                 <Sidebar/>
                 <div className="background">
-                    <div className="searchbar">this will be the search bar</div>
+                    <div className="navbar logged-in">
+                        <HistoryButtons />
+                        <div className="searchbar">this will be the search bar</div>
+                        <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
+                    </div>
                     <div className="current-search">
                         <div className="recent-searches">
                             recent searches component goes here
@@ -35,11 +42,13 @@ class Search extends React.Component {
 }
 
 const mstp = state => ({
-
+    currentUser: state.entities.users[state.session.currentUserId],
+    currentSong: state.session.currentSong,
+    songs: state.entities.songs
 })
 
 const mdtp = dispatch =>  ({
-
+    logout: () => dispatch(logout())
 })
 
-export default connect(null, null)(Search);
+export default connect(mstp, mdtp)(Search);
