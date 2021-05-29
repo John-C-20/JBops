@@ -12,11 +12,11 @@ const App = () => (
     <div className="app">
         <Player />
         <Switch>
-        <Route exact path="/" component={SplashContainer} />
-        <AuthRoute path="/signup" component={SignupFormContainer} />
-        <AuthRoute path="/login" component={LoginFormContainer} />
-        <ProtectedRoute path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
-        <ProtectedRoute path="/search" component={Search} /> 
+            <Route exact path="/" component={SplashContainer} />
+            <AuthRoute path="/signup" component={SignupFormContainer} />
+            <AuthRoute path="/login" component={LoginFormContainer} />
+            <ProtectedRoute path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
+            <ProtectedRoute path="/search" component={Search} /> 
         </Switch>
         {/* change this path later ^  */}
     </div>

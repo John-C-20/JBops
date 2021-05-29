@@ -15,27 +15,28 @@ class Search extends React.Component {
     }
 
     render(){
+        console.log(this.props)
         return(
-            <div>
+            <div className="splash logged-in">
                 <Sidebar/>
-                <div className="background">
-                    <div className="navbar logged-in">
-                        <HistoryButtons />
-                        <div className="searchbar">this will be the search bar</div>
-                        <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
+                
+                <div className="navbar logged-in">
+                    <HistoryButtons />
+                    <div className="searchbar">this will be the search bar</div>
+                    <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
+                </div>
+                <div className="current-search">
+                    <div className="recent-searches">
+                        recent searches component goes here
                     </div>
-                    <div className="current-search">
-                        <div className="recent-searches">
-                            recent searches component goes here
-                        </div>
-                        <div className="top-genres">
-                            top genres component goes here
-                        </div>
-                        <div className="browse-all">
-                            browse all component goes here
-                        </div>
+                    <div className="top-genres">
+                        top genres component goes here
+                    </div>
+                    <div className="browse-all">
+                        browse all component goes here
                     </div>
                 </div>
+                
             </div>
         )
     }

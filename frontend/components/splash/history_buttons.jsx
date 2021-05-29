@@ -1,5 +1,5 @@
 import React from 'react' 
-import {withRouter, goBack, goForward} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class HistoryButton extends React.Component {
     constructor(props) {
