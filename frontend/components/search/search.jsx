@@ -2,6 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux'
 import Sidebar from '../splash/sidebar';
 
+// high level strategy:
+// if the state of search component is searching: render the current results 
+// else: render recent searches, top genres and browse all 
+
 class Search extends React.Component {
     constructor(props){
         super(props)
@@ -11,9 +15,20 @@ class Search extends React.Component {
         return(
             <div>
                 <Sidebar/>
-                <div>this will be the search bar</div>
-                <div>browse all</div>
-                <div>this will be links to all genres</div>
+                <div className="background">
+                    <div className="searchbar">this will be the search bar</div>
+                    <div className="current-search">
+                        <div className="recent-searches">
+                            recent searches component goes here
+                        </div>
+                        <div className="top-genres">
+                            top genres component goes here
+                        </div>
+                        <div className="browse-all">
+                            browse all component goes here
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
