@@ -1448,6 +1448,108 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/search/currentSearch.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/search/currentSearch.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CurrentSearch)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var CurrentSearch = /*#__PURE__*/function (_React$Component) {
+  _inherits(CurrentSearch, _React$Component);
+
+  var _super = _createSuper(CurrentSearch);
+
+  function CurrentSearch(props) {
+    var _this;
+
+    _classCallCheck(this, CurrentSearch);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      results: {}
+    };
+    _this.result = null;
+    return _this;
+  }
+
+  _createClass(CurrentSearch, [{
+    key: "fetchSearch",
+    value: function fetchSearch(title) {
+      var _this2 = this;
+
+      $.ajax({
+        method: 'GET',
+        url: '/api/searches/',
+        data: {
+          title: title
+        }
+      }).then(function (res) {
+        console.log('in FS:', res);
+        _this2.result = res;
+      });
+    } // fetchSearch(title) {
+    //     $.ajax({
+    //         method: 'GET',
+    //         url: '/api/searches/',
+    //         data: {title}
+    //     }).then(res => this.setState({results: res}))
+    // }
+
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchSearch(this.props.text);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // this.fetchSearch(this.props.text)
+      var result = this.fetchSearch(this.props.text);
+      console.log(this.props.text);
+      console.log('result', this.result);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+    }
+  }]);
+
+  return CurrentSearch;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
 /***/ "./frontend/components/search/search.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/search/search.jsx ***!
@@ -1465,6 +1567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_history_buttons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../splash/history_buttons */ "./frontend/components/splash/history_buttons.jsx");
 /* harmony import */ var _splash_user_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../splash/user_dropdown */ "./frontend/components/splash/user_dropdown.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _currentSearch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./currentSearch */ "./frontend/components/search/currentSearch.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1492,6 +1595,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
  // high level strategy:
 // if the state of search component is searching: render the current results 
 // else: render recent searches, top genres and browse all 
@@ -1502,27 +1606,45 @@ var Search = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Search);
 
   function Search(props) {
+    var _this;
+
     _classCallCheck(this, Search);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      text: ''
+    };
+    _this.handleSearch = _this.handleSearch.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Search, [{
+    key: "handleSearch",
+    value: function handleSearch(e) {
+      this.setState({
+        text: e.currentTarget.value
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_splash_sidebar__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_splash_history_buttons__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "searchbar"
-      }, "this will be the search bar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_splash_user_dropdown__WEBPACK_IMPORTED_MODULE_4__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "text",
+        onChange: this.handleSearch
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_splash_user_dropdown__WEBPACK_IMPORTED_MODULE_4__.default, {
         logout: this.props.logout,
         currentUser: this.props.currentUser
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-search"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_currentSearch__WEBPACK_IMPORTED_MODULE_6__.default, {
+        text: this.state.text
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "recent-searches"
       }, "recent searches component goes here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "top-genres"
@@ -2139,11 +2261,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Splash)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _user_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_dropdown */ "./frontend/components/splash/user_dropdown.jsx");
-/* harmony import */ var _components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/jbops/jbops_container */ "./frontend/components/jbops/jbops_container.jsx");
-/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/splash/sidebar.jsx");
-/* harmony import */ var _history_buttons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./history_buttons */ "./frontend/components/splash/history_buttons.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _user_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_dropdown */ "./frontend/components/splash/user_dropdown.jsx");
+/* harmony import */ var _components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/jbops/jbops_container */ "./frontend/components/jbops/jbops_container.jsx");
+/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/splash/sidebar.jsx");
+/* harmony import */ var _history_buttons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./history_buttons */ "./frontend/components/splash/history_buttons.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2199,17 +2321,17 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           className: "splash"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_history_buttons__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_history_buttons__WEBPACK_IMPORTED_MODULE_4__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
           to: "/signup"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "signup"
-        }, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        }, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
           to: "/login"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "login"
-        }, "Log In"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, "Log In"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "jbops"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null)));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_2__.default, null)));
       };
 
       var loggedInUI = function loggedInUI() {
@@ -2217,12 +2339,12 @@ var Splash = /*#__PURE__*/function (_React$Component) {
           className: "splash logged-in"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar logged-in"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_history_buttons__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_user_dropdown__WEBPACK_IMPORTED_MODULE_2__.default, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_history_buttons__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_user_dropdown__WEBPACK_IMPORTED_MODULE_1__.default, {
           logout: _this.props.logout,
           currentUser: _this.props.currentUser
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "jbops"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null)));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_2__.default, null)));
       };
 
       return this.props.currentUser ? loggedInUI() : sessionLinks();

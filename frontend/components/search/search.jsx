@@ -4,6 +4,7 @@ import Sidebar from '../splash/sidebar';
 import HistoryButtons from '../splash/history_buttons';
 import UserDropdown from '../splash/user_dropdown';
 import {logout} from "../../actions/session_actions";
+import CurrentSearch from './currentSearch';
 
 // high level strategy:
 // if the state of search component is searching: render the current results 
@@ -12,20 +13,31 @@ import {logout} from "../../actions/session_actions";
 class Search extends React.Component {
     constructor(props){
         super(props)
+        this.state = {
+            text: ''
+        }   
+        
+        this.handleSearch = this.handleSearch.bind(this)
     }
 
+    handleSearch(e) {
+        this.setState({text: e.currentTarget.value})
+    } 
+
     render(){
-        console.log(this.props)
         return(
             <div className="splash logged-in">
                 <Sidebar/>
                 
                 <div className="navbar logged-in">
                     <HistoryButtons />
-                    <div className="searchbar">this will be the search bar</div>
+                    <div className="searchbar">
+                        <input type="text" onChange={this.handleSearch}/>
+                    </div>
                     <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
                 </div>
                 <div className="current-search">
+                    <CurrentSearch text={this.state.text}/>
                     <div className="recent-searches">
                         recent searches component goes here
                     </div>
