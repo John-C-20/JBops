@@ -14,7 +14,8 @@ class Search extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            text: ''
+            text: '',
+            results: {}
         }   
         
         this.handleSearch = this.handleSearch.bind(this)
@@ -22,6 +23,12 @@ class Search extends React.Component {
 
     handleSearch(e) {
         this.setState({text: e.currentTarget.value})
+        let title = this.state.text
+        $.ajax({
+            method: 'GET',
+            url: '/api/searches/',
+            data: { title }
+        }).then(res => this.setState({ results: res }))
     } 
 
     render(){
@@ -37,7 +44,7 @@ class Search extends React.Component {
                     <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
                 </div>
                 <div className="current-search">
-                    <CurrentSearch text={this.state.text}/>
+                    <CurrentSearch text={this.state.text} results={this.state.results}/>
                     <div className="recent-searches">
                         recent searches component goes here
                     </div>
