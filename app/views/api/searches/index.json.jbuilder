@@ -1,5 +1,5 @@
 @songs.each do |song|
-    json.set! song.id do 
+    json.set! "song_#{song.id}" do 
         json.extract! song, :id, :song_title, :album_id
 
         json.album do
@@ -18,12 +18,14 @@
             end
         end
 
+        json.set! :type, 'song'
+
         json.musicUrl url_for(song.musicUrl)
     end
 end
 
 @playlists.each do |playlist| 
-    json.set! playlist.id do         
+    json.set! "playlist_#{playlist.id}" do         
         json.extract! playlist, :id, :playlist_name, :user_id
         json.songs do 
             playlist.songs.each do |song|
@@ -41,6 +43,9 @@ end
                 end
             end
         end
+
+        json.set! :type, 'playlist'
+    
         json.artUrl url_for(playlist.playlist_artwork)
     end
 end

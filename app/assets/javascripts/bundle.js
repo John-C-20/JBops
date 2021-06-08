@@ -1509,14 +1509,36 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
           key: idx
         }, Object.values(obj)[1]);
-      }); // let result3 = Object.values(Object.values(result2)[0])[1]
+      });
+      var songs = result2.filter(function (obj) {
+        return obj.type === 'song';
+      });
+      var songResults = songs.map(function (obj, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: idx
+        }, Object.values(obj)[1]);
+      });
+      var playlists = result2.filter(function (obj) {
+        return obj.type === 'playlist';
+      });
+      var playlistResults = playlists.map(function (obj, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: idx
+        }, Object.values(obj)[1]);
+      });
+      var albums;
+      var artists; // let result3 = Object.values(Object.values(result2)[0])[1]
 
       console.log('result3', result3);
       return Object.values(this.props.results).length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "results"
       }, "default state") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "results"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, result3));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: "song-results"
+      }, songResults), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: "playlist-results"
+      }, playlistResults));
     }
   }]);
 
