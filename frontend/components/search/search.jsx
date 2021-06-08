@@ -6,10 +6,6 @@ import UserDropdown from '../splash/user_dropdown';
 import {logout} from "../../actions/session_actions";
 import CurrentSearch from './currentSearch';
 
-// high level strategy:
-// if the state of search component is searching: render the current results 
-// else: render recent searches, top genres and browse all 
-
 class Search extends React.Component {
     constructor(props){
         super(props)
@@ -45,15 +41,6 @@ class Search extends React.Component {
                 </div>
                 <div className="current-search">
                     <CurrentSearch text={this.state.text} results={this.state.results}/>
-                    <div className="recent-searches">
-                        recent searches component goes here
-                    </div>
-                    <div className="top-genres">
-                        top genres component goes here
-                    </div>
-                    <div className="browse-all">
-                        browse all component goes here
-                    </div>
                 </div>
                 
             </div>

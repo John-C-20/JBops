@@ -9,6 +9,8 @@ ul.playlist_row {
     padding-left: 30px;
     padding-right: 30px;
     overflow: auto;
+    column-gap: 20px;
+    width: max-content;
 }
 
 .homepage .playlist_row li {
