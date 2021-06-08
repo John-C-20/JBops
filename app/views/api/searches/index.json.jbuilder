@@ -25,6 +25,24 @@
     end
 end
 
+@artists.each do |artist|
+    json.set! "artist_#{artist.id}" do
+        json.extract! artist, :id, :name, :bio
+
+        json.set! :type, 'artist' 
+    end
+end
+
+@albums.each do |album|
+    json.set! "album_#{album.id}" do 
+        json.extract! album, :id, :album_title, :artist_id, :album_year
+    
+        json.set! :type, 'album'
+    
+        json.artwork url_for(album.artwork)
+    end
+end
+
 @playlists.each do |playlist| 
     json.set! "playlist_#{playlist.id}" do         
         json.extract! playlist, :id, :playlist_name, :user_id

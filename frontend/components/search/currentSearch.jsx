@@ -8,6 +8,7 @@ export default class CurrentSearch extends React.Component {
 
     render() {
         console.log(this.props.text)
+        console.log(this.props.results)
 
         let result =  Object.values(this.props.results)
 
@@ -31,9 +32,30 @@ export default class CurrentSearch extends React.Component {
                     </div>
                 </div>
             </li>)
-        let albums;
-        let artists; 
 
+        let artists = result.filter(obj => obj.type === 'artist')
+        let artistResults = artists.map((artist, idx) => 
+            <li key={idx}>
+                <div className="block">
+                    <img src="https://ik.imagekit.io/afkmedia/tr:w-375,h-250/media/images/83570-963fd2981d42ce32d196e3d42a25fd45.jpeg" />
+                    <div className="title">
+                        {artist.name}
+                    </div>
+                </div>
+            </li>)
+        let albums = result.filter(obj => obj.type === 'album')
+        let albumResults = albums.map((album, idx) => 
+            <li key={idx}>
+                <div className="block">
+                    <img src={album.artwork}/>
+                    <div className="title">
+                        {album.album_title}
+                    </div>
+                </div>
+            </li>)
+
+        console.log('result',result)
+        console.log('albums',albums)
         return(
             Object.values(this.props.results).length === 0 ? 
             <div className="results">
@@ -53,6 +75,24 @@ export default class CurrentSearch extends React.Component {
                 <div className="header">Songs</div>
                 <ul className="song-results">
                     {songResults}
+                </ul>
+                </div> 
+                : null }
+
+                {artistResults.length > 0 ? 
+                <div>
+                <div className="header">Artists</div>
+                <ul className="artist-results">
+                    {artistResults}
+                </ul>
+                </div> 
+                : null }
+
+                {albumResults.length > 0 ? 
+                <div>
+                <div className="header">Albums</div>
+                <ul className="album-results">
+                    {albumResults}
                 </ul>
                 </div> 
                 : null }

@@ -1,14 +1,5 @@
 
-ul.song-results {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 30px;
-    padding-right: 30px;
-    overflow: auto;
-    column-gap: 20px;
-    width: max-content;
-}
-ul.playlist-results {
+ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
     display: flex;
     justify-content: space-between;
     padding-left: 30px;
@@ -18,12 +9,12 @@ ul.playlist-results {
     width: max-content;
 }
 
-.song-results li, .playlist-results li {
+.song-results li, .playlist-results li, .artist-results li, .album-results li {
     list-style: none;
     --minimumColumnWidth: 180px;
 }
 
-.song-results .block, .playlist-results .block {
+.song-results .block, .playlist-results .block, .album-results .block, .artist-results .block {
     display: block;
     padding: 20px 20px 60px 20px;
     text-decoration: none;
@@ -35,16 +26,16 @@ ul.playlist-results {
     transition:         color 1s;
 }
 
-.song-results .block:hover, .playlist-results .block:hover {
+.song-results .block:hover, .playlist-results .block:hover, .album-results .block:hover, .artist-results .block:hover {
     background-color: #262626;
 }
 
-.song-results img, .playlist-results img {
+.song-results img, .playlist-results img, .artist-results img, .album-results img {
    width: 150px;
    height: 150px;
 }
 
-.song-results .title, .playlist-results .title{
+.song-results .title, .playlist-results .title, .album-results .title, .artist-results .title{
     color: #fff;
     font-size: 16px;
     font-weight: 700;
@@ -52,7 +43,7 @@ ul.playlist-results {
     letter-spacing: normal;
 }
 
-.song-results a:link, .playlist-results a:link {
+.song-results a:link, .playlist-results a:link, .album-results a:link, .artist-results a:link {
     text-decoration: none;
 }
 
