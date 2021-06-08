@@ -1501,16 +1501,8 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       console.log(this.props.text);
-      var result = this.props.results;
-      console.log('result', result);
-      var result2 = Object.values(result);
-      console.log('result2', result2);
-      var result3 = result2.map(function (obj, idx) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: idx
-        }, Object.values(obj)[1]);
-      });
-      var songs = result2.filter(function (obj) {
+      var result = Object.values(this.props.results);
+      var songs = result.filter(function (obj) {
         return obj.type === 'song';
       });
       var songResults = songs.map(function (obj, idx) {
@@ -1518,7 +1510,7 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
           key: idx
         }, Object.values(obj)[1]);
       });
-      var playlists = result2.filter(function (obj) {
+      var playlists = result.filter(function (obj) {
         return obj.type === 'playlist';
       });
       var playlistResults = playlists.map(function (obj, idx) {
@@ -1527,9 +1519,7 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
         }, Object.values(obj)[1]);
       });
       var albums;
-      var artists; // let result3 = Object.values(Object.values(result2)[0])[1]
-
-      console.log('result3', result3);
+      var artists;
       return Object.values(this.props.results).length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "results"
       }, "default state") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1626,7 +1616,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       this.setState({
         text: e.currentTarget.value
       });
-      var title = this.state.text;
+      var title = e.currentTarget.value;
       $.ajax({
         method: 'GET',
         url: '/api/searches/',

@@ -23,7 +23,7 @@ class Search extends React.Component {
 
     handleSearch(e) {
         this.setState({text: e.currentTarget.value})
-        let title = this.state.text
+        let title = e.currentTarget.value
         $.ajax({
             method: 'GET',
             url: '/api/searches/',
