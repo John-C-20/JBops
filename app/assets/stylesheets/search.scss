@@ -48,7 +48,7 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
 .current-search {
     color: #fff;
     margin-left: 232px;
-    height: inherit;
+    // height: inherit;
     width: calc(100% - 232px);
     overflow: visible;
 }
@@ -81,4 +81,8 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
     margin-left: 11px;
     margin-top: -17px;
     font-size: 23px;
+}
+
+.results {
+    padding-bottom: 89px;
 }
