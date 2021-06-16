@@ -34,10 +34,11 @@ class Search extends React.Component {
                 
                 <div className="navbar logged-in">
                     <HistoryButtons />
-                    <div className="searchbar">
-                        <input type="text" onChange={this.handleSearch}/>
-                    </div>
                     <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
+                </div>
+                <div className="searchbar">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input className="search-input" type="text" onChange={this.handleSearch} placeholder="Playlists, artists, albums, or songs"/>
                 </div>
                 <div className="current-search">
                     <CurrentSearch text={this.state.text} results={this.state.results}/>
@@ -47,6 +48,7 @@ class Search extends React.Component {
         )
     }
 }
+
 
 const mstp = state => ({
     currentUser: state.entities.users[state.session.currentUserId],

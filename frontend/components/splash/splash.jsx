@@ -19,8 +19,8 @@ export default class Splash extends React.Component {
             return(
             <div className="splash">
                 <div className="navbar">
+                        <HistoryButtons />
                     <ul>
-                        <li><HistoryButtons /></li>
                         <li><Link to="/signup"><button className="signup">Sign Up</button></Link></li>
                         <li><Link to="/login"><button className="login">Log In</button></Link></li>
                     </ul> 

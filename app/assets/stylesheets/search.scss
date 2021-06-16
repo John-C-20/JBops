@@ -62,3 +62,25 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
     margin-top: 3%;
     margin-left: 31px;
 }
+
+.search-input {
+    border-radius: 500px;
+    height: 40px;
+    width: 20vw;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+.searchbar {
+    margin-left: 345px;
+    border-radius: 500px;
+    margin-top: -36px;
+    padding-bottom: 36px;
+}
+
+.fa-search::before {
+    position: absolute;
+    margin-left: 11px;
+    margin-top: -17px;
+    font-size: 23px;
+}
