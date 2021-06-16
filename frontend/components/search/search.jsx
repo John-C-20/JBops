@@ -5,6 +5,7 @@ import HistoryButtons from '../splash/history_buttons';
 import UserDropdown from '../splash/user_dropdown';
 import {logout} from "../../actions/session_actions";
 import CurrentSearch from './currentSearch';
+import {fetchSong} from '../../actions/song_actions';
 
 class Search extends React.Component {
     constructor(props){
@@ -41,7 +42,7 @@ class Search extends React.Component {
                     <input className="search-input" type="text" onChange={this.handleSearch} placeholder="Playlists, artists, albums, or songs"/>
                 </div>
                 <div className="current-search">
-                    <CurrentSearch text={this.state.text} results={this.state.results}/>
+                    <CurrentSearch text={this.state.text} results={this.state.results} fetchSong={this.props.fetchSong}/>
                 </div>
                 
             </div>
@@ -57,7 +58,8 @@ const mstp = state => ({
 })
 
 const mdtp = dispatch =>  ({
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    fetchSong: songId => dispatch(fetchSong(songId))
 })
 
 export default connect(mstp, mdtp)(Search);

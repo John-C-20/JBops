@@ -11,7 +11,9 @@ json.songs do
                 json.artwork url_for(song.album.artwork) 
             end
         
-            json.artist song.artist.name
+            json.artist do
+                json.extract! song.artist, :name, :bio
+            end
         end
     end
 end

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import SongResult from './songResult';
 
 export default class CurrentSearch extends React.Component {
     constructor(props){
@@ -14,14 +15,11 @@ export default class CurrentSearch extends React.Component {
 
         let songs = result.filter(obj => obj.type === 'song')
         let songResults = songs.map((song, idx) => 
-            <li key={idx}>
-                <div className="block">
-                    <img src={song.album.artwork} />
-                    <div className="title">
-                        {song.song_title}
-                    </div>
-                </div>
-            </li>)
+                <button className="song" key={idx} onClick={() => this.props.fetchSong(song.id)}>
+                    <SongResult song={song} ord={idx} />
+                </button>
+            )
+
         let playlists = result.filter(obj => obj.type === 'playlist')
         let playlistResults = playlists.map((playlist, idx) => 
             <li key={idx}>
@@ -54,8 +52,11 @@ export default class CurrentSearch extends React.Component {
                 </div>
             </li>)
 
-        console.log('result',result)
-        console.log('albums',albums)
+
+        console.log('albumResults', albumResults)
+        console.log('songs', songs)
+        console.log('songresults', songResults)
+        console.log('playlistResults', playlistResults)
         return(
             Object.values(this.props.results).length === 0 ? 
             <div className="results">

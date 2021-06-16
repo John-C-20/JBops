@@ -67,6 +67,7 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
     width: 20vw;
     padding-left: 40px;
     padding-right: 20px;
+    outline-style: none;
 }
 
 .searchbar {
@@ -86,3 +87,19 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
 .results {
     padding-bottom: 89px;
 }
+
+.song_result  span {
+    color: #b3b3b3;
+    font-size: 14px;
+    font-family: arial;
+}
+
+ul.song.song_result {
+    justify-content: space-between;
+    padding: 0;
+}
+
+ul.song.song_result > li {
+    text-align: end;
+}
+
