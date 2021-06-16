@@ -1,9 +1,10 @@
 .jbops {
     color: #fff;
     margin-left: 232px;
-    height: inherit;
+    // height: inherit;
     width: calc(100% - 232px);
-    overflow-y:auto;
+    overflow: visible;
+    // overflow-y:auto;
 }
 
 // div.playlists {
@@ -16,3 +17,4 @@
     padding: 0 30px;
     margin-top: 42px;
 }
+

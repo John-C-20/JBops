@@ -1,12 +1,10 @@
 
 ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
     display: flex;
-    justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
-    overflow: auto;
-    column-gap: 20px;
-    width: max-content;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .song-results li, .playlist-results li, .artist-results li, .album-results li {
@@ -52,7 +50,7 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
     margin-left: 232px;
     height: inherit;
     width: calc(100% - 232px);
-    overflow-y:auto;
+    overflow: visible;
 }
 
 .results div.header {

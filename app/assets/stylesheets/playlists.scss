@@ -5,12 +5,10 @@
 
 ul.playlist_row {
     display: flex;
-    justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
-    overflow: auto;
-    column-gap: 20px;
-    width: max-content;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .homepage .playlist_row li {
