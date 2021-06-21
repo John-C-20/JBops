@@ -59,30 +59,32 @@ export default class CurrentSearch extends React.Component {
         console.log('playlistResults', playlistResults)
         return(
             Object.values(this.props.results).length === 0 ? 
-            <div className="results">
-                <div
-                    id="hiphop"
-                    onClick={() => history.push('/genres/hiphop')}
-                    className="genre-button">
-                    Hip hop
-                </div>
-                <div
-                    id="pop"
-                    onClick={() => history.push('/genres/pop')}
-                    className="genre-button">
-                    Pop
-                </div>
-                <div
-                    id="rock"
-                    onClick={() => history.push('/genres/rock')}
-                    className="genre-button">
-                    Rock
-                </div>
-                <div
-                    id="rnb"
-                    onClick={() => history.push('/genres/rnb')}
-                    className="genre-button">
-                    R&B
+            <div className="browse-genres-container">
+                <div className="search-index">
+                    <div
+                        id="hiphop"
+                        onClick={() => history.push('/genres/hiphop')}
+                        className="genre-button">
+                        Hip hop
+                    </div>
+                    <div
+                        id="pop"
+                        onClick={() => history.push('/genres/pop')}
+                        className="genre-button">
+                        Pop
+                    </div>
+                    <div
+                        id="rock"
+                        onClick={() => history.push('/genres/rock')}
+                        className="genre-button">
+                        Rock
+                    </div>
+                    <div
+                        id="rnb"
+                        onClick={() => history.push('/genres/rnb')}
+                        className="genre-button">
+                        R&B
+                    </div>
                 </div>
             </div> :
             <div className="results">
