@@ -27,20 +27,10 @@
 <div><img src="/app/assets/images/Music_Player.gif" alt="music-player-demo"></div>
 <br/>
 
-- Users can search and browse for music:
+- Users can search and browse for music, artists, albums, and playlists:
 
 <br/>
 <div><img src="/app/assets/images/Search.gif" alt="search-demo" width="600"></div>
 <br/>
 
-
-- Users can visit artist pages, follow them, browse their discography, and read their bio:
-
-<br/>
-<div><img src="/app/assets/images/artist_page_demo.gif" alt="artist-page-demo"></div>
-<br/>
-
-<br/>
-<div><img src="/app/assets/images/artist-browse-demo.gif" alt="artist-browse-demo"></div>
-<br/>
 
