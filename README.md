@@ -1,24 +1,70 @@
-# README
+<div align="center">
+  <img src="app/assets/images/Jbops_logo.png" alt="logo" width="500" style="vertical-align:middle">
+</div>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<br>
 
-Things you may want to cover:
+[Jbops](https://jbops.herokuapp.com/#/) is a clone of [Spotify's Web Player](https://open.spotify.com/). It's also an audio streaming service that allows users to curate their own playlists and create a personal library of songs, albums, artists, and playlists created by other users via likes.
 
-* Ruby version
+## Technologies Used
+- React/Redux
+- Ruby on Rails
+- PostgreSQL
+- Heroku
+- AWS
 
-* System dependencies
+![Splash Page](https://github.com/pramirez23/Tonify/blob/main/app/assets/images/Tonify_Splash.png)
 
-* Configuration
+## Features
 
-* Database creation
+- Users can sign up for an account:
 
-* Database initialization
+<br/>
+<div><img src="/app/assets/images/signup_demo.gif" alt="signup-demo"></div>
+<br/>
 
-* How to run the test suite
+- Users can search and browse for music:
 
-* Services (job queues, cache servers, search engines, etc.)
+<br/>
+<div><img src="/app/assets/images/search_browse_demo.gif" alt="search-demo"></div>
+<br/>
 
-* Deployment instructions
+- Users can continuously play music while navigating the application: 
 
-* ...
+<br/>
+<div><img src="/app/assets/images/continuous_play_demo.gif" alt="continuous-play-demo"></div>
+<br/>
+
+- Users can visit artist pages, follow them, browse their discography, and read their bio:
+
+<br/>
+<div><img src="/app/assets/images/artist_page_demo.gif" alt="artist-page-demo"></div>
+<br/>
+
+<br/>
+<div><img src="/app/assets/images/artist-browse-demo.gif" alt="artist-browse-demo"></div>
+<br/>
+
+- Users can browse and add albums to their personal libraries:
+
+<br/>
+<div><img src="/app/assets/images/album_demo.gif" alt="album-demo"></div>
+<br/>
+
+- Users can generate and delete playlists:
+
+<br/>
+<div><img src="/app/assets/images/create_delete_demo.gif" alt="playlist-create-delete-demo"></div>
+<br/>
+
+- Users can add songs to their own playlists:
+
+<br/>
+<div><img src="/app/assets/images/playlist_add_demo.gif" alt="playlist-add-demo"></div>
+<br/>
+
+- Users can upload photos for their playlists:
+
+<br/>
+<div><img src="/app/assets/images/upload_photo_demo.gif" alt="playlist-photo-demo"></div>
+<br/>
