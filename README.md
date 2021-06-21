@@ -17,10 +17,10 @@
 
 ## Features
 
-- Users can sign up for an account:
+- User Authentication and Account Creation 
 
 <br/>
-<div><img src="/app/assets/images/signup_demo.gif" alt="signup-demo"></div>
+<div><img src="/app/assets/images/User_Auth.gif" alt="signup-demo"></div>
 <br/>
 
 - Users can search and browse for music:
