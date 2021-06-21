@@ -30,7 +30,7 @@
 - Users can search and browse for music:
 
 <br/>
-<div><img src="/app/assets/images/search_browse_demo.gif" alt="search-demo"></div>
+<div><img src="/app/assets/images/Search.gif" alt="search-demo"></div>
 <br/>
 
 
