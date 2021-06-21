@@ -60,15 +60,30 @@ export default class CurrentSearch extends React.Component {
         return(
             Object.values(this.props.results).length === 0 ? 
             <div className="results">
-                <div className="recent-searches">
-                    recent searches component goes here
+                <div
+                    id="hiphop"
+                    onClick={() => history.push('/genres/hiphop')}
+                    className="genre-button">
+                    Hip hop
                 </div>
-                <div className="top-genres">
-                    top genres component goes here
+                <div
+                    id="pop"
+                    onClick={() => history.push('/genres/pop')}
+                    className="genre-button">
+                    Pop
                 </div>
-                <div className="browse-all">
-                    browse all component goes here
-                </div> 
+                <div
+                    id="rock"
+                    onClick={() => history.push('/genres/rock')}
+                    className="genre-button">
+                    Rock
+                </div>
+                <div
+                    id="rnb"
+                    onClick={() => history.push('/genres/rnb')}
+                    className="genre-button">
+                    R&B
+                </div>
             </div> :
             <div className="results">
                 {songResults.length > 0 ? 
