@@ -127,7 +127,7 @@ div.genre-button {
   font-size: 30px;
   font-weight: 500;
   letter-spacing: 0.2px;
-  transition: 0.2s ease-in-out;
+//   transition: 0.2s ease-in-out;
   cursor: pointer;
 }
 
@@ -143,4 +143,24 @@ div.genre-button:hover {
 .search-songs-container {
   display: flex;
   flex-direction: column;
+}
+
+#hiphop {
+  background: rgb(147,93,20);
+  background: linear-gradient(0deg, rgba(147,93,20,1) 0%, rgba(244,154,35,1) 100%);
+}
+
+#pop {
+  background: rgb(118,145,121);
+  background: linear-gradient(0deg, rgba(118,145,121,1) 0%, rgba(194,239,199,1) 100%);
+}
+
+#rock {
+  background: rgb(141,18,30);
+  background: linear-gradient(0deg, rgba(141,18,30,1) 0%, rgba(234,35,50,1) 100%);
+}
+
+#rnb {
+  background: rgb(145,33,99);
+  background: linear-gradient(0deg, rgba(145,33,99,1) 0%, rgba(239,55,165,1) 100%);
 }
