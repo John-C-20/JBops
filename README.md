@@ -33,4 +33,6 @@
 - If no text is entered, users can browse the Jbops song library by genre
 <div><img src="/app/assets/images/Search.gif" alt="search-demo" width="600"></div>
 
-
+### Seeding and Storage 
+- All songs, albums, artists, and default playlists are manually seeded using Ruby on Rails' ActiveRecord and ActiveStorage
+- AWS cloud storage is used to store all mp3 and image files used in this application 
