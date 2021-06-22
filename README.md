@@ -20,6 +20,7 @@
 - For convenience, there is a demo user log-in button 
 - User can logout by clicking on the user dropdown button 
 <div><img src="/app/assets/images/User_Auth.gif" alt="signup-demo"></div>
+<br>
 
 ### Continuous Music Player 
 - Pause/Play functionality for songs 
@@ -27,11 +28,13 @@
 - Music plays without interruptions as user navigates through the rest of the application 
 - Bonus: navigation butttons that allows user to go back and forward in the browser's history
 <div><img src="/app/assets/images/Music_Player.gif" alt="music-player-demo"></div>
+<br>
 
 ### Search Functionality 
 - Allows users to search for songs, artists, albums, and playlists based on text input  
 - If no text is entered, users can browse the Jbops song library by genre
 <div><img src="/app/assets/images/Search.gif" alt="search-demo" width="600"></div>
+<br>
 
 ### Seeding and Storage 
 - All songs, albums, artists, and default playlists are manually seeded using Ruby on Rails' ActiveRecord and ActiveStorage
