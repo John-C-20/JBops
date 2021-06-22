@@ -45,13 +45,8 @@ class GenreDetail extends React.Component{
 
                 <div className="jbops">
                     <div className="header">
-                        <div id="playlist_img">
-                            <img src={artwork} />
-                        </div>
-
                         <div className="text">
-                            <h2>Playlist</h2>
-                            {/* <h1>{playlist}</h1> */}
+                            <h1>{this.props.location.pathname.split('/').pop()}</h1>
                             <div id="num_songs">
                                 {`${songRows.length} songs`}
                             </div>
