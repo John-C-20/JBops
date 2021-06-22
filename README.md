@@ -21,9 +21,10 @@ User Authentication
 <div><img src="/app/assets/images/User_Auth.gif" alt="signup-demo"></div>
 <br/>
 
-- Users can continuously play music while navigating the application: 
-
-<br/>
+Continuous Music Player 
+- Pause/Play functionality for songs 
+- Duration/Volume scrubbers to change song duration or volume level 
+- Music plays without interruptions as user navigates through the rest of the application 
 <div><img src="/app/assets/images/Music_Player.gif" alt="music-player-demo"></div>
 <br/>
 
