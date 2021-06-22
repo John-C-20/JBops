@@ -15,7 +15,7 @@
 
 ## Features
 
-- User Authentication and Account Creation 
+# User Authentication and Account Creation 
 
 <br/>
 <div><img src="/app/assets/images/User_Auth.gif" alt="signup-demo"></div>
