@@ -30,6 +30,7 @@
 
 ### Search Functionality 
 - Allows users to search for songs, artists, albums, and playlists based on text input  
+- The default search page, prior to entering any text input, allows users to browse the Jbops library by genre
 <div><img src="/app/assets/images/Search.gif" alt="search-demo" width="600"></div>
 
 
