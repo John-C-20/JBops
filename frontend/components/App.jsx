@@ -18,7 +18,7 @@ const App = () => (
             <AuthRoute path="/login" component={LoginFormContainer} />
             <ProtectedRoute path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
             <ProtectedRoute path="/search" component={Search} />
-            <ProtectedRoute path="/genre/:genre" component={GenreDetail} /> 
+            <ProtectedRoute path="/genres/:genre" component={GenreDetail} /> 
         </Switch>
         {/* change this path later ^  */}
     </div>

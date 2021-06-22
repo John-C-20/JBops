@@ -17,16 +17,23 @@ class GenreDetail extends React.Component{
     componentDidMount() {
         $.ajax({
             method: 'GET',
-            url: '/api/genres/:genre'
-        }).then(res => this.setState({songs: res}))
+            url: `/api/genres/${this.props.location.pathname.split('/').pop()}`
+        }).then(res => this.setState({songs: Object.values(res)}))
     }
 
     render(){
         let genre = [];
-        let songRows = [];
+        let songRows = this.state.songs.map((song, idx) => 
+            <button className="song" key={idx} onClick={() => this.props.fetchSong(song.id)}>
+                <Song song={song}/> 
+            </button>
+        )
         let artwork = "" 
+    
+        console.log('this.state.songs:', this.state.songs)
+
         
-        if (this.props.genre)
+
 
         return(
             <div className="splash logged-in">
@@ -44,7 +51,7 @@ class GenreDetail extends React.Component{
 
                         <div className="text">
                             <h2>Playlist</h2>
-                            <h1>{playlist}</h1>
+                            {/* <h1>{playlist}</h1> */}
                             <div id="num_songs">
                                 {`${songRows.length} songs`}
                             </div>
@@ -83,11 +90,13 @@ class GenreDetail extends React.Component{
 }
 
 const mstp = (state, ownProps) => ({
-
+    currentUser: state.entities.users[state.session.currentUserId],
+    currentSong: state.session.currentSong
 })
 
 const mdtp = dispatch => ({
-
+    fetchSong: songId => dispatch(fetchSong(songId)),
+    logout: () => dispatch(logout())
 })
 
-export default connect(null, null)(GenreDetail)
+export default connect(mstp, mdtp)(GenreDetail)

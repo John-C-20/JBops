@@ -352,7 +352,7 @@ var App = function App() {
     path: "/search",
     component: _search_search__WEBPACK_IMPORTED_MODULE_8__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_6__.ProtectedRoute, {
-    path: "/genre/:genre",
+    path: "/genres/:genre",
     component: _genres_genre_detail__WEBPACK_IMPORTED_MODULE_9__.default
   })));
 };
@@ -370,9 +370,10 @@ var App = function App() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Genre)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -394,6 +395,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -419,7 +421,7 @@ var Genre = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: this.props.genre,
         onClick: function onClick() {
-          return history.push("/genres/".concat(_this.props.genre));
+          return _this.props.history.push("/genres/".concat(_this.props.genre));
         },
         className: "genre-button"
       }, genre);
@@ -429,7 +431,7 @@ var Genre = /*#__PURE__*/function (_React$Component) {
   return Genre;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.withRouter)(Genre));
 
 /***/ }),
 
@@ -505,20 +507,33 @@ var GenreDetail = /*#__PURE__*/function (_React$Component) {
 
       $.ajax({
         method: 'GET',
-        url: '/api/genres/:genre'
+        url: "/api/genres/".concat(this.props.location.pathname.split('/').pop())
       }).then(function (res) {
         return _this2.setState({
-          songs: res
+          songs: Object.values(res)
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var genre = [];
-      var songRows = [];
+      var songRows = this.state.songs.map(function (song, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+          className: "song",
+          key: idx,
+          onClick: function onClick() {
+            return _this3.props.fetchSong(song.id);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_songs_song__WEBPACK_IMPORTED_MODULE_3__.default, {
+          song: song
+        }));
+      });
       var artwork = "";
-      if (this.props.genre) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      console.log('this.state.songs:', this.state.songs);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         className: "splash logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         className: "navbar logged-in"
@@ -535,7 +550,7 @@ var GenreDetail = /*#__PURE__*/function (_React$Component) {
         src: artwork
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         className: "text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h2", null, "Playlist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", null, playlist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h2", null, "Playlist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         id: "num_songs"
       }, "".concat(songRows.length, " songs")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         className: "grid"
@@ -569,14 +584,44 @@ var GenreDetail = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 var mstp = function mstp(state, ownProps) {
-  return {};
+  return {
+    currentUser: state.entities.users[state.session.currentUserId],
+    currentSong: state.session.currentSong
+  };
 };
 
 var mdtp = function mdtp(dispatch) {
-  return {};
+  return {
+    fetchSong: function (_fetchSong) {
+      function fetchSong(_x) {
+        return _fetchSong.apply(this, arguments);
+      }
+
+      fetchSong.toString = function () {
+        return _fetchSong.toString();
+      };
+
+      return fetchSong;
+    }(function (songId) {
+      return dispatch(fetchSong(songId));
+    }),
+    logout: function (_logout) {
+      function logout() {
+        return _logout.apply(this, arguments);
+      }
+
+      logout.toString = function () {
+        return _logout.toString();
+      };
+
+      return logout;
+    }(function () {
+      return dispatch(logout());
+    })
+  };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, null)(GenreDetail));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mstp, mdtp)(GenreDetail));
 
 /***/ }),
 
@@ -1453,6 +1498,9 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
         }
       }
 
+      console.log('pathname:', this.props.location.pathname);
+      console.log('last element in pathname:', this.props.location.pathname.split('/').pop());
+      console.log('last element in pathname type:', _typeof(this.props.location.pathname.split('/').pop()));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

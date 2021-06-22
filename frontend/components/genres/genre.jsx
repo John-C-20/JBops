@@ -1,6 +1,8 @@
 import React from 'react' 
+import { withRouter } from 'react-router-dom';
 
-export default class Genre extends React.Component {
+
+class Genre extends React.Component {
     constructor(props) {
         super(props)
         // this.props.genre
@@ -14,10 +16,12 @@ export default class Genre extends React.Component {
         return(
             <div
                 id={this.props.genre}
-                onClick={() => history.push(`/genres/${this.props.genre}`)}
+                onClick={() => this.props.history.push(`/genres/${this.props.genre}`)}
                 className="genre-button">
                 {genre}
             </div>
         )
     }
 }
+
+export default withRouter(Genre);

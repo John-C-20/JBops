@@ -39,6 +39,9 @@ export default class PlaylistDetail extends React.Component {
             }
         }
         
+        console.log('pathname:', this.props.location.pathname)
+        console.log('last element in pathname:', this.props.location.pathname.split('/').pop())
+        console.log('last element in pathname type:', typeof this.props.location.pathname.split('/').pop())
         return(
                 <div className="splash logged-in">
                     <div className="navbar logged-in">
