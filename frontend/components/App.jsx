@@ -7,6 +7,7 @@ import {Route, Switch, Link}  from 'react-router-dom'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'
 import Player from './player/player';
 import Search from './search/search';
+import GenreDetail from './genres/genre_detail';
 
 const App = () => (
     <div className="app">
@@ -16,7 +17,8 @@ const App = () => (
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
             <ProtectedRoute path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
-            <ProtectedRoute path="/search" component={Search} /> 
+            <ProtectedRoute path="/search" component={Search} />
+            <ProtectedRoute path="/genre/:genre" component={GenreDetail} /> 
         </Switch>
         {/* change this path later ^  */}
     </div>

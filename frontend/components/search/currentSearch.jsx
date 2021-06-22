@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SongResult from './songResult';
+import Genre from '../genres/genre';
 
 export default class CurrentSearch extends React.Component {
     constructor(props){
@@ -61,30 +62,10 @@ export default class CurrentSearch extends React.Component {
             Object.values(this.props.results).length === 0 ? 
             <div className="browse-genres-container">
                 <div className="search-index">
-                    <div
-                        id="hiphop"
-                        onClick={() => history.push('/genres/hiphop')}
-                        className="genre-button">
-                        Hip hop
-                    </div>
-                    <div
-                        id="pop"
-                        onClick={() => history.push('/genres/pop')}
-                        className="genre-button">
-                        Pop
-                    </div>
-                    <div
-                        id="rock"
-                        onClick={() => history.push('/genres/rock')}
-                        className="genre-button">
-                        Rock
-                    </div>
-                    <div
-                        id="rnb"
-                        onClick={() => history.push('/genres/rnb')}
-                        className="genre-button">
-                        R&B
-                    </div>
+                    <Genre genre="HipHop" /> 
+                    <Genre genre="Pop" /> 
+                    <Genre genre="Rock" /> 
+                    <Genre genre="RnB" /> 
                 </div>
             </div> :
             <div className="results">
