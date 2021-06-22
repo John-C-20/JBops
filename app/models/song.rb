@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
-    validates :song_title, :album_id, null: false 
+    validates :song_title, :album_id, :genre, null: false 
 
     has_one_attached :musicUrl
 
