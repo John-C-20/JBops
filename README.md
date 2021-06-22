@@ -15,13 +15,13 @@
 
 ## Features
 
-User Authentication
+###User Authentication###
 - Users are required to either sign-up or sign-in before using any features of the application
 - For convenience, there is a demo user log-in button 
 <div><img src="/app/assets/images/User_Auth.gif" alt="signup-demo"></div>
 <br/>
 
-Continuous Music Player 
+**Continuous Music Player** 
 - Pause/Play functionality for songs 
 - Duration/Volume scrubbers to change song duration or volume level 
 - Music plays without interruptions as user navigates through the rest of the application 
