@@ -22,18 +22,16 @@ class GenreDetail extends React.Component{
     }
 
     render(){
-        let genre = [];
+        let genre = this.props.location.pathname.split('/').pop()
+        if (genre === 'HipHop') genre = 'Hip Hop'
+        if (genre === 'RnB') genre = 'R&B'
+
         let songRows = this.state.songs.map((song, idx) => 
             <button className="song" key={idx} onClick={() => this.props.fetchSong(song.id)}>
                 <Song song={song}/> 
             </button>
         )
         let artwork = "" 
-    
-        console.log('this.state.songs:', this.state.songs)
-
-        
-
 
         return(
             <div className="splash logged-in">
@@ -46,7 +44,7 @@ class GenreDetail extends React.Component{
                 <div className="jbops">
                     <div className="header">
                         <div className="text">
-                            <h1>{this.props.location.pathname.split('/').pop()}</h1>
+                            <h1>{genre}</h1>
                             <div id="num_songs">
                                 {`${songRows.length} songs`}
                             </div>

@@ -9,9 +9,6 @@ export default class CurrentSearch extends React.Component {
     }
 
     render() {
-        console.log(this.props.text)
-        console.log(this.props.results)
-
         let result =  Object.values(this.props.results)
 
         let songs = result.filter(obj => obj.type === 'song')
@@ -53,11 +50,6 @@ export default class CurrentSearch extends React.Component {
                 </div>
             </li>)
 
-
-        console.log('albumResults', albumResults)
-        console.log('songs', songs)
-        console.log('songresults', songResults)
-        console.log('playlistResults', playlistResults)
         return(
             Object.values(this.props.results).length === 0 ? 
             <div className="browse-genres-container">
