@@ -18,6 +18,7 @@
 ### User Authentication 
 - Users are required to either sign-up or sign-in before using any features of the application
 - For convenience, there is a demo user log-in button 
+- User can logout by clicking on the user dropdown button 
 <div><img src="/app/assets/images/User_Auth.gif" alt="signup-demo"></div>
 <br/>
 
