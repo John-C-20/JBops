@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // playlist: {id:1}
+            playlist: {id:1}
         }
 
         // this.currentUserID = this.props.currentUser.id

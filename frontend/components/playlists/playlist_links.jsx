@@ -11,15 +11,15 @@ class PlaylistLink extends React.Component {
     render() {
         let playlists = ''
         if (this.props.currentUser) {
-            if (this.props.currentUser.playlists) {
-                playlists = Object.values(this.props.currentUser.playlists)
+            // if (this.props.currentUser.playlists) {
+                playlists = Object.values(this.props.playlists).filter(playlist => playlist.user_id == this.props.currentUserId)
                 .map((playlist, idx) => 
                 <li className="playlist-link" key={idx}>
                     <Link to={`/playlist/${playlist.id}`}>
                         {playlist.playlist_name}
                     </Link>
                 </li>)
-            }
+            // }
         }
 
         return (
@@ -29,7 +29,8 @@ class PlaylistLink extends React.Component {
 }
 
 const mstp = state => ({
-    currentUser: state.entities.users[state.session.currentUserId],
+    currentUserId: state.session.currentUserId,
+    playlists: state.entities.playlists
 })
 
 

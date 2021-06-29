@@ -10,7 +10,7 @@ class Api::PlaylistsController < ApplicationController
     end
 
     def index
-        @playlists = Playlist.where(user_id: 0)
+        @playlists = Playlist.all
         render :index 
     end
 

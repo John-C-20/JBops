@@ -1651,19 +1651,22 @@ var PlaylistLink = /*#__PURE__*/function (_React$Component) {
   _createClass(PlaylistLink, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var playlists = '';
 
       if (this.props.currentUser) {
-        if (this.props.currentUser.playlists) {
-          playlists = Object.values(this.props.currentUser.playlists).map(function (playlist, idx) {
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("li", {
-              className: "playlist-link",
-              key: idx
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-              to: "/playlist/".concat(playlist.id)
-            }, playlist.playlist_name));
-          });
-        }
+        // if (this.props.currentUser.playlists) {
+        playlists = Object.values(this.props.playlists).filter(function (playlist) {
+          return playlist.user_id == _this.props.currentUserId;
+        }).map(function (playlist, idx) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("li", {
+            className: "playlist-link",
+            key: idx
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+            to: "/playlist/".concat(playlist.id)
+          }, playlist.playlist_name));
+        }); // }
       }
 
       return playlists;
@@ -1675,7 +1678,8 @@ var PlaylistLink = /*#__PURE__*/function (_React$Component) {
 
 var mstp = function mstp(state) {
   return {
-    currentUser: state.entities.users[state.session.currentUserId]
+    currentUserId: state.session.currentUserId,
+    playlists: state.entities.playlists
   };
 };
 
@@ -2689,7 +2693,10 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Sidebar);
 
     _this = _super.call(this, props);
-    _this.state = {// playlist: {id:1}
+    _this.state = {
+      playlist: {
+        id: 1
+      }
     }; // this.currentUserID = this.props.currentUser.id
     // this.handleClick = this.handleClick.bind(this)
     // this.playlistCount = (Object.values(this.props.currentUser.playlists).length + 1)
@@ -3275,7 +3282,8 @@ var configureStore = function configureStore() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchPlaylists": () => (/* binding */ fetchPlaylists),
-/* harmony export */   "fetchPlaylist": () => (/* binding */ fetchPlaylist)
+/* harmony export */   "fetchPlaylist": () => (/* binding */ fetchPlaylist),
+/* harmony export */   "createPlaylist": () => (/* binding */ createPlaylist)
 /* harmony export */ });
 var fetchPlaylists = function fetchPlaylists() {
   return $.ajax({
@@ -3285,6 +3293,12 @@ var fetchPlaylists = function fetchPlaylists() {
 var fetchPlaylist = function fetchPlaylist(playlistId) {
   return $.ajax({
     url: "/api/playlists/".concat(playlistId)
+  });
+};
+var createPlaylist = function createPlaylist() {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/playlists/'
   });
 };
 
