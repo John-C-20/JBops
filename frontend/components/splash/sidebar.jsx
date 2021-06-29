@@ -8,35 +8,20 @@ import {fetchPlaylists, fetchPlaylist, createPlaylist} from '../../actions/playl
 class Sidebar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            playlist: {id:1}
-        }
-
 
         this.props.currentUser ? this.currentUserID = this.props.currentUser.id : null
         this.handleClick = this.handleClick.bind(this)
-        // this.playlistCount = (Object.values(this.props.currentUser.playlists).length + 1)
     }
 
-    // handleClick() {
-    //     $.ajax({
-    //         method: 'POST',
-    //         url: '/api/playlists',
-    //         // data: {playlist_name: `Untitled Playlist ${this.playlistCount}`, user_id: this.currentUserID}
-    //         data: {playlist: {playlist_name: "Untitled Playlist", user_id: this.currentUserID}}
-    //     })
-    //     .then(res => this.setState({playlist: res}))
-    //     .then(() => this.props.history.push(`/playlist/${this.state.playlist.id}`))
-    // }
-
     handleClick() {
-        this.props.createPlaylist({ playlist: { playlist_name: "Untitled Playlist", user_id: this.currentUserID } })
-        .then(playlist => console.log(playlist))
-        // .then((playlist)=> this.props.history.push(`/playlist/${playlist.id}`))        
+        this.props.createPlaylist({ playlist: { playlist_name: `Untitled Playlist ${this.props.userPlaylists.length + 1}`, user_id: this.currentUserID } })
+        .then((playlist)=> {
+        console.log(this.props.history)
+        this.props.history.push(`/playlist/${playlist.playlist.id}`)})        
     }
 
     componentDidMount() {
-        // this.props.getPlaylists()
+        this.props.getPlaylists()
     }
 
     render(){
@@ -71,7 +56,7 @@ class Sidebar extends React.Component {
                     </li>
                     <br/>
                     <li>
-                        <a href='#' onClick={this.handleClick}>
+                        <a onClick={this.handleClick}>
                             <div className="create-wrapper">
                                 <svg role="img" height="12" width="12" viewBox="0 0 16 16" className="Svg-ulyrgf-0 dIsYZz">
                                     <path d="M14 7H9V2H7v5H2v2h5v5h2V9h5z"></path>
@@ -90,7 +75,8 @@ class Sidebar extends React.Component {
 }
 
 const mstp = state => ({
-    currentUser: state.entities.users[state.session.currentUserId]
+    currentUser: state.entities.users[state.session.currentUserId],
+    userPlaylists: Object.values(state.entities.playlists).filter(playlist => playlist.user_id == state.session.currentUserId)
 })
 
 const mdtp = dispatch => ({
