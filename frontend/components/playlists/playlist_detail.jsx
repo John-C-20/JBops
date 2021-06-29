@@ -1,19 +1,26 @@
 import React from 'react' 
 import UserDropdown from '../splash/user_dropdown'
 import Sidebar from '../splash/sidebar'
-import Player from '../player/player'
 import Song from '../songs/song'
 import HistoryButtons from "../splash/history_buttons";
+import Modal from "./modal";
 
 export default class PlaylistDetail extends React.Component {
     constructor(props) {
         super(props)
-
+        this.state = {
+            modalOpen: false
+        }
         this.fetchSong = this.props.fetchSong
+        this.toggleModal = this.toggleModal.bind(this)
     }
 
     componentDidMount() {
         this.props.getPlaylist(this.props.match.params.playlistId)
+    }
+
+    toggleModal(){
+        this.setState({modalOpen: !this.state.modalOpen})
     }
 
     render() {
@@ -58,7 +65,14 @@ export default class PlaylistDetail extends React.Component {
 
                             <div className="text">
                                 <h2>Playlist</h2>
-                                <h1>{playlist}</h1>
+
+                                {this.props.playlist && (this.props.playlist.user_id == this.props.currentUser.id) ? 
+                                <h1 onClick={this.toggleModal}>{playlist}</h1> :
+                                <h1>{playlist}</h1> 
+
+                                }
+
+
                                 <div id="num_songs">
                                     {`${songRows.length} songs`}
                                 </div>
@@ -94,7 +108,7 @@ export default class PlaylistDetail extends React.Component {
                         </div>
                     </div>
 
-                    {/* <Player />  */}
+                    <Modal show={this.state.modalOpen} toggleModal={this.toggleModal}/> 
                 </div>
             )}
     }
