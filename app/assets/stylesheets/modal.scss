@@ -7,3 +7,47 @@
     z-index: 1;
     background:rgba(0,0,0,0.2);
 }
+
+.modal-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -180px;
+  width: 360px;
+  height: 200px;
+  padding: 25px;
+  background: #fff;
+  color: #fff;
+  background-color: #282828;
+  z-index: 2;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.modal-form form {
+    display:flex;
+    flex-direction: column;
+}
+
+.modal-form h1 {
+    font-size: 24px;
+    font-weight: 550;
+    letter-spacing: -.04em;
+    line-height: 28px;
+    text-transform: none;
+    font-family: Helvetica, arial,sans-serif;
+}
+
+.inner-wrapper {
+    display:flex;
+}
+
+.inner-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.end {
+    align-self: flex-end;
+}

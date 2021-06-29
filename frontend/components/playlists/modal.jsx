@@ -20,7 +20,7 @@ export default class Modal extends React.Component {
                 </div>
                 <div className="modal-form">
                     <form onSubmit={this.onSubmit}>
-                        <h2>Edit Details</h2>
+                        <h1>Edit details</h1>
                         <div className="inner-wrapper">
                             <div>
                                 artwork box (changeable)
