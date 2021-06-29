@@ -114,13 +114,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "GET_PLAYLISTS": () => (/* binding */ GET_PLAYLISTS),
 /* harmony export */   "GET_PLAYLIST": () => (/* binding */ GET_PLAYLIST),
+/* harmony export */   "MAKE_PLAYLIST": () => (/* binding */ MAKE_PLAYLIST),
 /* harmony export */   "fetchPlaylists": () => (/* binding */ fetchPlaylists),
-/* harmony export */   "fetchPlaylist": () => (/* binding */ fetchPlaylist)
+/* harmony export */   "fetchPlaylist": () => (/* binding */ fetchPlaylist),
+/* harmony export */   "createPlaylist": () => (/* binding */ createPlaylist)
 /* harmony export */ });
 /* harmony import */ var _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/playlist_api_util */ "./frontend/util/playlist_api_util.js");
 
 var GET_PLAYLISTS = 'GET_PLAYLISTS';
 var GET_PLAYLIST = 'GET_PLAYLIST';
+var MAKE_PLAYLIST = 'MAKE_PLAYLIST';
 
 var getPlaylists = function getPlaylists(playlists) {
   return {
@@ -136,6 +139,13 @@ var getPlaylist = function getPlaylist(playlist) {
   };
 };
 
+var makePlaylist = function makePlaylist(playlist) {
+  return {
+    type: MAKE_PLAYLIST,
+    playlist: playlist
+  };
+};
+
 var fetchPlaylists = function fetchPlaylists() {
   return function (dispatch) {
     return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPlaylists().then(function (playlists) {
@@ -147,6 +157,13 @@ var fetchPlaylist = function fetchPlaylist(playListId) {
   return function (dispatch) {
     return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPlaylists(playListId).then(function (playlist) {
       return dispatch(getPlaylist(playlist));
+    });
+  };
+};
+var createPlaylist = function createPlaylist() {
+  return function (dispatch) {
+    return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.createPlaylist().then(function (playlist) {
+      return dispatch(makePlaylist(playlist));
     });
   };
 };
@@ -2654,6 +2671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _playlists_playlist_links__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../playlists/playlist_links */ "./frontend/components/playlists/playlist_links.jsx");
+/* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2675,6 +2693,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2783,8 +2802,14 @@ var mstp = function mstp(state) {
 
 var mdtp = function mdtp(dispatch) {
   return {
+    getPlaylists: function getPlaylists() {
+      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__.fetchPlaylists)());
+    },
     getPlaylist: function getPlaylist(playlistId) {
-      return dispatch(fetchPlaylist(playlistId));
+      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__.fetchPlaylist)(playlistId));
+    },
+    createPlaylist: function createPlaylist() {
+      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__.createPlaylist)());
     }
   };
 };
@@ -3073,6 +3098,9 @@ var playlistsReducer = function playlistsReducer() {
       return action.playlists;
 
     case _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__.GET_PLAYLIST:
+      return action.playlist;
+
+    case _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__.MAKE_PLAYLIST:
       return action.playlist;
 
     default:

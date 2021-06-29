@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import PlaylistLinks from '../playlists/playlist_links';
 import {withRouter} from 'react-router-dom';
+import {fetchPlaylists, fetchPlaylist, createPlaylist} from '../../actions/playlist_actions';
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -82,7 +83,9 @@ const mstp = state => ({
 })
 
 const mdtp = dispatch => ({
-    getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)) 
+    getPlaylists: () => dispatch(fetchPlaylists()),
+    getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
+    createPlaylist: () => dispatch(createPlaylist()),
 })
 
 export default withRouter(connect(mstp, mdtp)(Sidebar));

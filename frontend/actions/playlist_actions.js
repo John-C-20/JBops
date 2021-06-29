@@ -2,6 +2,7 @@ import * as PlaylistAPIUtil from '../util/playlist_api_util';
 
 export const GET_PLAYLISTS = 'GET_PLAYLISTS'
 export const GET_PLAYLIST = 'GET_PLAYLIST'
+export const MAKE_PLAYLIST = 'MAKE_PLAYLIST'
 
 const getPlaylists = (playlists) => ({
     type: GET_PLAYLISTS,
@@ -10,6 +11,11 @@ const getPlaylists = (playlists) => ({
 
 const getPlaylist = (playlist) => ({
     type: GET_PLAYLIST,
+    playlist
+})
+
+const makePlaylist = (playlist) => ({
+    type: MAKE_PLAYLIST,
     playlist
 })
 
@@ -22,3 +28,8 @@ export const fetchPlaylist = (playListId) => dispatch => {
     return (PlaylistAPIUtil.fetchPlaylists(playListId)
     .then((playlist) => dispatch(getPlaylist(playlist)))
     )}
+
+export const createPlaylist = () => dispatch => (
+    PlaylistAPIUtil.createPlaylist()
+    .then(playlist => dispatch(makePlaylist(playlist)))
+)
