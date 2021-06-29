@@ -29,7 +29,7 @@ export const fetchPlaylist = (playListId) => dispatch => {
     .then((playlist) => dispatch(getPlaylist(playlist)))
     )}
 
-export const createPlaylist = () => dispatch => (
-    PlaylistAPIUtil.createPlaylist()
+export const createPlaylist = (data) => dispatch => (
+    PlaylistAPIUtil.createPlaylist(data)
     .then(playlist => dispatch(makePlaylist(playlist)))
 )

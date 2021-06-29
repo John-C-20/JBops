@@ -10,9 +10,10 @@ export const fetchPlaylist = (playlistId) => (
     })
 )
 
-export const createPlaylist = () => (
+export const createPlaylist = (data) => (
     $.ajax({
         method: 'POST',
-        url: '/api/playlists/'
+        url: '/api/playlists/',
+        data
     })
 )

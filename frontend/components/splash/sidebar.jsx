@@ -12,8 +12,9 @@ class Sidebar extends React.Component {
             playlist: {id:1}
         }
 
-        // this.currentUserID = this.props.currentUser.id
-        // this.handleClick = this.handleClick.bind(this)
+
+        this.props.currentUser ? this.currentUserID = this.props.currentUser.id : null
+        this.handleClick = this.handleClick.bind(this)
         // this.playlistCount = (Object.values(this.props.currentUser.playlists).length + 1)
     }
 
@@ -27,6 +28,16 @@ class Sidebar extends React.Component {
     //     .then(res => this.setState({playlist: res}))
     //     .then(() => this.props.history.push(`/playlist/${this.state.playlist.id}`))
     // }
+
+    handleClick() {
+        this.props.createPlaylist({ playlist: { playlist_name: "Untitled Playlist", user_id: this.currentUserID } })
+        .then(playlist => console.log(playlist))
+        // .then((playlist)=> this.props.history.push(`/playlist/${playlist.id}`))        
+    }
+
+    componentDidMount() {
+        // this.props.getPlaylists()
+    }
 
     render(){
         // console.log(this.playlistCount)
@@ -60,7 +71,7 @@ class Sidebar extends React.Component {
                     </li>
                     <br/>
                     <li>
-                        <Link to={`/playlist/${this.state.playlist.id}`}>
+                        <a href='#' onClick={this.handleClick}>
                             <div className="create-wrapper">
                                 <svg role="img" height="12" width="12" viewBox="0 0 16 16" className="Svg-ulyrgf-0 dIsYZz">
                                     <path d="M14 7H9V2H7v5H2v2h5v5h2V9h5z"></path>
@@ -68,7 +79,7 @@ class Sidebar extends React.Component {
                                 </svg>
                             </div>
                             <span>Create Playlist</span>
-                        </Link>
+                        </a>
                     </li>
                     <br/>
                     <PlaylistLinks />
@@ -85,7 +96,7 @@ const mstp = state => ({
 const mdtp = dispatch => ({
     getPlaylists: () => dispatch(fetchPlaylists()),
     getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
-    createPlaylist: () => dispatch(createPlaylist()),
+    createPlaylist: (data) => dispatch(createPlaylist(data)),
 })
 
 export default withRouter(connect(mstp, mdtp)(Sidebar));

@@ -160,9 +160,9 @@ var fetchPlaylist = function fetchPlaylist(playListId) {
     });
   };
 };
-var createPlaylist = function createPlaylist() {
+var createPlaylist = function createPlaylist(data) {
   return function (dispatch) {
-    return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.createPlaylist().then(function (playlist) {
+    return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_0__.createPlaylist(data).then(function (playlist) {
       return dispatch(makePlaylist(playlist));
     });
   };
@@ -2716,9 +2716,9 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
       playlist: {
         id: 1
       }
-    }; // this.currentUserID = this.props.currentUser.id
-    // this.handleClick = this.handleClick.bind(this)
-    // this.playlistCount = (Object.values(this.props.currentUser.playlists).length + 1)
+    };
+    _this.props.currentUser ? _this.currentUserID = _this.props.currentUser.id : null;
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this)); // this.playlistCount = (Object.values(this.props.currentUser.playlists).length + 1)
 
     return _this;
   } // handleClick() {
@@ -2734,6 +2734,22 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
 
 
   _createClass(Sidebar, [{
+    key: "handleClick",
+    value: function handleClick() {
+      this.props.createPlaylist({
+        playlist: {
+          playlist_name: "Untitled Playlist",
+          user_id: this.currentUserID
+        }
+      }).then(function (playlist) {
+        return console.log(playlist);
+      }); // .then((playlist)=> this.props.history.push(`/playlist/${playlist.id}`))        
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {// this.props.getPlaylists()
+    }
+  }, {
     key: "render",
     value: function render() {
       // console.log(this.playlistCount)
@@ -2772,8 +2788,9 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
         d: "M291.301 81.778l166.349 373.587-19.301 8.635-166.349-373.587zM64 463.746v-384h21.334v384h-21.334zM192 463.746v-384h21.334v384h-21.334z",
         fill: "currentColor"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Library"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-        to: "/playlist/".concat(this.state.playlist.id)
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Library"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "#",
+        onClick: this.handleClick
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "create-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
@@ -2808,8 +2825,8 @@ var mdtp = function mdtp(dispatch) {
     getPlaylist: function getPlaylist(playlistId) {
       return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__.fetchPlaylist)(playlistId));
     },
-    createPlaylist: function createPlaylist() {
-      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__.createPlaylist)());
+    createPlaylist: function createPlaylist(data) {
+      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_4__.createPlaylist)(data));
     }
   };
 };
@@ -3036,16 +3053,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-/* harmony import */ var _playlists_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./playlists_reducer */ "./frontend/reducers/playlists_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _playlists_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./playlists_reducer */ "./frontend/reducers/playlists_reducer.js");
 
 
  // import songsReducer from './songs_reducer'
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  playlists: _playlists_reducer__WEBPACK_IMPORTED_MODULE_1__.default // songs: songsReducer
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  playlists: _playlists_reducer__WEBPACK_IMPORTED_MODULE_2__.default // songs: songsReducer
 
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
@@ -3086,6 +3103,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var playlistsReducer = function playlistsReducer() {
@@ -3101,7 +3120,7 @@ var playlistsReducer = function playlistsReducer() {
       return action.playlist;
 
     case _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_0__.MAKE_PLAYLIST:
-      return action.playlist;
+      return Object.assign({}, defaultState, _defineProperty({}, action.playlist.id, action.playlist));
 
     default:
       return defaultState;
@@ -3323,10 +3342,11 @@ var fetchPlaylist = function fetchPlaylist(playlistId) {
     url: "/api/playlists/".concat(playlistId)
   });
 };
-var createPlaylist = function createPlaylist() {
+var createPlaylist = function createPlaylist(data) {
   return $.ajax({
     method: 'POST',
-    url: '/api/playlists/'
+    url: '/api/playlists/',
+    data: data
   });
 };
 
