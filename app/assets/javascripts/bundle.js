@@ -1637,12 +1637,8 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, PlaylistDetail);
 
-    _this = _super.call(this, props); // this.state = {
-    //     modalOpen: false
-    // }
-
-    _this.fetchSong = _this.props.fetchSong; // this.toggleModal = this.toggleModal.bind(this)
-
+    _this = _super.call(this, props);
+    _this.fetchSong = _this.props.fetchSong;
     return _this;
   }
 
@@ -1650,10 +1646,7 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getPlaylist(this.props.match.params.playlistId);
-    } // toggleModal(){
-    //     this.setState({modalOpen: !this.state.modalOpen})
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
