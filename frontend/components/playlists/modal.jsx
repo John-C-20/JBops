@@ -21,6 +21,7 @@ class Modal extends React.Component {
 
 
     onSubmit(){
+        this.props.toggleModal()
         return;
     }
 
@@ -43,8 +44,8 @@ class Modal extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <h1>Edit details</h1>
                         <div className="inner-wrapper">
-                            <div>
-                                artwork box (changeable)
+                            <div className="update-artwork-wrapper">
+                                <img src={artwork} width="180px" className="update-artwork"/>
                             </div>
 
                             <div className="inner-inner-wrapper">
@@ -53,8 +54,10 @@ class Modal extends React.Component {
                             </div>
                         </div>
                         <div className="end">
-                            <button>save</button>
+                            <button>SAVE</button>
                         </div>
+
+                        <p className="footer">By proceeding, you agree to give Spotify access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
                     </form>
                 </div>
             </div> :

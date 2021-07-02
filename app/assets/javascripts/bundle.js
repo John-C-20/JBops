@@ -1373,6 +1373,7 @@ var Modal = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onSubmit",
     value: function onSubmit() {
+      this.props.toggleModal();
       return;
     }
   }, {
@@ -1398,7 +1399,13 @@ var Modal = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.onSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "inner-wrapper"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "artwork box (changeable)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "update-artwork-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: artwork,
+        width: "180px",
+        className: "update-artwork"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "inner-inner-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
@@ -1412,7 +1419,9 @@ var Modal = /*#__PURE__*/function (_React$Component) {
         placeholder: "Add an optional description"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "end"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "save"))))) : null;
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "SAVE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        className: "footer"
+      }, "By proceeding, you agree to give Spotify access to the image you choose to upload. Please make sure you have the right to upload the image.")))) : null;
     }
   }]);
 

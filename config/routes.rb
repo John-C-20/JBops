@@ -7,9 +7,12 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create]
     resources :searches, only: [:index]
     resource :session, only: [:create, :destroy]
-    resources :playlists, only: [:index, :create, :show]
+    resources :playlists, only: [:index, :create, :show, :update]
     resources :songs, only: [:index, :show]
     resources :genres, only: [:show]
   end
+
+  # resources :test
+
 
 end
