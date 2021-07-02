@@ -1,10 +1,22 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {toggleModal} from '../../actions/modal_actions';
+import {withRouter} from "react-router-dom";
 
-export default class Modal extends React.Component {
+class Modal extends React.Component {
     constructor(props){
         super(props) 
 
+        this.state = {
+            name: null
+        }
+
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e){
+        this.setState({name: e.currentTarget.value})
     }
 
 
@@ -13,8 +25,17 @@ export default class Modal extends React.Component {
     }
 
     render(){
+        let playlist = [];
+        let artwork ="" 
+
+        if (this.props.playlist) {
+            playlist = this.props.playlist.playlist_name
+            artwork = this.props.playlist.artUrl
+        }
+
+        console.log(this.props.playlist)
         return(
-            this.props.show ? 
+            this.props.modalOpen ? 
             <div className="modal">
                 <div className="modal-screen" onClick={this.props.toggleModal}>
                 </div>
@@ -27,8 +48,8 @@ export default class Modal extends React.Component {
                             </div>
 
                             <div className="inner-inner-wrapper">
-                                <div>change this to playlistname input box</div>
-                                <div>change this to playlist description box</div>
+                                <input type="text" value={(typeof this.state.name) == "string" ? this.state.name : playlist} onChange={this.onChange}/>
+                                <textarea name="" id="" cols="30" rows="10" placeholder="Add an optional description"></textarea>
                             </div>
                         </div>
                         <div className="end">
@@ -41,3 +62,18 @@ export default class Modal extends React.Component {
     )
 }
 }
+
+
+const mstp = (state, ownProps) => ({
+    modalOpen: state.modal.modalOpen,
+    playlist: state.entities.playlists[ownProps.location.pathname.split("/").pop()]
+
+})
+
+const mdtp = dispatch => ({
+    toggleModal: () => dispatch(toggleModal()),
+    getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
+
+})
+
+export default withRouter(connect(mstp, mdtp)(Modal));

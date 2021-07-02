@@ -8,20 +8,20 @@ import Modal from "./modal";
 export default class PlaylistDetail extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            modalOpen: false
-        }
+        // this.state = {
+        //     modalOpen: false
+        // }
         this.fetchSong = this.props.fetchSong
-        this.toggleModal = this.toggleModal.bind(this)
+        // this.toggleModal = this.toggleModal.bind(this)
     }
 
     componentDidMount() {
         this.props.getPlaylist(this.props.match.params.playlistId)
     }
 
-    toggleModal(){
-        this.setState({modalOpen: !this.state.modalOpen})
-    }
+    // toggleModal(){
+    //     this.setState({modalOpen: !this.state.modalOpen})
+    // }
 
     render() {
         let playlist = [];
@@ -67,7 +67,7 @@ export default class PlaylistDetail extends React.Component {
                                 <h2>Playlist</h2>
 
                                 {this.props.playlist && (this.props.playlist.user_id == this.props.currentUser.id) ? 
-                                <h1 onClick={this.toggleModal}>{playlist}</h1> :
+                                <h1 onClick={this.props.toggleModal}>{playlist}</h1> :
                                 <h1>{playlist}</h1> 
 
                                 }
@@ -108,7 +108,7 @@ export default class PlaylistDetail extends React.Component {
                         </div>
                     </div>
 
-                    <Modal show={this.state.modalOpen} toggleModal={this.toggleModal}/> 
+                    {/* <Modal key={playlist} show={this.state.modalOpen} toggleModal={this.toggleModal} name={playlist} />  */}
                 </div>
             )}
     }

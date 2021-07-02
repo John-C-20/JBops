@@ -8,10 +8,10 @@ import {AuthRoute, ProtectedRoute} from '../util/route_util'
 import Player from './player/player';
 import Search from './search/search';
 import GenreDetail from './genres/genre_detail';
+import Modal from './playlists/modal';
 
 const App = () => (
     <div className="app">
-        <Player />
         <Switch>
             <Route exact path="/" component={SplashContainer} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
@@ -20,6 +20,8 @@ const App = () => (
             <ProtectedRoute path="/search" component={Search} />
             <ProtectedRoute path="/genres/:genre" component={GenreDetail} /> 
         </Switch>
+        <Player />
+        <Modal poop="poopooopoo"/>
         {/* change this path later ^  */}
     </div>
 )
