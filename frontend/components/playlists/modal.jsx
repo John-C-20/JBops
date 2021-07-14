@@ -57,7 +57,7 @@ class Modal extends React.Component {
                             <button>SAVE</button>
                         </div>
 
-                        <p className="footer">By proceeding, you agree to give Spotify access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
+                        <p className="footer">By proceeding, you agree to give Jbops access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
                     </form>
                 </div>
             </div> :
