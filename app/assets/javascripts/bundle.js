@@ -2442,7 +2442,6 @@ var SongResult = /*#__PURE__*/function (_React$Component) {
       songMenu: false
     };
     _this.updateDuration = _this.updateDuration.bind(_assertThisInitialized(_this));
-    _this.openSongMenu = _this.openSongMenu.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2469,14 +2468,6 @@ var SongResult = /*#__PURE__*/function (_React$Component) {
       var ellipsis = li.querySelector(".fa-ellipsis-h").style.visibility = "hidden";
     }
   }, {
-    key: "openSongMenu",
-    value: function openSongMenu() {
-      this.setState({
-        songMenu: true
-      });
-      console.log(this.state);
-    }
-  }, {
     key: "convertSeconds",
     value: function convertSeconds(seconds) {
       var minutes = Math.floor(seconds / 60);
@@ -2501,16 +2492,6 @@ var SongResult = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      window.onclick = function (e) {
-        if (!e.target.matches(".songMenu")) {
-          _this2.setState({
-            songMenu: false
-          });
-        }
-      };
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "song song_result",
         onMouseOver: this.onMouseOver,
@@ -2535,8 +2516,6 @@ var SongResult = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         className: "fa fa-ellipsis-h",
         "aria-hidden": "true"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_songMenu__WEBPACK_IMPORTED_MODULE_1__.default, {
-        open: this.state.songMenu
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
         key: this.songObj.id,
         onLoadedMetadata: this.updateDuration

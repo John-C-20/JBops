@@ -12,7 +12,6 @@ export default class SongResult extends React.Component {
         }
 
         this.updateDuration = this.updateDuration.bind(this)
-        this.openSongMenu = this.openSongMenu.bind(this)
     }
 
     updateDuration(e) {
@@ -30,12 +29,6 @@ export default class SongResult extends React.Component {
         const ul = e.currentTarget
         const li = ul.children[1]
         const ellipsis = li.querySelector(".fa-ellipsis-h").style.visibility = "hidden"
-    }
-
-    openSongMenu(){
-        this.setState({songMenu: true})
-        console.log(this.state)
-
     }
 
     convertSeconds(seconds) {
@@ -62,18 +55,10 @@ export default class SongResult extends React.Component {
     }
 
     render() {
-        window.onclick = (e) => {
-            if (!e.target.matches(".songMenu")) {
-                this.setState({songMenu: false})
-            }
-        }
-
         return (
             <ul className="song song_result" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave} onMous>
 
                 <li id="song_play">
-                    {/* <i className="fa fa-play-circle" aria-hidden="true" id="play_circle"> </i> */}
-                    
                     <span>
                         {this.props.ord + 1}
                     </span>
@@ -83,7 +68,6 @@ export default class SongResult extends React.Component {
                             {this.songObj.song_title}
                         </div>
                         <a href="#" className="track_artist gray14px">
-                            {/* {this.songObj.artist} */}
                             {this.songObj.artist.name}
                         </a>
                     </li>
@@ -95,7 +79,6 @@ export default class SongResult extends React.Component {
                     </div>
                     <div className="song-menu" onClick={this.openSongMenu}>
                         <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        <SongMenu open={this.state.songMenu}/>
                     </div>
                 </li>
 

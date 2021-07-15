@@ -13,7 +13,7 @@ export default class CurrentSearch extends React.Component {
 
         let songs = result.filter(obj => obj.type === 'song')
         let songResults = songs.map((song, idx) => 
-                <button className="song" key={idx}  onDoubleClick={() => this.props.fetchSong(song.id)}>
+                <button className="song" key={idx} onDoubleClick={() => this.props.fetchSong(song.id)}>
                     <SongResult song={song} ord={idx} />
                 </button>
             )
