@@ -49,7 +49,7 @@ export default class PlaylistDetail extends React.Component {
                             <div className="text">
                                 <h2>Playlist</h2>
                                 {this.props.playlist && (this.props.playlist.user_id == this.props.currentUser.id) ? 
-                                <h1 onClick={this.props.toggleModal}>{playlist}</h1> :
+                                <h1 className="playlist-name" onClick={this.props.toggleModal}>{playlist}</h1> :
                                 <h1>{playlist}</h1> 
                                 }
                                 <div id="num_songs">

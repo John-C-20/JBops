@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {toggleModal} from '../../actions/modal_actions';
+import { patchPlaylist } from '../../actions/playlist_actions';
 import {withRouter} from "react-router-dom";
 
 class Modal extends React.Component {
@@ -13,6 +14,8 @@ class Modal extends React.Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.testing = this.testing.bind(this)
+        
     }
 
     onChange(e){
@@ -21,8 +24,14 @@ class Modal extends React.Component {
 
 
     onSubmit(){
+        this.props.patchPlaylist(this.props.playlist.id, {playlist: {playlist_name: this.state.name, user_id: this.props.currentUser}})
         this.props.toggleModal()
         return;
+    }
+
+    testing(){
+        location.reload();
+        return false;
     }
 
     render(){
@@ -54,9 +63,10 @@ class Modal extends React.Component {
                             </div>
                         </div>
                         <div className="end">
-                            <button>SAVE</button>
+                            <button type="submit">SAVE</button>
                         </div>
 
+                        <div onContextMenu={this.testing}>delete this</div>
                         <p className="footer">By proceeding, you agree to give Jbops access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
                     </form>
                 </div>
@@ -69,14 +79,14 @@ class Modal extends React.Component {
 
 const mstp = (state, ownProps) => ({
     modalOpen: state.modal.modalOpen,
+    currentUser: state.session.currentUserId,
     playlist: state.entities.playlists[ownProps.location.pathname.split("/").pop()]
 
 })
 
 const mdtp = dispatch => ({
     toggleModal: () => dispatch(toggleModal()),
-    getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
-
+    patchPlaylist: (playlistId, data) => dispatch(patchPlaylist(playlistId, data))
 })
 
 export default withRouter(connect(mstp, mdtp)(Modal));

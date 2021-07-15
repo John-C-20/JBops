@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
     }
 
     handleClick() {
-        this.props.createPlaylist({ playlist: { playlist_name: `Untitled Playlist ${this.props.userPlaylists.length + 1}`, user_id: this.currentUserID } })
+        this.props.createPlaylist({ playlist: { playlist_name: `My Playlist #${this.props.userPlaylists.length + 1}`, user_id: this.currentUserID } })
         .then((playlist)=> {
         console.log(this.props.history)
         this.props.history.push(`/playlist/${playlist.playlist.id}`)})        
