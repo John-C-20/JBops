@@ -1,0 +1,12 @@
+.song-result-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.fa-ellipsis-h {
+    font-size: 16px;
+    cursor: pointer;
+    visibility: hidden;
+}
