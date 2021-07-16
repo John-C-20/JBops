@@ -66,7 +66,6 @@ class Modal extends React.Component {
                             <button type="submit">SAVE</button>
                         </div>
 
-                        <div onContextMenu={this.testing}>delete this</div>
                         <p className="footer">By proceeding, you agree to give Jbops access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
                     </form>
                 </div>
