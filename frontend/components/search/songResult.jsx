@@ -1,5 +1,4 @@
 import React from 'react';
-import SongMenu from './songMenu';
 
 export default class SongResult extends React.Component {
     constructor(props) {
@@ -7,8 +6,7 @@ export default class SongResult extends React.Component {
 
         this.songObj = this.props.song
         this.state = {
-            duration: "",
-            songMenu: false 
+            duration: ""
         }
 
         this.updateDuration = this.updateDuration.bind(this)
@@ -77,7 +75,7 @@ export default class SongResult extends React.Component {
                     <div>
                         {this.state.duration}
                     </div>
-                    <div className="song-menu" onClick={this.openSongMenu}>
+                    <div className="song-menu">
                         <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
                     </div>
                 </li>
