@@ -26,7 +26,7 @@ export default class LoginForm extends React.Component {
     demoLogin(e) {
         e.preventDefault() 
         this.props.action({
-            name_or_email: "Charm",
+            name_or_email: "Demo",
             password: "password"
         })
     }

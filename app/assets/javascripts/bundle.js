@@ -884,7 +884,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function demoLogin(e) {
       e.preventDefault();
       this.props.action({
-        name_or_email: "Charm",
+        name_or_email: "Demo",
         password: "password"
       });
     }
