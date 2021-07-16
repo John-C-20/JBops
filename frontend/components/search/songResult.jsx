@@ -1,4 +1,5 @@
 import React from 'react';
+import SongMenu from '../menus/song_menu';
 
 export default class SongResult extends React.Component {
     constructor(props) {
@@ -10,6 +11,9 @@ export default class SongResult extends React.Component {
         }
 
         this.updateDuration = this.updateDuration.bind(this)
+        this.onRightClick = this.onRightClick.bind(this)
+        this.onClick = this.onClick.bind(this)
+        this.openSongMenu = this.openSongMenu.bind(this)
     }
 
     updateDuration(e) {
@@ -28,6 +32,16 @@ export default class SongResult extends React.Component {
         const li = ul.children[1]
         const ellipsis = li.querySelector(".fa-ellipsis-h").style.visibility = "hidden"
     }
+    
+    onRightClick(e) {
+    }
+    
+    onClick(e){
+    }
+
+    openSongMenu(){
+    }
+
 
     convertSeconds(seconds) {
         let minutes = Math.floor(seconds / 60);
@@ -77,6 +91,7 @@ export default class SongResult extends React.Component {
                     </div>
                     <div className="song-menu">
                         <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        <SongMenu /> 
                     </div>
                 </li>
 

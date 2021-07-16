@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuRow from './menu_row';
+import {connect} from 'react-redux';
 
 class SongMenu extends React.Component{
     constructor(props){

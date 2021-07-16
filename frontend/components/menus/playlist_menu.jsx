@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import MenuRow from './menu_row';
 
 class PlaylistMenu extends React.Component {
@@ -15,7 +16,7 @@ class PlaylistMenu extends React.Component {
             )
 
         return (
-            <ul>
+            <ul className="menu-container">
                 {playlistRows}
             </ul>
         )

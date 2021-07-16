@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuRow from './menu_row';
+import {connect} from 'react-redux';
 
 class MenuRow extends React.Component{
     constructor(props){
