@@ -11,9 +11,7 @@ export default class SongResult extends React.Component {
         }
 
         this.updateDuration = this.updateDuration.bind(this)
-        this.onRightClick = this.onRightClick.bind(this)
         this.onClick = this.onClick.bind(this)
-        this.openSongMenu = this.openSongMenu.bind(this)
     }
 
     updateDuration(e) {
@@ -33,15 +31,14 @@ export default class SongResult extends React.Component {
         const ellipsis = li.querySelector(".fa-ellipsis-h").style.visibility = "hidden"
     }
     
-    onRightClick(e) {
-    }
-    
     onClick(e){
+        const loc = e.currentTarget.getBoundingClientRect() 
+        console.log(loc)
+        const menu = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}`)
+        menu.style.left = `${loc.x-120}px` 
+        menu.style.top = `${loc.y-66}px` 
+        this.props.openSongMenu(menu)
     }
-
-    openSongMenu(){
-    }
-
 
     convertSeconds(seconds) {
         let minutes = Math.floor(seconds / 60);
@@ -68,7 +65,7 @@ export default class SongResult extends React.Component {
 
     render() {
         return (
-            <ul className="song song_result" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave} onMous>
+            <ul className="song song_result" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
 
                 <li id="song_play">
                     <span>
@@ -89,9 +86,8 @@ export default class SongResult extends React.Component {
                     <div>
                         {this.state.duration}
                     </div>
-                    <div className="song-menu">
+                    <div className="ellipsis" onClick={this.onClick}>
                         <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        <SongMenu /> 
                     </div>
                 </li>
 

@@ -2,10 +2,30 @@ import React from 'react';
 import {connect} from 'react-redux';
 import SongResult from './songResult';
 import Genre from '../genres/genre';
+import SongMenu from '../menus/song_menu';
 
 export default class CurrentSearch extends React.Component {
     constructor(props){
         super(props)
+
+        this.onRightClick = this.onRightClick.bind(this)
+        this.openSongMenu = this.openSongMenu.bind(this)
+    }
+
+    onRightClick(song) {
+        return e => {
+            e.preventDefault();
+            console.log(e.pageX)
+            console.log(e.pageY)
+            const element = document.getElementById(`${song.song_title}-${song.id}`)
+            element.style.left = `${e.pageX}px`
+            element.style.top = `${e.pageY}px`
+            this.openSongMenu(element)
+        }
+    }
+
+    openSongMenu(element) {
+        element.classList.add("show")
     }
 
     render() {
@@ -13,8 +33,9 @@ export default class CurrentSearch extends React.Component {
 
         let songs = result.filter(obj => obj.type === 'song')
         let songResults = songs.map((song, idx) => 
-                <button className="song" key={idx} onDoubleClick={() => this.props.fetchSong(song.id)}>
-                    <SongResult song={song} ord={idx} />
+                <button className="song" key={idx} onContextMenu={this.onRightClick(song)} onDoubleClick={() => this.props.fetchSong(song.id)}>
+                    <SongResult song={song} ord={idx} openSongMenu={this.openSongMenu}/>
+                    <SongMenu song={song}/>
                 </button>
             )
 
@@ -99,3 +120,4 @@ export default class CurrentSearch extends React.Component {
         )
     }
 }
+
