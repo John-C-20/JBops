@@ -47,5 +47,29 @@ window.onclick = (event) => {
     }
 }
 
+window.oncontextmenu = (e) => {
+    e.preventDefault();
+
+    if (!e.target.matches('.song')) {
+        const songMenus = document.getElementsByClassName("menu-container");
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+
+        let j;
+        for (j = 0; j < songMenus.length; j++) {
+            const menu = songMenus[j];
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+    }
+}
+
 
 export default UserDropdown; 

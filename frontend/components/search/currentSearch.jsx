@@ -14,9 +14,16 @@ export default class CurrentSearch extends React.Component {
 
     onRightClick(song) {
         return e => {
-            e.preventDefault();
-            console.log(e.pageX)
-            console.log(e.pageY)
+            //close all open menus
+            const songMenus = document.getElementsByClassName("menu-container");
+            let j;
+            for (j = 0; j < songMenus.length; j++) {
+                const menu = songMenus[j];
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                }
+            }
+            
             const element = document.getElementById(`${song.song_title}-${song.id}`)
             element.style.left = `${e.pageX}px`
             element.style.top = `${e.pageY}px`

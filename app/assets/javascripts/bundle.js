@@ -2303,9 +2303,18 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        e.preventDefault();
-        console.log(e.pageX);
-        console.log(e.pageY);
+        //close all open menus
+        var songMenus = document.getElementsByClassName("menu-container");
+        var j;
+
+        for (j = 0; j < songMenus.length; j++) {
+          var menu = songMenus[j];
+
+          if (menu.classList.contains('show')) {
+            menu.classList.remove('show');
+          }
+        }
+
         var element = document.getElementById("".concat(song.song_title, "-").concat(song.id));
         element.style.left = "".concat(e.pageX, "px");
         element.style.top = "".concat(e.pageY, "px");
@@ -3597,6 +3606,34 @@ window.onclick = function (event) {
 
   if (!event.target.matches('.fa-ellipsis-h')) {
     var songMenus = document.getElementsByClassName("menu-container");
+    var j;
+
+    for (j = 0; j < songMenus.length; j++) {
+      var menu = songMenus[j];
+
+      if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+      }
+    }
+  }
+};
+
+window.oncontextmenu = function (e) {
+  e.preventDefault();
+
+  if (!e.target.matches('.song')) {
+    var songMenus = document.getElementsByClassName("menu-container");
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+
     var j;
 
     for (j = 0; j < songMenus.length; j++) {
