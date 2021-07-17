@@ -2664,6 +2664,17 @@ var SongResult = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onClick",
     value: function onClick(e) {
+      var songMenus = document.getElementsByClassName("menu-container");
+      var j;
+
+      for (j = 0; j < songMenus.length; j++) {
+        var _menu = songMenus[j];
+
+        if (_menu.classList.contains('show')) {
+          _menu.classList.remove('show');
+        }
+      }
+
       var loc = e.currentTarget.getBoundingClientRect();
       console.log(loc);
       var menu = document.getElementById("".concat(this.props.song.song_title, "-").concat(this.props.song.id));

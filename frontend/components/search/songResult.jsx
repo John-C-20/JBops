@@ -32,6 +32,15 @@ export default class SongResult extends React.Component {
     }
     
     onClick(e){
+        const songMenus = document.getElementsByClassName("menu-container");
+        let j;
+        for (j = 0; j < songMenus.length; j++) {
+            const menu = songMenus[j];
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+
         const loc = e.currentTarget.getBoundingClientRect() 
         console.log(loc)
         const menu = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}`)
