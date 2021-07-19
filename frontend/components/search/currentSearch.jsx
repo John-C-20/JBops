@@ -1,8 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import SongResult from './songResult';
 import Genre from '../genres/genre';
 import SongMenu from '../menus/song_menu';
+import { Link } from 'react-router-dom'
+
 
 export default class CurrentSearch extends React.Component {
     constructor(props){
@@ -47,6 +48,7 @@ export default class CurrentSearch extends React.Component {
 
         let playlists = result.filter(obj => obj.type === 'playlist')
         let playlistResults = playlists.map((playlist, idx) => 
+            <Link to={`/playlist/${playlist.id}`}>
             <li key={playlist.playlist_name + playlist.id + idx}>
                 <div className="block">
                     <img src={playlist.artUrl}/>
@@ -54,7 +56,8 @@ export default class CurrentSearch extends React.Component {
                         {playlist.playlist_name}
                     </div>
                 </div>
-            </li>)
+            </li>
+            </Link>)
 
         let artists = result.filter(obj => obj.type === 'artist')
         let artistResults = artists.map((artist, idx) => 
