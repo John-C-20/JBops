@@ -225,6 +225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DEQUEUE": () => (/* binding */ DEQUEUE),
 /* harmony export */   "skipTrack": () => (/* binding */ skipTrack),
 /* harmony export */   "previousTrack": () => (/* binding */ previousTrack),
+/* harmony export */   "playSong": () => (/* binding */ playSong),
 /* harmony export */   "queueSong": () => (/* binding */ queueSong)
 /* harmony export */ });
 /* harmony import */ var _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/song_api_util */ "./frontend/util/song_api_util.js");
@@ -244,12 +245,14 @@ var previousTrack = function previousTrack() {
   return {
     type: PREVIOUS
   };
-}; // export const play = () => ({
-//     type: PLAY
-// })
-// export const pause = () => ({
-//     type: PAUSE
-// })
+};
+
+var playTrack = function playTrack(track) {
+  return {
+    type: PLAY,
+    track: track
+  };
+};
 
 var queueTrack = function queueTrack(track) {
   return {
@@ -265,6 +268,13 @@ var dequeueTrack = function dequeueTrack(track) {
   };
 };
 
+var playSong = function playSong(songId) {
+  return function (dispatch) {
+    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSong(songId).then(function (song) {
+      return dispatch(playTrack(song));
+    });
+  };
+};
 var queueSong = function queueSong(songId) {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSong(songId).then(function (song) {
@@ -2114,7 +2124,7 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props); // this.fetchSong = this.props.fetchSong
 
-    _this.fetchSong = _this.props.queueSong;
+    _this.fetchSong = _this.props.playSong;
     return _this;
   }
 
@@ -2247,6 +2257,9 @@ var mdtp = function mdtp(dispatch) {
   return {
     getPlaylist: function getPlaylist(playlistId) {
       return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPlaylist)(playlistId));
+    },
+    playSong: function playSong(songId) {
+      return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_5__.playSong)(songId));
     },
     queueSong: function queueSong(songId) {
       return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_5__.queueSong)(songId));
@@ -3984,6 +3997,12 @@ var queueReducer = function queueReducer() {
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PREVIOUS:
       return Object.assign({}, state, {
         pos: state.queue.length - pos - 1
+      });
+
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PLAY:
+      return Object.assign({}, state, {
+        queue: [action.track],
+        pos: 0
       });
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.QUEUE:

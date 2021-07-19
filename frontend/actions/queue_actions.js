@@ -14,13 +14,10 @@ export const previousTrack = () => ({
     type: PREVIOUS,
 })
 
-// export const play = () => ({
-//     type: PLAY
-// })
-
-// export const pause = () => ({
-//     type: PAUSE
-// })
+const playTrack = track => ({
+    type: PLAY,
+    track
+})
 
 const queueTrack = (track) => ({
     type: QUEUE,
@@ -32,6 +29,11 @@ const dequeueTrack = (track) => ({
     track
 })
 
+export const playSong = (songId) => dispatch => {
+    return (SongAPIUtil.fetchSong(songId)
+        .then((song) => dispatch(playTrack(song)))
+    )
+}
 export const queueSong = (songId) => dispatch => {
     return (SongAPIUtil.fetchSong(songId)
         .then((song) => dispatch(queueTrack(song)))

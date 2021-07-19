@@ -9,7 +9,7 @@ export default class PlaylistDetail extends React.Component {
     constructor(props) {
         super(props)
         // this.fetchSong = this.props.fetchSong
-        this.fetchSong = this.props.queueSong 
+        this.fetchSong = this.props.playSong
     }
 
     componentDidMount() {
