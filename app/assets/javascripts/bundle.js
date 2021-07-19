@@ -2416,7 +2416,6 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        //close all open menus
         var songMenus = document.getElementsByClassName("menu-container");
         var j;
 
@@ -2452,7 +2451,7 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       var songResults = songs.map(function (song, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "song",
-          key: idx,
+          key: song.song_title + song.id + idx,
           onContextMenu: _this3.onRightClick(song),
           onDoubleClick: function onDoubleClick() {
             return _this3.props.fetchSong(song.id);
@@ -2470,7 +2469,7 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       });
       var playlistResults = playlists.map(function (playlist, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: idx
+          key: playlist.playlist_name + playlist.id + idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "block"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -2484,7 +2483,7 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       });
       var artistResults = artists.map(function (artist, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: idx
+          key: artist.name + artist.id + idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "block"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -2498,7 +2497,7 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       });
       var albumResults = albums.map(function (album, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: idx
+          key: album.album_title + album.id + idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "block"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -2520,7 +2519,8 @@ var CurrentSearch = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_genres_genre__WEBPACK_IMPORTED_MODULE_3__.default, {
         genre: "RnB"
       }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "results"
+        className: "results",
+        key: this.props.text
       }, songResults.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "header"
       }, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
@@ -2633,14 +2633,19 @@ var Search = /*#__PURE__*/function (_React$Component) {
           title: title
         }
       }).then(function (res) {
-        return _this2.setState({
+        console.log("in the promise: ", res);
+
+        _this2.setState({
           results: res
         });
+
+        console.log("in promise after setState: ", _this2.state.results);
       });
     }
   }, {
     key: "render",
     value: function render() {
+      console.log("in the render: ", this.state.results);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_splash_sidebar__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2661,7 +2666,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_currentSearch__WEBPACK_IMPORTED_MODULE_6__.default, {
-        text: this.state.text,
         results: this.state.results,
         fetchSong: this.props.fetchSong
       })));

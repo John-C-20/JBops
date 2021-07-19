@@ -25,10 +25,16 @@ class Search extends React.Component {
             method: 'GET',
             url: '/api/searches/',
             data: { title }
-        }).then(res => this.setState({ results: res }))
+        }).then(res => {
+            console.log("in the promise: ", res)
+            this.setState({ results: res })
+            console.log("in promise after setState: ", this.state.results)
+            }
+            )
     } 
 
     render(){
+        console.log("in the render: ", this.state.results)
         return(
             <div className="splash logged-in">
                 <Sidebar/>
@@ -42,7 +48,7 @@ class Search extends React.Component {
                     <input className="search-input" type="text" onChange={this.handleSearch} placeholder="Playlists, artists, albums, or songs"/>
                 </div>
                 <div className="current-search">
-                    <CurrentSearch text={this.state.text} results={this.state.results} fetchSong={this.props.fetchSong}/>
+                    <CurrentSearch results={this.state.results} fetchSong={this.props.fetchSong}/>
                 </div>
                 
             </div>

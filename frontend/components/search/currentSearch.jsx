@@ -14,7 +14,6 @@ export default class CurrentSearch extends React.Component {
 
     onRightClick(song) {
         return e => {
-            //close all open menus
             const songMenus = document.getElementsByClassName("menu-container");
             let j;
             for (j = 0; j < songMenus.length; j++) {
@@ -40,7 +39,7 @@ export default class CurrentSearch extends React.Component {
 
         let songs = result.filter(obj => obj.type === 'song')
         let songResults = songs.map((song, idx) => 
-                <button className="song" key={idx} onContextMenu={this.onRightClick(song)} onDoubleClick={() => this.props.fetchSong(song.id)}>
+                <button className="song" key={song.song_title + song.id + idx} onContextMenu={this.onRightClick(song)} onDoubleClick={() => this.props.fetchSong(song.id)}>
                     <SongResult song={song} ord={idx} openSongMenu={this.openSongMenu}/>
                     <SongMenu song={song}/>
                 </button>
@@ -48,7 +47,7 @@ export default class CurrentSearch extends React.Component {
 
         let playlists = result.filter(obj => obj.type === 'playlist')
         let playlistResults = playlists.map((playlist, idx) => 
-            <li key={idx}>
+            <li key={playlist.playlist_name + playlist.id + idx}>
                 <div className="block">
                     <img src={playlist.artUrl}/>
                     <div className="title">
@@ -59,7 +58,7 @@ export default class CurrentSearch extends React.Component {
 
         let artists = result.filter(obj => obj.type === 'artist')
         let artistResults = artists.map((artist, idx) => 
-            <li key={idx}>
+            <li key={artist.name + artist.id + idx}>
                 <div className="block">
                     <img src="https://ik.imagekit.io/afkmedia/tr:w-375,h-250/media/images/83570-963fd2981d42ce32d196e3d42a25fd45.jpeg" />
                     <div className="title">
@@ -69,7 +68,7 @@ export default class CurrentSearch extends React.Component {
             </li>)
         let albums = result.filter(obj => obj.type === 'album')
         let albumResults = albums.map((album, idx) => 
-            <li key={idx}>
+            <li key={album.album_title + album.id + idx}>
                 <div className="block">
                     <img src={album.artwork}/>
                     <div className="title">
@@ -88,7 +87,7 @@ export default class CurrentSearch extends React.Component {
                     <Genre genre="RnB" /> 
                 </div>
             </div> :
-            <div className="results">
+            <div className="results" key={this.props.text}>
                 {songResults.length > 0 ? 
                 <div>
                 <div className="header">Songs</div>
