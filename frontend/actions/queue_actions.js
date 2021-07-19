@@ -1,3 +1,5 @@
+import * as SongAPIUtil from '../util/song_api_util';
+
 export const SKIP = "SKIP"
 export const PREVIOUS = "PREVIOUS"
 export const PLAY = "PLAY"
@@ -20,12 +22,18 @@ export const previousTrack = () => ({
 //     type: PAUSE
 // })
 
-export const queueTrack = (track) => ({
+const queueTrack = (track) => ({
     type: QUEUE,
     track
 })
 
-export const dequeueTrack = (track) => ({
+const dequeueTrack = (track) => ({
     type: DEQUEUE,
     track
 })
+
+export const queueSong = (songId) => dispatch => {
+    return (SongAPIUtil.fetchSong(songId)
+        .then((song) => dispatch(queueTrack(song)))
+    )
+}

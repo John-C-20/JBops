@@ -10,15 +10,11 @@ const queueReducer = (state = defaultState, action) => {
             return Object.assign({}, state, {pos: state.pos+1})
         case PREVIOUS:
             return Object.assign({}, state, { pos: state.queue.length - pos - 1})
-        // case PLAY:
-        //     return Object.assign({}, state, { [action.playlist.id]: action.playlist });
-        // case PAUSE:
-        //     return Object.assign({}, state, { [action.playlist.id]: action.playlist });
         case QUEUE:
             newState.queue.push(action.track)
             return newState;
         case DEQUEUE:
-            const newQueue = state.queue.filter(track => track !== action.track)
+            const newQueue = state.queue.filter(track => track.id !== action.track.id)
             return Object.assign({}, state, {queue: newQueue});
         default:
             return state;

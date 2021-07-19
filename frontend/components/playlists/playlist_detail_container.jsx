@@ -3,6 +3,7 @@ import PlaylistDetail from './playlist_detail';
 import {fetchPlaylist} from '../../actions/playlist_actions'
 import {logout, setCurrentTime} from '../../actions/session_actions'
 import { fetchSong } from '../../actions/song_actions'
+import { queueSong } from '../../actions/queue_actions';
 import { toggleModal } from '../../actions/modal_actions';
 
 
@@ -15,7 +16,7 @@ const mstp = (state, ownProps) => ({
 
 const mdtp = dispatch => ({
     getPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
-    fetchSong: songId => dispatch(fetchSong(songId)),
+    queueSong: songId => dispatch(queueSong(songId)),
     logout: () => dispatch(logout()),
     toggleModal: () => dispatch(toggleModal())
 })

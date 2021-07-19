@@ -8,7 +8,8 @@ import Modal from "./modal";
 export default class PlaylistDetail extends React.Component {
     constructor(props) {
         super(props)
-        this.fetchSong = this.props.fetchSong
+        // this.fetchSong = this.props.fetchSong
+        this.fetchSong = this.props.queueSong 
     }
 
     componentDidMount() {
@@ -26,7 +27,7 @@ export default class PlaylistDetail extends React.Component {
                 const songs = Object.values(this.props.playlist.songs)            
                 songRows = songs.map(song => {
                     return (
-                    <button className="song" key={song.id} onClick={() => this.fetchSong(song.id)}>
+                    <button className="song" key={song.id} onDoubleClick={() => this.fetchSong(song.id)}>
                         <Song song={song} />
                     </button>
                     )

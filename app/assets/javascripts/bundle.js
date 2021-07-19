@@ -208,6 +208,73 @@ var patchPlaylist = function patchPlaylist(playlistId, data) {
 
 /***/ }),
 
+/***/ "./frontend/actions/queue_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/queue_actions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SKIP": () => (/* binding */ SKIP),
+/* harmony export */   "PREVIOUS": () => (/* binding */ PREVIOUS),
+/* harmony export */   "PLAY": () => (/* binding */ PLAY),
+/* harmony export */   "PAUSE": () => (/* binding */ PAUSE),
+/* harmony export */   "QUEUE": () => (/* binding */ QUEUE),
+/* harmony export */   "DEQUEUE": () => (/* binding */ DEQUEUE),
+/* harmony export */   "skipTrack": () => (/* binding */ skipTrack),
+/* harmony export */   "previousTrack": () => (/* binding */ previousTrack),
+/* harmony export */   "queueSong": () => (/* binding */ queueSong)
+/* harmony export */ });
+/* harmony import */ var _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/song_api_util */ "./frontend/util/song_api_util.js");
+
+var SKIP = "SKIP";
+var PREVIOUS = "PREVIOUS";
+var PLAY = "PLAY";
+var PAUSE = "PAUSE";
+var QUEUE = "QUEUE";
+var DEQUEUE = "DEQUEUE";
+var skipTrack = function skipTrack() {
+  return {
+    type: SKIP
+  };
+};
+var previousTrack = function previousTrack() {
+  return {
+    type: PREVIOUS
+  };
+}; // export const play = () => ({
+//     type: PLAY
+// })
+// export const pause = () => ({
+//     type: PAUSE
+// })
+
+var queueTrack = function queueTrack(track) {
+  return {
+    type: QUEUE,
+    track: track
+  };
+};
+
+var dequeueTrack = function dequeueTrack(track) {
+  return {
+    type: DEQUEUE,
+    track: track
+  };
+};
+
+var queueSong = function queueSong(songId) {
+  return function (dispatch) {
+    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSong(songId).then(function (song) {
+      return dispatch(queueTrack(song));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1631,7 +1698,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
 
 var mstp = function mstp(state) {
   return {
-    currentSong: state.session.currentSong,
+    currentSong: Object.values(state.queue.queue)[state.queue.pos],
     currentTime: state.session.currentTime,
     currentUser: state.entities.users[state.session.currentUserId]
   };
@@ -2045,8 +2112,9 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, PlaylistDetail);
 
-    _this = _super.call(this, props);
-    _this.fetchSong = _this.props.fetchSong;
+    _this = _super.call(this, props); // this.fetchSong = this.props.fetchSong
+
+    _this.fetchSong = _this.props.queueSong;
     return _this;
   }
 
@@ -2074,7 +2142,7 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
               className: "song",
               key: song.id,
-              onClick: function onClick() {
+              onDoubleClick: function onDoubleClick() {
                 return _this2.fetchSong(song.id);
               }
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_songs_song__WEBPACK_IMPORTED_MODULE_3__.default, {
@@ -2157,7 +2225,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_queue_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/queue_actions */ "./frontend/actions/queue_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -2178,14 +2248,14 @@ var mdtp = function mdtp(dispatch) {
     getPlaylist: function getPlaylist(playlistId) {
       return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPlaylist)(playlistId));
     },
-    fetchSong: function fetchSong(songId) {
-      return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_4__.fetchSong)(songId));
+    queueSong: function queueSong(songId) {
+      return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_5__.queueSong)(songId));
     },
     logout: function logout() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.logout)());
     },
     toggleModal: function toggleModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__.toggleModal)());
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__.toggleModal)());
     }
   };
 };
@@ -3879,6 +3949,64 @@ var playlistsReducer = function playlistsReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/queue_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/queue_reducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/queue_actions */ "./frontend/actions/queue_actions.js");
+
+var defaultState = {
+  queue: [],
+  pos: 0,
+  repeat: false,
+  shuffle: false
+};
+
+var queueReducer = function queueReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.SKIP:
+      return Object.assign({}, state, {
+        pos: state.pos + 1
+      });
+
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PREVIOUS:
+      return Object.assign({}, state, {
+        pos: state.queue.length - pos - 1
+      });
+
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.QUEUE:
+      newState.queue.push(action.track);
+      return newState;
+
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.DEQUEUE:
+      var newQueue = state.queue.filter(function (track) {
+        return track.id !== action.track.id;
+      });
+      return Object.assign({}, state, {
+        queue: newQueue
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (queueReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -3890,21 +4018,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
-/* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
-/* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
-/* harmony import */ var _reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/modal_reducer */ "./frontend/reducers/modal_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/session_reducer */ "./frontend/reducers/session_reducer.js");
+/* harmony import */ var _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/entities_reducer */ "./frontend/reducers/entities_reducer.js");
+/* harmony import */ var _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/errors_reducer */ "./frontend/reducers/errors_reducer.js");
+/* harmony import */ var _reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/modal_reducer */ "./frontend/reducers/modal_reducer.js");
+/* harmony import */ var _queue_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./queue_reducer */ "./frontend/reducers/queue_reducer.js");
 
 
 
 
 
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
-  entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
-  modal: _reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_3__.default
+
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
+  entities: _reducers_entities_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
+  session: _reducers_session_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  errors: _reducers_errors_reducer__WEBPACK_IMPORTED_MODULE_3__.default,
+  queue: _queue_reducer__WEBPACK_IMPORTED_MODULE_5__.default,
+  modal: _reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_4__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rootReducer);
 
@@ -4054,16 +4185,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
 
 
 
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_0__.default));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_0__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);

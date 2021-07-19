@@ -165,7 +165,7 @@ class Player extends React.Component {
 }
 
 const mstp = state => ({
-    currentSong: state.session.currentSong,
+    currentSong: Object.values(state.queue.queue)[state.queue.pos],
     currentTime: state.session.currentTime,
     currentUser: state.entities.users[state.session.currentUserId]
 })
