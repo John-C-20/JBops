@@ -7,7 +7,7 @@ const queueReducer = (state = defaultState, action) => {
     const newState = Object.assign({}, state)
     switch (action.type) {
         case NEXT:
-            return Object.assign({}, state, {pos: state.pos+1})
+            return Object.assign({}, state, {pos: (state.pos+1) % state.queue.length })
         case PREVIOUS:
             return Object.assign({}, state, { pos: state.queue.length - pos - 1})
         case PLAY: 

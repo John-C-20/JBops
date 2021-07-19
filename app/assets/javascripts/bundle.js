@@ -4037,7 +4037,7 @@ var queueReducer = function queueReducer() {
   switch (action.type) {
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.NEXT:
       return Object.assign({}, state, {
-        pos: state.pos + 1
+        pos: (state.pos + 1) % state.queue.length
       });
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PREVIOUS:

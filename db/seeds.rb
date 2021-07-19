@@ -70,6 +70,6 @@ album1.artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/BLACKPI
 artist2 = Artist.create(name: "IU", bio: "Lee Ji-eun, known professionally as IU, is a South Korean singer-songwriter and actress. She signed with Kakao M in 2007 as a trainee and debuted as a singer at the age of fifteen with her first mini album Lost and Found.")
 album2 = Album.create(album_title: "BBIBBI", artist_id: 2, album_year: 2018)
 album2.artwork.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/BBIBBI.jpg"), filename: "BBIBBI.jpg")
-song9 = Song.create(song_title: "BBIBBI", album_id: 2)
+song9 = Song.create(song_title: "BBIBBI", album_id: 2, genre: "pop")
 song9.musicUrl.attach(io: URI.open("https://jbops-seeds.s3.amazonaws.com/BBIBBI.mp3"), filename: "BBIBBI")
 playlistSong9 = PlaylistSong.create(playlist_id: 1, song_id: 9)
