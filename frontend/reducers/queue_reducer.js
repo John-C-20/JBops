@@ -7,9 +7,12 @@ const queueReducer = (state = defaultState, action) => {
     const newState = Object.assign({}, state)
     switch (action.type) {
         case NEXT:
-            return Object.assign({}, state, {pos: (state.pos+1) % state.queue.length })
+            return Object.assign({}, state, {pos: state.pos+1})
+
+            // we actually only want the following logic if queue is on repeat: 
+            // return Object.assign({}, state, {pos: (state.pos+1)%state.queue.length})
         case PREVIOUS:
-            return Object.assign({}, state, { pos: state.queue.length - pos - 1})
+            return Object.assign({}, state, { pos: state.queue.length - state.queue.pos - 1})
         case PLAY: 
             return Object.assign({}, state, {queue: [action.track], pos: 0})
         case QUEUE:
@@ -17,7 +20,7 @@ const queueReducer = (state = defaultState, action) => {
             return newState;
         case QUEUE_PLAYLIST: 
             const pos =  Object.values(action.payload.playlist.songs).findIndex(song => song.id === action.payload.track.id)
-            return Object.assign({}, state, {queue: action.payload.playlist.songs, pos: pos})
+            return Object.assign({}, state, {queue: Object.values(action.payload.playlist.songs), pos: pos})
         case DEQUEUE:
             const newQueue = state.queue.filter(track => track.id !== action.track.id)
             return Object.assign({}, state, {queue: newQueue});

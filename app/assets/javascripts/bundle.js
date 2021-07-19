@@ -4037,12 +4037,14 @@ var queueReducer = function queueReducer() {
   switch (action.type) {
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.NEXT:
       return Object.assign({}, state, {
-        pos: (state.pos + 1) % state.queue.length
+        pos: state.pos + 1
       });
+    // we actually only want the following logic if queue is on repeat: 
+    // return Object.assign({}, state, {pos: (state.pos+1)%state.queue.length})
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PREVIOUS:
       return Object.assign({}, state, {
-        pos: state.queue.length - pos - 1
+        pos: state.queue.length - state.queue.pos - 1
       });
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PLAY:
@@ -4060,7 +4062,7 @@ var queueReducer = function queueReducer() {
         return song.id === action.payload.track.id;
       });
       return Object.assign({}, state, {
-        queue: action.payload.playlist.songs,
+        queue: Object.values(action.payload.playlist.songs),
         pos: pos
       });
 
