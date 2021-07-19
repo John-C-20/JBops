@@ -81,14 +81,14 @@ export default class SongResult extends React.Component {
                         {this.props.ord + 1}
                     </span>
                     <img src={this.songObj.album.artwork} />
-                    <li className="track_info">
+                    <div className="track_info">
                         <div className="track_name">
                             {this.songObj.song_title}
                         </div>
                         <a href="#" className="track_artist gray14px">
                             {this.songObj.artist.name}
                         </a>
-                    </li>
+                    </div>
                 </li>
 
                 <li className="gray14px song-result-end" >

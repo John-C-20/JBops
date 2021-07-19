@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {setCurrentTime, setCurrentProgress} from '../../actions/session_actions'
 
-// export default class Player extends React.Component {
 class Player extends React.Component {
     constructor(props) {
         super(props)
@@ -13,9 +12,7 @@ class Player extends React.Component {
         this.currentTimeRef = React.createRef();
 
         this.state = {
-            // currentSong: this.props.currentSong,
             duration: 0.0,
-            // currentTime: 0.0,
             progress: 0,
             playStatus: false,
             volume: 50,
@@ -33,11 +30,9 @@ class Player extends React.Component {
         this.setCurrentTime = this.setCurrentTime.bind(this)
     }
 
-    //
     setCurrentTime() {
         this.songRef.current.currentTime = this.props.currentTime
     }
-    //
 
     componentWillUnmount() {
         this.props.setCurrentTime(this.songRef.current.currentTime) 

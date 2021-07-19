@@ -9,14 +9,9 @@ class PlaylistLink extends React.Component {
 
     }
 
-    // componentDidMount() {
-    //     this.props.getPlaylists()
-    // }
-
     render() {
         let playlists = ''
         if (this.props.currentUserId) {
-            // if (this.props.currentUser.playlists) {
                 playlists = Object.values(this.props.playlists).filter(playlist => playlist.user_id == this.props.currentUserId)
                 .map((playlist, idx) => 
                 <li className="playlist-link" key={idx}>
@@ -24,7 +19,6 @@ class PlaylistLink extends React.Component {
                         {playlist.playlist_name}
                     </Link>
                 </li>)
-            // }
         }
 
         return (

@@ -44,7 +44,7 @@ class Search extends React.Component {
                     <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
                 </div>
                 <div className="searchbar">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i className="fa fa-search" aria-hidden="true"></i>
                     <input className="search-input" type="text" onChange={this.handleSearch} placeholder="Playlists, artists, albums, or songs"/>
                 </div>
                 <div className="current-search">

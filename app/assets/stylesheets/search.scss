@@ -48,7 +48,6 @@ ul.song-results, ul.playlist-results, ul.artist-results, ul.album-results {
 .current-search {
     color: #fff;
     margin-left: 232px;
-    // height: inherit;
     width: calc(100% - 232px);
     overflow: visible;
 }
@@ -127,7 +126,6 @@ div.genre-button {
   font-size: 30px;
   font-weight: 500;
   letter-spacing: 0.2px;
-//   transition: 0.2s ease-in-out;
   cursor: pointer;
 }
 

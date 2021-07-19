@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 class Genre extends React.Component {
     constructor(props) {
         super(props)
-        // this.props.genre
     }
 
     render(){

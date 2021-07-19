@@ -16,7 +16,6 @@ export default class LoginForm extends React.Component {
     onSubmit(e) { 
         e.preventDefault() 
         this.props.action(this.state)
-        // .then(this.props.history.push("/")) 
     }
 
     onChange(field) {

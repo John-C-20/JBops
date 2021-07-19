@@ -5,7 +5,6 @@ export default class Song extends React.Component {
         super(props)
         
         this.songObj = this.props.song
-        // this.songRef = React.createRef()
         this.state = {
             duration: ""
         }

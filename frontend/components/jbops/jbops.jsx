@@ -7,22 +7,6 @@ export default class Jbops extends React.Component {
     }
     
     render () {
-        // const loggedIn = () => (
-        //     <div className="playlists">
-        //         <h1>this will be overarching component</h1>
-        //         <div className="user-playlists">user playlists go here</div>
-        //         <div className="top-playlists"><PlaylistContainer /></div>
-        //     </div>
-        // )
-
-        // const loggedOut = () => (
-        //     <div className="playlists">
-        //         <h1>please sign up or log in</h1>
-        //         <h1>this will be overarching component</h1>
-        //         <div className="top-playlists"><PlaylistContainer /></div>
-        //     </div>
-        // )
-
         let header;
 
         if (this.props.currentUser) {
@@ -33,7 +17,6 @@ export default class Jbops extends React.Component {
 
 
         return (
-            // this.props.currentUser ? loggedIn() : loggedOut() 
             <div className="playlists">
                 {header}
                 <PlaylistContainer />

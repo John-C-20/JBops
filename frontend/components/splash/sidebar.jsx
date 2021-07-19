@@ -25,7 +25,6 @@ class Sidebar extends React.Component {
     }
 
     render(){
-        // console.log(this.playlistCount)
         return(
             <div className="sidebar">
                 <ul>

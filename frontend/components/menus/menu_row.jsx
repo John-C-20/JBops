@@ -59,7 +59,7 @@ class MenuRow extends React.Component{
                 // go to artist if one artist, open menu if 1+ 
                 break;
             case 'album':
-                // go to album 
+                // go to album show page 
                 break;
             case 'playlist':
                 addSongToPlaylist(this.props.song.id, this.props.playlist.id)

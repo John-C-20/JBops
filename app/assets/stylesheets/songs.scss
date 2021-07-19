@@ -28,7 +28,6 @@ div.header .text {
 div.header h1 {
     font-size: 72px;
     line-height: 72px;
-    // padding: 0.08em 0px;
     font-weight: 900;
     letter-spacing: -.04em;
 }
@@ -45,8 +44,6 @@ div.header div#num_songs {
     font-size: 14px;
 }
 
-// --------------------------------------- //
-
 div.grid {
     display: flex;
     flex-direction: column;
@@ -60,7 +57,6 @@ button.song {
     background-color: transparent;
     border-radius: 5px;
     border-color: transparent;
-    // padding: 10px 0;
     width: 100%;
     text-align: left;
 }
@@ -93,7 +89,19 @@ ul.song li#song_play li.track_info {
     align-items: flex-start;
 }
 
+ul.song li#song_play div.track_info {
+    display: flex; 
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+}
+
 ul.song li#song_play li.track_info div.track_name {
+    font-size: 16px;
+    color: #fff;
+}
+
+ul.song li#song_play div.track_info div.track_name {
     font-size: 16px;
     color: #fff;
 }
@@ -107,8 +115,6 @@ a.gray14px:hover {
     font-size: 14px;
     text-decoration: none;
 }
-
-// --------------------------------------- //
 
 ul.rows {
     display: flex;
