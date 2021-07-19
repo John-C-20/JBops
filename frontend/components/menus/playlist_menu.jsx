@@ -12,7 +12,7 @@ class PlaylistMenu extends React.Component {
     render() {
         const playlistRows = 
             this.props.userPlaylists.map((playlist, idx) => 
-                <MenuRow type="playlist" text={playlist.playlist_name} border="" key={idx}/>
+                <MenuRow type="playlist" song={this.props.song} playlist={playlist} text={playlist.playlist_name} border="" key={idx}/>
             )
 
         return (
@@ -24,7 +24,7 @@ class PlaylistMenu extends React.Component {
 }
 
 const mstp = state => ({
-    userPlaylists: Object.values(state.entities.users[state.session.currentUserId].playlists)
+    userPlaylists: Object.values(state.entities.playlists).filter(playlist => playlist.user_id == state.session.currentUserId)
 })
 const mdtp = dispatch => ({})
 export default connect(mstp, mdtp)(PlaylistMenu);

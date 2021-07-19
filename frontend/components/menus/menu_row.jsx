@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PlaylistMenu from './playlist_menu';
+import { addSongToPlaylist } from '../../util/playlist_song_api_util';
 
 class MenuRow extends React.Component{
     constructor(props){
@@ -9,10 +11,15 @@ class MenuRow extends React.Component{
         this.unHover = this.unHover.bind(this)
         this.onClick = this.onClick.bind(this)
         this.openSongMenu = this.openSongMenu.bind(this)
+        this.closeSongMenu = this.closeSongMenu.bind(this)
     }
 
     openSongMenu(element) {
         element.classList.add("show")
+    }
+
+    closeSongMenu(element) {
+        element.classList.remove("show")
     }
 
     onHover(){
@@ -35,7 +42,8 @@ class MenuRow extends React.Component{
                 // close menu 
                 break;
             case 'addToPlaylist':
-                // close menu 
+                const element = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}-add`)
+                this.closeSongMenu(element)
                 break;
             default:
                 return;
@@ -54,7 +62,7 @@ class MenuRow extends React.Component{
                 // go to album 
                 break;
             case 'playlist':
-                // add song to clicked playlist and close all menus
+                addSongToPlaylist(this.props.song.id, this.props.playlist.id)
                 break;
             case 'addToPlaylist':
                 const element = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}-add`)
@@ -69,6 +77,10 @@ class MenuRow extends React.Component{
         return(
            <li className={this.props.border ? "menu-row bottom-border-gray" : "menu-row"} onMouseEnter={this.onHover} onMouseLeave={this.unHover} onClick={this.onClick}> 
                 {this.props.text}
+                {this.props.type=="addToPlaylist" ? 
+                <PlaylistMenu song={this.props.song} />
+                : null
+                }
             </li>
         )
     }

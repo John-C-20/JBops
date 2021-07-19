@@ -1,7 +1,6 @@
 import React from 'react';
 import MenuRow from './menu_row';
 import {connect} from 'react-redux';
-import PlaylistMenu from './playlist_menu';
 
 class SongMenu extends React.Component{
     constructor(props){
@@ -17,7 +16,6 @@ class SongMenu extends React.Component{
                 <MenuRow song={this.props.song} type="artist" text="Go to artist" border=""/>
                 <MenuRow song={this.props.song} type="album" text="Go to album" border=""/>
                 <MenuRow song={this.props.song} type="addToPlaylist" text="Add to playlist" border="" />
-                <PlaylistMenu song={this.props.song}/> 
             </ul>
         )
     }
