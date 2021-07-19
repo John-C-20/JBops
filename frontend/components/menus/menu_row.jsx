@@ -8,6 +8,11 @@ class MenuRow extends React.Component{
         this.onHover = this.onHover.bind(this)
         this.unHover = this.unHover.bind(this)
         this.onClick = this.onClick.bind(this)
+        this.openSongMenu = this.openSongMenu.bind(this)
+    }
+
+    openSongMenu(element) {
+        element.classList.add("show")
     }
 
     onHover(){
@@ -16,7 +21,8 @@ class MenuRow extends React.Component{
                 // open artist menu if more than one artist
                 break;
             case 'addToPlaylist':
-                // open playlist menu 
+                const element = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}-add`)
+                this.openSongMenu(element)
                 break;
             default:
                 return;
@@ -51,7 +57,8 @@ class MenuRow extends React.Component{
                 // add song to clicked playlist and close all menus
                 break;
             case 'addToPlaylist':
-                // return 
+                const element = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}-add`)
+                this.openSongMenu(element)
                 break;
             default:
                 return;

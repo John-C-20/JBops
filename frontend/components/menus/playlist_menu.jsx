@@ -11,12 +11,12 @@ class PlaylistMenu extends React.Component {
 
     render() {
         const playlistRows = 
-            this.props.userPlaylists.map(playlist => 
-                <MenuRow type="playlist" text={playlist.playlist_name} border=""/>
+            this.props.userPlaylists.map((playlist, idx) => 
+                <MenuRow type="playlist" text={playlist.playlist_name} border="" key={idx}/>
             )
 
         return (
-            <ul className="menu-container">
+            <ul className="menu-container" id={`${this.props.song.song_title}-${this.props.song.id}-add`}>
                 {playlistRows}
             </ul>
         )
