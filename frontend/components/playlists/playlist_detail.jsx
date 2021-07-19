@@ -10,10 +10,26 @@ export default class PlaylistDetail extends React.Component {
         super(props)
         // this.fetchSong = this.props.fetchSong
         this.fetchSong = this.props.playSong
+        this.queuePlaylist = this.props.queuePlaylist 
+        this.queueSong = this.props.queueSong
+        this.onDoubleClick = this.onDoubleClick.bind(this)
+        this.playSong = this.playSong.bind(this)
+        this.queuePlaylist = this.queuePlaylist.bind(this)
     }
 
     componentDidMount() {
         this.props.getPlaylist(this.props.match.params.playlistId)
+    }
+
+    onDoubleClick(song){
+        return () => {
+            // this.playSong(song.id)
+            this.queuePlaylist(this.props.playlist.id, song)
+        }
+    }
+
+    playSong(songId){
+        this.fetchSong(songId)
     }
 
     render() {
@@ -27,7 +43,7 @@ export default class PlaylistDetail extends React.Component {
                 const songs = Object.values(this.props.playlist.songs)            
                 songRows = songs.map(song => {
                     return (
-                    <button className="song" key={song.id} onDoubleClick={() => this.fetchSong(song.id)}>
+                    <button className="song" key={song.id} onDoubleClick={this.onDoubleClick(song)}>
                         <Song song={song} />
                     </button>
                     )

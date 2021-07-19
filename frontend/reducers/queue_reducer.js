@@ -1,4 +1,4 @@
-import { SKIP, PREVIOUS, PLAY, PAUSE, QUEUE, DEQUEUE } from '../actions/queue_actions'
+import { NEXT, PREVIOUS, PLAY, QUEUE_PLAYLIST, PAUSE, QUEUE, DEQUEUE } from '../actions/queue_actions'
 
 const defaultState = {queue: [], pos: 0, repeat: false, shuffle: false}
 
@@ -6,7 +6,7 @@ const queueReducer = (state = defaultState, action) => {
     Object.freeze(state)
     const newState = Object.assign({}, state)
     switch (action.type) {
-        case SKIP:
+        case NEXT:
             return Object.assign({}, state, {pos: state.pos+1})
         case PREVIOUS:
             return Object.assign({}, state, { pos: state.queue.length - pos - 1})
@@ -15,6 +15,9 @@ const queueReducer = (state = defaultState, action) => {
         case QUEUE:
             newState.queue.push(action.track)
             return newState;
+        case QUEUE_PLAYLIST: 
+            const pos =  Object.values(action.payload.playlist.songs).findIndex(song => song.id === action.payload.track.id)
+            return Object.assign({}, state, {queue: action.payload.playlist.songs, pos: pos})
         case DEQUEUE:
             const newQueue = state.queue.filter(track => track.id !== action.track.id)
             return Object.assign({}, state, {queue: newQueue});

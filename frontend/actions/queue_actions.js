@@ -1,15 +1,19 @@
 import * as SongAPIUtil from '../util/song_api_util';
+import * as PlaylistAPIUtil from '../util/playlist_api_util';
 
-export const SKIP = "SKIP"
+export const NEXT = "NEXT"
 export const PREVIOUS = "PREVIOUS"
 export const PLAY = "PLAY"
 export const PAUSE = "PAUSE"
 export const QUEUE = "QUEUE"
 export const DEQUEUE = "DEQUEUE"
+export const QUEUE_PLAYLIST = 'QUEUE_PLAYLIST'
 
-export const skipTrack = () => ({
-    type: SKIP
+
+export const nextTrack = () => ({
+    type: NEXT
 })
+
 export const previousTrack = () => ({
     type: PREVIOUS,
 })
@@ -22,6 +26,11 @@ const playTrack = track => ({
 const queueTrack = (track) => ({
     type: QUEUE,
     track
+})
+
+const queue_Playlist = (playlist, track) => ({
+    type: QUEUE_PLAYLIST,
+    payload: {playlist, track}
 })
 
 const dequeueTrack = (track) => ({
@@ -39,3 +48,8 @@ export const queueSong = (songId) => dispatch => {
         .then((song) => dispatch(queueTrack(song)))
     )
 }
+
+export const queuePlaylist = (playlistId, track) => dispatch => (
+    PlaylistAPIUtil.fetchPlaylist(playlistId)
+        .then(playlist => dispatch(queue_Playlist(playlist, track)))
+)

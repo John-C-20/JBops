@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {setCurrentTime, setCurrentProgress} from '../../actions/session_actions'
+import {nextTrack, previousTrack} from '../../actions/queue_actions';
 
 class Player extends React.Component {
     constructor(props) {
@@ -78,7 +79,8 @@ class Player extends React.Component {
     }
 
     onComplete(e) {
-        this.setState({playStatus: false, currentTime: 0})
+        // this.setState({playStatus: false, currentTime: 0})
+        this.props.nextTrack()
     }
     
     render() {
@@ -172,7 +174,8 @@ const mstp = state => ({
 
 const mdtp = dispatch => ({
     setCurrentTime: (time) => dispatch(setCurrentTime(time)),
-    setProgress: (progress) => dispatch(setCurrentProgress(progress))
+    setProgress: (progress) => dispatch(setCurrentProgress(progress)),
+    nextTrack: () => dispatch(nextTrack())
 })
 
 export default connect(mstp, mdtp)(Player);
