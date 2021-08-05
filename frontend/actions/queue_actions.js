@@ -8,6 +8,8 @@ export const PAUSE = "PAUSE"
 export const QUEUE = "QUEUE"
 export const DEQUEUE = "DEQUEUE"
 export const QUEUE_PLAYLIST = 'QUEUE_PLAYLIST'
+export const SHUFFLE = "SHUFFLE"
+export const REPEAT = "REPEAT"
 
 
 export const nextTrack = () => ({
@@ -16,6 +18,14 @@ export const nextTrack = () => ({
 
 export const previousTrack = () => ({
     type: PREVIOUS,
+})
+
+export const shuffle = () => ({
+    type: SHUFFLE
+})
+
+export const repeat = () => ({
+    type: REPEAT
 })
 
 const playTrack = track => ({
@@ -37,6 +47,7 @@ const dequeueTrack = (track) => ({
     type: DEQUEUE,
     track
 })
+
 
 export const playSong = (songId) => dispatch => {
     return (SongAPIUtil.fetchSong(songId)

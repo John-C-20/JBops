@@ -224,8 +224,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "QUEUE": () => (/* binding */ QUEUE),
 /* harmony export */   "DEQUEUE": () => (/* binding */ DEQUEUE),
 /* harmony export */   "QUEUE_PLAYLIST": () => (/* binding */ QUEUE_PLAYLIST),
+/* harmony export */   "SHUFFLE": () => (/* binding */ SHUFFLE),
+/* harmony export */   "REPEAT": () => (/* binding */ REPEAT),
 /* harmony export */   "nextTrack": () => (/* binding */ nextTrack),
 /* harmony export */   "previousTrack": () => (/* binding */ previousTrack),
+/* harmony export */   "shuffle": () => (/* binding */ shuffle),
+/* harmony export */   "repeat": () => (/* binding */ repeat),
 /* harmony export */   "playSong": () => (/* binding */ playSong),
 /* harmony export */   "queueSong": () => (/* binding */ queueSong),
 /* harmony export */   "queuePlaylist": () => (/* binding */ queuePlaylist)
@@ -241,6 +245,8 @@ var PAUSE = "PAUSE";
 var QUEUE = "QUEUE";
 var DEQUEUE = "DEQUEUE";
 var QUEUE_PLAYLIST = 'QUEUE_PLAYLIST';
+var SHUFFLE = "SHUFFLE";
+var REPEAT = "REPEAT";
 var nextTrack = function nextTrack() {
   return {
     type: NEXT
@@ -249,6 +255,16 @@ var nextTrack = function nextTrack() {
 var previousTrack = function previousTrack() {
   return {
     type: PREVIOUS
+  };
+};
+var shuffle = function shuffle() {
+  return {
+    type: SHUFFLE
+  };
+};
+var repeat = function repeat() {
+  return {
+    type: REPEAT
   };
 };
 
@@ -1663,7 +1679,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
         height: "16",
         width: "16",
         viewBox: "0 0 16 16",
-        className: "Svg-ulyrgf-0 hJgLcF"
+        className: "Svg-ulyrgf-0 hJgLcF",
+        onClick: this.props.toggleShuffle
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
         d: "M4.5 6.8l.7-.8C4.1 4.7 2.5 4 .9 4v1c1.3 0 2.6.6 3.5 1.6l.1.2zm7.5 4.7c-1.2 0-2.3-.5-3.2-1.3l-.6.8c1 1 2.4 1.5 3.8 1.5V14l3.5-2-3.5-2v1.5zm0-6V7l3.5-2L12 3v1.5c-1.6 0-3.2.7-4.2 2l-3.4 3.9c-.9 1-2.2 1.6-3.5 1.6v1c1.6 0 3.2-.7 4.2-2l3.4-3.9c.9-1 2.2-1.6 3.5-1.6z",
         fill: "%23b3b3b3"
@@ -1693,7 +1710,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
         height: "16",
         width: "16",
         viewBox: "0 0 16 16",
-        className: "Svg-ulyrgf-0 hJgLcF"
+        className: "Svg-ulyrgf-0 hJgLcF",
+        onClick: this.props.toggleRepeat
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
         d: "M5.5 5H10v1.5l3.5-2-3.5-2V4H5.5C3 4 1 6 1 8.5c0 .6.1 1.2.4 1.8l.9-.5C2.1 9.4 2 9 2 8.5 2 6.6 3.6 5 5.5 5zm9.1 1.7l-.9.5c.2.4.3.8.3 1.3 0 1.9-1.6 3.5-3.5 3.5H6v-1.5l-3.5 2 3.5 2V13h4.5C13 13 15 11 15 8.5c0-.6-.1-1.2-.4-1.8z",
         fill: "%23b3b3b3"
@@ -1743,6 +1761,12 @@ var mdtp = function mdtp(dispatch) {
     },
     setProgress: function setProgress(progress) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.setCurrentProgress)(progress));
+    },
+    toggleRepeat: function toggleRepeat() {
+      return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_3__.repeat)());
+    },
+    toggleShuffle: function toggleShuffle() {
+      return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_3__.shuffle)());
     },
     nextTrack: function nextTrack() {
       return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_3__.nextTrack)());
@@ -2336,8 +2360,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2390,7 +2414,7 @@ var PlaylistLink = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("li", {
             className: "playlist-link",
             key: idx
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
             to: "/playlist/".concat(playlist.id)
           }, playlist.playlist_name));
         });
@@ -2413,7 +2437,7 @@ var mstp = function mstp(state) {
 var mdtp = function mdtp(dispatch) {
   return {
     getPlaylists: function getPlaylists() {
-      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_3__.fetchPlaylists)());
+      return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPlaylists)());
     }
   };
 };
@@ -4036,11 +4060,15 @@ var queueReducer = function queueReducer() {
 
   switch (action.type) {
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.NEXT:
-      return Object.assign({}, state, {
-        pos: state.pos + 1
-      });
-    // we actually only want the following logic if queue is on repeat: 
-    // return Object.assign({}, state, {pos: (state.pos+1)%state.queue.length})
+      if (state.repeat) {
+        return Object.assign({}, state, {
+          pos: (state.pos + 1) % state.queue.length
+        });
+      } else {
+        return Object.assign({}, state, {
+          pos: state.pos + 1
+        });
+      }
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PREVIOUS:
       return Object.assign({}, state, {
@@ -4072,6 +4100,16 @@ var queueReducer = function queueReducer() {
       });
       return Object.assign({}, state, {
         queue: newQueue
+      });
+
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.REPEAT:
+      return Object.assign({}, state, {
+        repeat: !state.repeat
+      });
+
+    case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.SHUFFLE:
+      return Object.assign({}, state, {
+        shuffle: !state.shuffle
       });
 
     default:
