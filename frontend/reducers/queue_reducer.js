@@ -1,15 +1,13 @@
 import { NEXT, PREVIOUS, PLAY, QUEUE_PLAYLIST, PAUSE, QUEUE, DEQUEUE, REPEAT, SHUFFLE } from '../actions/queue_actions'
 
-const defaultState = {queue: [], pos: 0, repeat: false, shuffle: false}
+const defaultState = {queue: [], queueCopy: [], pos: 0, repeat: false, shuffle: false}
 
 const queueReducer = (state = defaultState, action) => {
     Object.freeze(state)
     const newState = Object.assign({}, state)
     switch (action.type) {
         case NEXT:
-            if (state.shuffle) {
-                return Object.assign({}, state, {pos: Math.floor(Math.random() * state.queue.length)})
-            } else if (state.repeat) {
+            if (state.repeat) {
                 return Object.assign({}, state, { pos: (state.pos + 1) % state.queue.length })
             } else {
                 return Object.assign({}, state, {pos: state.pos + 1})
@@ -30,10 +28,31 @@ const queueReducer = (state = defaultState, action) => {
         case REPEAT: 
             return Object.assign({}, state, {repeat: !state.repeat});
         case SHUFFLE: 
-            return Object.assign({}, state, {shuffle: !state.shuffle});
+            const left = state.queue.slice(0, state.pos)
+            const right = state.queue.slice(state.pos + 1)
+            const newArr = shuffleArray(left.concat(right))
+            const currSong = state.queue[state.pos]
+            newArr.splice(state.pos, 0, currSong)
+            const queue = state.queue
+            
+            if (!state.shuffle) {
+                return Object.assign({}, state, {shuffle: !state.shuffle, queueCopy: queue, queue: newArr})
+            } else {
+                return Object.assign({}, state, {shuffle: !state.shuffle, queue: state.queueCopy})
+            }
         default:
             return state;
     }
+}
+
+function shuffleArray(arr){
+    for (let i = arr.length - 1; i > 0; i--){
+        let j = Math.floor(Math.random() * (i+1))
+        let temp = arr[i] 
+        arr[i] = arr[j] 
+        arr[j] = temp 
+    }
+    return arr
 }
 
 export default queueReducer;

@@ -156,7 +156,7 @@ class Player extends React.Component {
 
                             {playPause}
                         
-                            <svg role="img" id="step-forward" height="16" width="16" viewBox="0 0 16 16" className="Svg-ulyrgf-0 hJgLcF">
+                            <svg role="img" id="step-forward" height="16" width="16" viewBox="0 0 16 16" className="Svg-ulyrgf-0 hJgLcF" onClick={this.props.nextTrack}>
                                 <path d="M11 3v4.119L3 2.5v11l8-4.619V13h2V3z" fill="%23b3b3b3"></path>
                             </svg>
                             
