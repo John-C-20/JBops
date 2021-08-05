@@ -7,11 +7,13 @@ const queueReducer = (state = defaultState, action) => {
     const newState = Object.assign({}, state)
     switch (action.type) {
         case NEXT:
-         if (state.repeat) {
-            return Object.assign({}, state, { pos: (state.pos + 1) % state.queue.length })
-        } else {
-            return Object.assign({}, state, {pos: state.pos + 1})
-        }
+            if (state.shuffle) {
+                return Object.assign({}, state, {pos: Math.floor(Math.random() * state.queue.length)})
+            } else if (state.repeat) {
+                return Object.assign({}, state, { pos: (state.pos + 1) % state.queue.length })
+            } else {
+                return Object.assign({}, state, {pos: state.pos + 1})
+            }
         case PREVIOUS:
             return Object.assign({}, state, { pos: state.queue.length - state.queue.pos - 1})
         case PLAY: 

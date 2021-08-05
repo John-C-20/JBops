@@ -79,6 +79,10 @@ button.playPause {
     cursor: pointer;
 }
 
+.fa.fa-play-circle:hover, .fa.fa-pause-circle:hover {
+    transform: scale(1.10);
+}
+
 svg {
     fill: #b3b3b3
 }
@@ -108,3 +112,12 @@ input[type=range].currentTime {
 .player .left img[src=""] {
     display: none;
 }
+
+.Svg-ulyrgf-0.hJgLcF:hover {
+    fill: #fff
+}
+
+.Svg-ulyrgf-0.hJgLcF.toggled {
+    fill: #1db954
+}
+
