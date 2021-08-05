@@ -13,7 +13,16 @@ const queueReducer = (state = defaultState, action) => {
                 return Object.assign({}, state, {pos: state.pos + 1})
             }
         case PREVIOUS:
-            return Object.assign({}, state, { pos: state.queue.length - state.queue.pos - 1})
+            const newPos = state.pos - 1
+            if (state.repeat) {
+                if (newPos >= 0) {
+                    return Object.assign({}, state, {pos: newPos})
+                } else {
+                    return Object.assign({}, state, {pos: state.queue.length + newPos})
+                }
+            } else {
+                return Object.assign({}, state, { pos: newPos})
+            }
         case PLAY: 
             return Object.assign({}, state, {queue: [action.track], pos: 0})
         case QUEUE:

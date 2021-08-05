@@ -1704,7 +1704,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
         height: "16",
         width: "16",
         viewBox: "0 0 16 16",
-        className: "Svg-ulyrgf-0 hJgLcF"
+        className: "Svg-ulyrgf-0 hJgLcF",
+        onClick: this.props.previousTrack
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
         d: "M13 2.5L5 7.119V3H3v10h2V8.881l8 4.619z",
         fill: "%23b3b3b3"
@@ -1785,6 +1786,9 @@ var mdtp = function mdtp(dispatch) {
     },
     nextTrack: function nextTrack() {
       return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_3__.nextTrack)());
+    },
+    previousTrack: function previousTrack() {
+      return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_3__.previousTrack)());
     }
   };
 };
@@ -4087,9 +4091,23 @@ var queueReducer = function queueReducer() {
       }
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PREVIOUS:
-      return Object.assign({}, state, {
-        pos: state.queue.length - state.queue.pos - 1
-      });
+      var newPos = state.pos - 1;
+
+      if (state.repeat) {
+        if (newPos >= 0) {
+          return Object.assign({}, state, {
+            pos: newPos
+          });
+        } else {
+          return Object.assign({}, state, {
+            pos: state.queue.length + newPos
+          });
+        }
+      } else {
+        return Object.assign({}, state, {
+          pos: newPos
+        });
+      }
 
     case _actions_queue_actions__WEBPACK_IMPORTED_MODULE_0__.PLAY:
       return Object.assign({}, state, {

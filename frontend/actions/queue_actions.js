@@ -17,7 +17,7 @@ export const nextTrack = () => ({
 })
 
 export const previousTrack = () => ({
-    type: PREVIOUS,
+    type: PREVIOUS
 })
 
 export const shuffle = () => ({
