@@ -123,10 +123,19 @@ class Player extends React.Component {
                 id="pause_circle"></i>
         }
 
+
+        let currentTime;
+        let duration;
+
+        if (this.songRef.current) {
+            currentTime = convertTime(this.songRef.current.currentTime)
+            duration = convertTime(this.songRef.current.duration)
+        }
+    
         return(
             this.props.currentUser ? 
             <div className="player">
-                <audio onLoadedMetadata={this.setCurrentTime} key={currentSongId} ref={this.songRef} autoPlay onPlay={this.playPause} onEnded={this.onComplete} onTimeUpdateCapture={this.updateCurrentTime} onTimeUpdate={this.updateCurrentTime}>
+                <audio preload="metadata" onLoadedMetadata={this.setCurrentTime} key={currentSongId} ref={this.songRef} autoPlay onPlay={this.playPause} onEnded={this.onComplete} onTimeUpdateCapture={this.updateCurrentTime} onTimeUpdate={this.updateCurrentTime}>
                     <source src={currentSong.musicUrl} type="audio/mpeg"/>
                 </audio>
 
@@ -164,7 +173,19 @@ class Player extends React.Component {
                                 <path d="M5.5 5H10v1.5l3.5-2-3.5-2V4H5.5C3 4 1 6 1 8.5c0 .6.1 1.2.4 1.8l.9-.5C2.1 9.4 2 9 2 8.5 2 6.6 3.6 5 5.5 5zm9.1 1.7l-.9.5c.2.4.3.8.3 1.3 0 1.9-1.6 3.5-3.5 3.5H6v-1.5l-3.5 2 3.5 2V13h4.5C13 13 15 11 15 8.5c0-.6-.1-1.2-.4-1.8z" fill="%23b3b3b3"></path>
                             </svg>
                         </div>
-                        <input className="currentTime" type="range" min="0" max="99.99" ref={this.currentTimeRef} value={this.state.progress} onChange={this.changeCurrentTime}/>
+
+
+
+                        <div className="duration">
+                            <div className="timestamp-left">
+                                {currentTime}
+                            </div>
+                            <input className="currentTime" type="range" min="0" max="99.99" ref={this.currentTimeRef} value={this.state.progress} onChange={this.changeCurrentTime}/>
+                            <div className="timestamp-right">
+                                {duration}
+                            </div>
+                        </div>
+
                 </div>
 
                 <div className="right">
@@ -175,6 +196,20 @@ class Player extends React.Component {
             : null
         )
     }
+}
+
+function convertTime(secs){
+    // const z = Math.floor(secs)
+    const z = secs
+    let minutes = Math.floor(z / 60) 
+    let seconds = Math.floor(z % 60)
+
+    if (minutes < 10) { minutes = `0${minutes}`}
+    if (seconds < 10) { seconds = `0${seconds}`}
+
+    if (isNaN(minutes)) return;
+    if (isNaN(seconds)) return;
+    return `${minutes}:${seconds}`
 }
 
 const mstp = state => ({
