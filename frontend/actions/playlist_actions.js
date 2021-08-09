@@ -4,6 +4,7 @@ export const GET_PLAYLISTS = 'GET_PLAYLISTS'
 export const GET_PLAYLIST = 'GET_PLAYLIST'
 export const MAKE_PLAYLIST = 'MAKE_PLAYLIST'
 export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST'
+export const DELETE_PLAYLIST = 'DELETE_PLAYLIST'
 
 const getPlaylists = (playlists) => ({
     type: GET_PLAYLISTS,
@@ -25,6 +26,11 @@ const updatePlaylist = (playlist) => ({
     playlist
 })
 
+const destroyPlaylist = (playlist) => ({
+    type: DELETE_PLAYLIST,
+    playlist
+})
+
 export const fetchPlaylists = () => dispatch => (
     PlaylistAPIUtil.fetchPlaylists()
     .then((playlists) => dispatch(getPlaylists(playlists)))
@@ -43,4 +49,9 @@ export const createPlaylist = (data) => dispatch => (
 export const patchPlaylist = (playlistId, data) => dispatch => (
     PlaylistAPIUtil.patchPlaylist(playlistId, data) 
     .then(playlist => dispatch(updatePlaylist(playlist)))
+)
+
+export const deletePlaylist = (playlistId) => dispatch => (
+    PlaylistAPIUtil.deletePlaylist(playlistId) 
+    .then(playlist => dispatch(destroyPlaylist(playlist)))
 )

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PlaylistsMenu from './playlists_menu';
+import {deletePlaylist} from '../../actions/playlist_actions';
 import { addSongToPlaylist } from '../../util/playlist_song_api_util';
 
 class MenuRow extends React.Component{
@@ -64,6 +65,9 @@ class MenuRow extends React.Component{
             case 'album':
                 // go to album show page 
                 break;
+            case 'deletePlaylist':
+                this.props.deletePlaylist(this.props.playlist.id)
+                break;
             case 'rename':
                 // rename playlist 
                 break;
@@ -93,5 +97,7 @@ class MenuRow extends React.Component{
 }
 
 const mstp = state => ({})
-const mdtp = dispatch => ({})
+const mdtp = dispatch => ({
+    deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId))
+})
 export default connect(mstp, mdtp)(MenuRow);

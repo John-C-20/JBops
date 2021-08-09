@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react'
 import {Link} from 'react-router-dom';
-import {fetchPlaylists} from '../../actions/playlist_actions';
+import {fetchPlaylists, deletePlaylist} from '../../actions/playlist_actions';
 import {PlaylistMenu} from '../menus/playlist_menu';
 
 class PlaylistLink extends React.Component {
@@ -53,7 +53,8 @@ const mstp = state => ({
 })
 
 const mdtp = dispatch => ({
-    getPlaylists: () => dispatch(fetchPlaylists())
+    deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId))
+
 })
 
 export default connect(mstp, mdtp)(PlaylistLink)

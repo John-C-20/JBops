@@ -35,6 +35,15 @@ class Api::PlaylistsController < ApplicationController
         end
     end
 
+    def destroy 
+        @playlist = Playlist.find(params[:id])
+        if @playlist.delete
+            render :show
+        else
+            render json: @playlist.errors.full_messages, status: 422
+        end
+
+    end
     private
 
     def playlist_params

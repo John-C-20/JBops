@@ -25,3 +25,10 @@ export const patchPlaylist = (playlistId, data) => (
         data 
     })
 )
+
+export const deletePlaylist = (playlistId) => (
+    $.ajax({
+        method: 'DELETE',
+        url: `/api/playlists/${playlistId}`
+    })
+)
