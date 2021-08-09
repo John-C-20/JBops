@@ -6,6 +6,20 @@
     padding: 3px;
     visibility: hidden;
 }
+.menu-container1 {
+    position:absolute;
+    background-color: #282828;
+    display:flex;
+    flex-direction: column;
+    padding: 3px;
+    visibility: hidden;
+    font: 400 13.3333px Arial;
+    white-space: nowrap;
+}
+
+.menu-container1 > li {
+    margin-left: 0px!important;
+}
 
 .menu-row {
     text-align: left;

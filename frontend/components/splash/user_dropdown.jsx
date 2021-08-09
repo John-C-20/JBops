@@ -45,6 +45,17 @@ window.onclick = (event) => {
             }
         }
     }
+
+    if (!event.target.matches('.boop')) {
+        const playlistMenus = document.getElementsByClassName("menu-container1");
+        let k;
+        for (k = 0; k < playlistMenus.length; k++) {
+            const menu = playlistMenus[k];
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+    }
 }
 
 window.oncontextmenu = (e) => {
@@ -64,6 +75,17 @@ window.oncontextmenu = (e) => {
         let j;
         for (j = 0; j < songMenus.length; j++) {
             const menu = songMenus[j];
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+    }
+    
+    if (!e.target.matches('.boop')) {
+        const playlistMenus = document.getElementsByClassName("menu-container1");
+        let k;
+        for (k = 0; k < playlistMenus.length; k++) {
+            const menu = playlistMenus[k];
             if (menu.classList.contains('show')) {
                 menu.classList.remove('show');
             }

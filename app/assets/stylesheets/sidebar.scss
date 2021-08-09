@@ -5,7 +5,7 @@ div.sidebar {
     top: 0;
     left: 0; 
     background-color: black;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     padding-top: 20px;
     color: #b3b3b3;
     font-size: 14px;
@@ -20,6 +20,14 @@ div.sidebar ul li {
     margin: 0;
     list-style: none;
     margin-left: -14px;
+}
+
+li.playlist-link {
+    overflow-x: hidden;    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 188px;
+
 }
 
 div.sidebar .logo {

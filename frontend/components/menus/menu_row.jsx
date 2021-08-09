@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PlaylistMenu from './playlist_menu';
+import PlaylistsMenu from './playlists_menu';
 import { addSongToPlaylist } from '../../util/playlist_song_api_util';
 
 class MenuRow extends React.Component{
@@ -52,14 +52,20 @@ class MenuRow extends React.Component{
 
     onClick(){
         switch (this.props.type) {
-            case 'queue':
-                // add to queue
+            case 'queueSong':
+                // add song to queue
+                break;
+            case 'queuePlaylist':
+                // add playlist to queue
                 break;
             case 'artist':
                 // go to artist if one artist, open menu if 1+ 
                 break;
             case 'album':
                 // go to album show page 
+                break;
+            case 'rename':
+                // rename playlist 
                 break;
             case 'playlist':
                 addSongToPlaylist(this.props.song.id, this.props.playlist.id)
@@ -78,7 +84,7 @@ class MenuRow extends React.Component{
            <li className={this.props.border ? "menu-row bottom-border-gray" : "menu-row"} onMouseEnter={this.onHover} onMouseLeave={this.unHover} onClick={this.onClick}> 
                 {this.props.text}
                 {this.props.type=="addToPlaylist" ? 
-                <PlaylistMenu song={this.props.song} />
+                <PlaylistsMenu song={this.props.song} />
                 : null
                 }
             </li>

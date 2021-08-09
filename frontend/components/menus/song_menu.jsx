@@ -12,7 +12,7 @@ class SongMenu extends React.Component{
     render(){
         return(
             <ul className="menu-container" id={`${this.song.song_title}-${this.song.id}`} >
-                <MenuRow song={this.props.song} type="queue" text="Add to Queue" border="bottom"/>
+                <MenuRow song={this.props.song} type="queueSong" text="Add to Queue" border="bottom"/>
                 <MenuRow song={this.props.song} type="artist" text="Go to artist" border=""/>
                 <MenuRow song={this.props.song} type="album" text="Go to album" border=""/>
                 <MenuRow song={this.props.song} type="addToPlaylist" text="Add to playlist" border="" />
