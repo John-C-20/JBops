@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PlaylistsMenu from './playlists_menu';
 import {deletePlaylist} from '../../actions/playlist_actions';
-import {queuePlaylist} from '../../actions/queue_actions';
+import {queueSong, queuePlaylist} from '../../actions/queue_actions';
 import { addSongToPlaylist } from '../../util/playlist_song_api_util';
 
 class MenuRow extends React.Component{
@@ -55,7 +55,7 @@ class MenuRow extends React.Component{
     onClick(){
         switch (this.props.type) {
             case 'queueSong':
-                // add song to queue
+                this.props.queueSong(this.props.song.id)
                 break;
             case 'queuePlaylist':
                 this.props.queuePlaylist(this.props.playlist.id)
@@ -100,6 +100,7 @@ class MenuRow extends React.Component{
 const mstp = state => ({})
 const mdtp = dispatch => ({
     deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
-    queuePlaylist: playlistId => dispatch(queuePlaylist(playlistId))
+    queuePlaylist: playlistId => dispatch(queuePlaylist(playlistId)),
+    queueSong: songId => dispatch(queueSong(songId))
 })
 export default connect(mstp, mdtp)(MenuRow);

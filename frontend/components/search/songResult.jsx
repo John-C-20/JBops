@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { playSong } from '../../actions/queue_actions'
 import SongMenu from '../menus/song_menu';
 
-export default class SongResult extends React.Component {
+class SongResult extends React.Component {
     constructor(props) {
         super(props)
 
@@ -12,6 +14,7 @@ export default class SongResult extends React.Component {
 
         this.updateDuration = this.updateDuration.bind(this)
         this.onClick = this.onClick.bind(this)
+        this.onDoubleClick = this.onDoubleClick.bind(this)
     }
 
     updateDuration(e) {
@@ -49,6 +52,12 @@ export default class SongResult extends React.Component {
         this.props.openSongMenu(menu)
     }
 
+    onDoubleClick(song) {
+        return () => {
+            this.props.playSong(song.id)
+        }
+    }
+
     convertSeconds(seconds) {
         let minutes = Math.floor(seconds / 60);
         let hours = Math.floor(minutes / 60);
@@ -74,7 +83,7 @@ export default class SongResult extends React.Component {
 
     render() {
         return (
-            <ul className="song song_result" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
+            <ul className="song song_result" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave} onDoubleClick={this.onDoubleClick(this.songObj)}>
 
                 <li id="song_play">
                     <span>
@@ -102,11 +111,18 @@ export default class SongResult extends React.Component {
 
                 
 
-                <audio key={this.songObj.id} onLoadedMetadata={this.updateDuration}>
+                {/* <audio key={this.songObj.id} onLoadedMetadata={this.updateDuration}>
                     <source src={this.songObj.musicUrl} type="audio/mpeg" />
-                </audio>
+                </audio> */}
 
             </ul>
         )
     }
 }
+
+const mstp = state => ({})
+const mdtp = dispatch => ({
+    playSong: songId => dispatch(playSong(songId))
+})
+
+export default connect(mstp, mdtp)(SongResult);
