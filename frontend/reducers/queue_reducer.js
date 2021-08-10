@@ -29,7 +29,9 @@ const queueReducer = (state = defaultState, action) => {
             newState.queue.push(action.track)
             return newState;
         case QUEUE_PLAYLIST: 
-            const pos =  Object.values(action.payload.playlist.songs).findIndex(song => song.id === action.payload.track.id)
+            let pos;
+            action.payload.track ? pos = Object.values(action.payload.playlist.songs).findIndex(song => song.id === action.payload.track.id) : pos = 0
+            // const pos = Object.values(action.payload.playlist.songs).findIndex(song => song.id === action.payload.track.id) || 0
             return Object.assign({}, state, {queue: Object.values(action.payload.playlist.songs), pos: pos})
         case DEQUEUE:
             const newQueue = state.queue.filter(track => track.id !== action.track.id)

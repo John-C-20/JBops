@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PlaylistsMenu from './playlists_menu';
 import {deletePlaylist} from '../../actions/playlist_actions';
+import {queuePlaylist} from '../../actions/queue_actions';
 import { addSongToPlaylist } from '../../util/playlist_song_api_util';
 
 class MenuRow extends React.Component{
@@ -57,7 +58,7 @@ class MenuRow extends React.Component{
                 // add song to queue
                 break;
             case 'queuePlaylist':
-                // add playlist to queue
+                this.props.queuePlaylist(this.props.playlist.id)
                 break;
             case 'artist':
                 // go to artist if one artist, open menu if 1+ 
@@ -98,6 +99,7 @@ class MenuRow extends React.Component{
 
 const mstp = state => ({})
 const mdtp = dispatch => ({
-    deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId))
+    deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
+    queuePlaylist: playlistId => dispatch(queuePlaylist(playlistId))
 })
 export default connect(mstp, mdtp)(MenuRow);
