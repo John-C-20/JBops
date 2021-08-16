@@ -4,7 +4,8 @@ import Sidebar from '../splash/sidebar';
 import Song from '../songs/song';
 import HistoryButtons from "../splash/history_buttons"; 
 import UserDropdown from '../splash/user_dropdown';
-import Player from '../player/player';
+import SongMenu from '../menus/song_menu';
+import {playSong} from '../../actions/queue_actions';
 
 class GenreDetail extends React.Component{
     constructor(props) {
@@ -21,14 +22,19 @@ class GenreDetail extends React.Component{
         }).then(res => this.setState({songs: Object.values(res)}))
     }
 
+    openSongMenu(element) {
+        element.classList.add("show")
+    }
+
     render(){
         let genre = this.props.location.pathname.split('/').pop()
         if (genre === 'HipHop') genre = 'Hip Hop'
         if (genre === 'RnB') genre = 'R&B'
 
         let songRows = this.state.songs.map((song, idx) => 
-            <button className="song" key={idx} onClick={() => this.props.fetchSong(song.id)}>
-                <Song song={song}/> 
+            <button className="song" key={idx} onDoubleClick={() => this.props.playSong(song.id)}>
+                <Song song={song} openSongMenu={this.openSongMenu}/>
+                <SongMenu song={song}/>
             </button>
         )
         let artwork = "" 
@@ -88,7 +94,7 @@ const mstp = (state, ownProps) => ({
 })
 
 const mdtp = dispatch => ({
-    fetchSong: songId => dispatch(fetchSong(songId)),
+    playSong: songId => dispatch(playSong(songId)),
     logout: () => dispatch(logout())
 })
 
