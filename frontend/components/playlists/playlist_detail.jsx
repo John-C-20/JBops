@@ -3,6 +3,7 @@ import UserDropdown from '../splash/user_dropdown'
 import Sidebar from '../splash/sidebar'
 import Song from '../songs/song'
 import HistoryButtons from "../splash/history_buttons";
+import SongMenu from '../menus/song_menu';
 import Modal from "./modal";
 
 export default class PlaylistDetail extends React.Component {
@@ -32,6 +33,28 @@ export default class PlaylistDetail extends React.Component {
         this.fetchSong(songId)
     }
 
+    openSongMenu(element) {
+        element.classList.add("show")
+    }
+
+    onRightClick(song) {
+        return e => {
+            const songMenus = document.getElementsByClassName("menu-container");
+            let j;
+            for (j = 0; j < songMenus.length; j++) {
+                const menu = songMenus[j];
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                }
+            }
+
+            const element = document.getElementById(`${song.song_title}-${song.id}`)
+            element.style.left = `${e.pageX}px`
+            element.style.top = `${e.pageY}px`
+            this.openSongMenu(element)
+        }
+    }
+
     render() {
         let playlist = [];
         let songRows = [];
@@ -43,8 +66,9 @@ export default class PlaylistDetail extends React.Component {
                 const songs = Object.values(this.props.playlist.songs)            
                 songRows = songs.map(song => {
                     return (
-                    <button className="song" key={song.id} onDoubleClick={this.onDoubleClick(song)}>
-                        <Song song={song} />
+                        <button className="song" key={song.id} onDoubleClick={this.onDoubleClick(song)} onContextMenu={this.onRightClick(song)}>
+                        <Song song={song} openSongMenu={this.openSongMenu}/>
+                        <SongMenu song={song} />
                     </button>
                     )
                 })

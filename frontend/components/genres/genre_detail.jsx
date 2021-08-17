@@ -25,6 +25,23 @@ class GenreDetail extends React.Component{
     openSongMenu(element) {
         element.classList.add("show")
     }
+    onRightClick(song) {
+        return e => {
+            const songMenus = document.getElementsByClassName("menu-container");
+            let j;
+            for (j = 0; j < songMenus.length; j++) {
+                const menu = songMenus[j];
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                }
+            }
+
+            const element = document.getElementById(`${song.song_title}-${song.id}`)
+            element.style.left = `${e.pageX}px`
+            element.style.top = `${e.pageY}px`
+            this.openSongMenu(element)
+        }
+    }
 
     render(){
         let genre = this.props.location.pathname.split('/').pop()
@@ -32,7 +49,7 @@ class GenreDetail extends React.Component{
         if (genre === 'RnB') genre = 'R&B'
 
         let songRows = this.state.songs.map((song, idx) => 
-            <button className="song" key={idx} onDoubleClick={() => this.props.playSong(song.id)}>
+            <button className="song" key={idx} onDoubleClick={() => this.props.playSong(song.id)} onContextMenu={this.onRightClick(song)}>
                 <Song song={song} openSongMenu={this.openSongMenu}/>
                 <SongMenu song={song}/>
             </button>

@@ -713,9 +713,33 @@ var GenreDetail = /*#__PURE__*/function (_React$Component) {
       element.classList.add("show");
     }
   }, {
+    key: "onRightClick",
+    value: function onRightClick(song) {
+      var _this3 = this;
+
+      return function (e) {
+        var songMenus = document.getElementsByClassName("menu-container");
+        var j;
+
+        for (j = 0; j < songMenus.length; j++) {
+          var menu = songMenus[j];
+
+          if (menu.classList.contains('show')) {
+            menu.classList.remove('show');
+          }
+        }
+
+        var element = document.getElementById("".concat(song.song_title, "-").concat(song.id));
+        element.style.left = "".concat(e.pageX, "px");
+        element.style.top = "".concat(e.pageY, "px");
+
+        _this3.openSongMenu(element);
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var genre = this.props.location.pathname.split('/').pop();
       if (genre === 'HipHop') genre = 'Hip Hop';
@@ -725,11 +749,12 @@ var GenreDetail = /*#__PURE__*/function (_React$Component) {
           className: "song",
           key: idx,
           onDoubleClick: function onDoubleClick() {
-            return _this3.props.playSong(song.id);
-          }
+            return _this4.props.playSong(song.id);
+          },
+          onContextMenu: _this4.onRightClick(song)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_songs_song__WEBPACK_IMPORTED_MODULE_3__.default, {
           song: song,
-          openSongMenu: _this3.openSongMenu
+          openSongMenu: _this4.openSongMenu
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_menus_song_menu__WEBPACK_IMPORTED_MODULE_6__.default, {
           song: song
         }));
@@ -2302,7 +2327,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../splash/sidebar */ "./frontend/components/splash/sidebar.jsx");
 /* harmony import */ var _songs_song__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../songs/song */ "./frontend/components/songs/song.jsx");
 /* harmony import */ var _splash_history_buttons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../splash/history_buttons */ "./frontend/components/splash/history_buttons.jsx");
-/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modal */ "./frontend/components/playlists/modal.jsx");
+/* harmony import */ var _menus_song_menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../menus/song_menu */ "./frontend/components/menus/song_menu.jsx");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal */ "./frontend/components/playlists/modal.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2324,6 +2350,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2374,9 +2401,38 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
       this.fetchSong(songId);
     }
   }, {
+    key: "openSongMenu",
+    value: function openSongMenu(element) {
+      element.classList.add("show");
+    }
+  }, {
+    key: "onRightClick",
+    value: function onRightClick(song) {
+      var _this3 = this;
+
+      return function (e) {
+        var songMenus = document.getElementsByClassName("menu-container");
+        var j;
+
+        for (j = 0; j < songMenus.length; j++) {
+          var menu = songMenus[j];
+
+          if (menu.classList.contains('show')) {
+            menu.classList.remove('show');
+          }
+        }
+
+        var element = document.getElementById("".concat(song.song_title, "-").concat(song.id));
+        element.style.left = "".concat(e.pageX, "px");
+        element.style.top = "".concat(e.pageY, "px");
+
+        _this3.openSongMenu(element);
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var playlist = [];
       var songRows = [];
@@ -2392,8 +2448,12 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
               className: "song",
               key: song.id,
-              onDoubleClick: _this3.onDoubleClick(song)
+              onDoubleClick: _this4.onDoubleClick(song),
+              onContextMenu: _this4.onRightClick(song)
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_songs_song__WEBPACK_IMPORTED_MODULE_3__.default, {
+              song: song,
+              openSongMenu: _this4.openSongMenu
+            }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_menus_song_menu__WEBPACK_IMPORTED_MODULE_5__.default, {
               song: song
             }));
           });
