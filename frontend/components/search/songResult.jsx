@@ -45,7 +45,6 @@ class SongResult extends React.Component {
         }
 
         const loc = e.currentTarget.getBoundingClientRect() 
-        console.log(loc)
         const menu = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}`)
         menu.style.left = `${loc.x-120}px` 
         menu.style.top = `${loc.y-66}px` 

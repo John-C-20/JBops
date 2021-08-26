@@ -4,6 +4,7 @@ import PlaylistsMenu from './playlists_menu';
 import {deletePlaylist} from '../../actions/playlist_actions';
 import {queueSong, queuePlaylist} from '../../actions/queue_actions';
 import { addSongToPlaylist } from '../../util/playlist_song_api_util';
+import {Redirect, withRouter} from 'react-router-dom';
 
 class MenuRow extends React.Component{
     constructor(props){
@@ -67,6 +68,8 @@ class MenuRow extends React.Component{
                 // go to album show page 
                 break;
             case 'deletePlaylist':
+                const playlistId = this.props.location.pathname.split("/").pop()
+                if (playlistId == this.props.playlist.id) {this.props.history.push('/')}
                 this.props.deletePlaylist(this.props.playlist.id)
                 break;
             case 'rename':
@@ -103,4 +106,4 @@ const mdtp = dispatch => ({
     queuePlaylist: playlistId => dispatch(queuePlaylist(playlistId)),
     queueSong: songId => dispatch(queueSong(songId))
 })
-export default connect(mstp, mdtp)(MenuRow);
+export default withRouter(connect(mstp, mdtp)(MenuRow));

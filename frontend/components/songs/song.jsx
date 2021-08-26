@@ -16,7 +16,6 @@ export default class Song extends React.Component {
     onMouseOver(e) {
         const ul = e.currentTarget
         const li = ul.children[3]
-        // console.log(ul.children[3].children)
         const ellipsis = li.querySelector(".fa-ellipsis-h").style.visibility = "visible"
     }
 
@@ -37,7 +36,6 @@ export default class Song extends React.Component {
         }
 
         const loc = e.currentTarget.getBoundingClientRect()
-        console.log(loc)
         const menu = document.getElementById(`${this.props.song.song_title}-${this.props.song.id}`)
         menu.style.left = `${loc.x - 120}px`
         menu.style.top = `${loc.y - 66}px`

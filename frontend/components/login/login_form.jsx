@@ -47,7 +47,7 @@ export default class LoginForm extends React.Component {
     
         return(
             <div className="login"> 
-                <Link className="loginForm" to="/">Go back</Link>
+                {/* <Link className="loginForm" to="/">Go back</Link> */}
                 <h1 className="signupForm"><img className="spotify_icon" src={window.iconURL}></img>&nbsp;JBOPS</h1>
                 <br />
                 <div className="mini-header loginForm">To continue, log in to Jbops.</div>
@@ -70,6 +70,7 @@ export default class LoginForm extends React.Component {
                     <input type="text" id="name_or_email" onChange={this.onChange("name_or_email")} value={this.state.name_or_email}/>
                     <br /> 
                     <br /> 
+                    <br /> 
 
                     <div>
                     <label htmlFor="password" className="mini-header">  
@@ -78,9 +79,9 @@ export default class LoginForm extends React.Component {
                     </div>
                     <input id="password" type="password" onChange={this.onChange("password")} value={this.state.password}/>
                     <br />
-                    <br />
-                        <a href="https://www.spotify.com/us/password-reset/">Forgot your password?</a>
-                    <br /> 
+                    {/* <br /> */}
+                        {/* <a href="https://www.spotify.com/us/password-reset/">Forgot your password?</a> */}
+                    {/* <br />  */}
                     <br />
 
 

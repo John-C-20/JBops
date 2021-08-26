@@ -1042,10 +1042,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       var hi = "xd";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        className: "loginForm",
-        to: "/"
-      }, "Go back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
         className: "signupForm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "spotify_icon",
@@ -1066,7 +1063,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         id: "name_or_email",
         onChange: this.onChange("name_or_email"),
         value: this.state.name_or_email
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "password",
         className: "mini-header"
       }, "Password")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -1074,9 +1071,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         type: "password",
         onChange: this.onChange("password"),
         value: this.state.password
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://www.spotify.com/us/password-reset/"
-      }, "Forgot your password?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "checkbox"
@@ -1159,6 +1154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
 /* harmony import */ var _actions_queue_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/queue_actions */ "./frontend/actions/queue_actions.js");
 /* harmony import */ var _util_playlist_song_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/playlist_song_api_util */ "./frontend/util/playlist_song_api_util.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1180,6 +1176,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -1272,6 +1269,12 @@ var MenuRow = /*#__PURE__*/function (_React$Component) {
           break;
 
         case 'deletePlaylist':
+          var playlistId = this.props.location.pathname.split("/").pop();
+
+          if (playlistId == this.props.playlist.id) {
+            this.props.history.push('/');
+          }
+
           this.props.deletePlaylist(this.props.playlist.id);
           break;
 
@@ -1327,7 +1330,7 @@ var mdtp = function mdtp(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mstp, mdtp)(MenuRow));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mstp, mdtp)(MenuRow)));
 
 /***/ }),
 
@@ -2074,7 +2077,6 @@ var Modal = /*#__PURE__*/function (_React$Component) {
         artwork = this.props.playlist.artUrl;
       }
 
-      console.log(this.props.playlist);
       return this.props.modalOpen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "modal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2252,7 +2254,6 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
         });
       };
 
-      console.log(this.props.currentUser);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "homepage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
@@ -3024,19 +3025,14 @@ var Search = /*#__PURE__*/function (_React$Component) {
           title: title
         }
       }).then(function (res) {
-        console.log("in the promise: ", res);
-
         _this2.setState({
           results: res
         });
-
-        console.log("in promise after setState: ", _this2.state.results);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log("in the render: ", this.state.results);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash logged-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_splash_sidebar__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3189,7 +3185,6 @@ var SongResult = /*#__PURE__*/function (_React$Component) {
       }
 
       var loc = e.currentTarget.getBoundingClientRect();
-      console.log(loc);
       var menu = document.getElementById("".concat(this.props.song.song_title, "-").concat(this.props.song.id));
       menu.style.left = "".concat(loc.x - 120, "px");
       menu.style.top = "".concat(loc.y - 66, "px");
@@ -3596,8 +3591,7 @@ var Song = /*#__PURE__*/function (_React$Component) {
     key: "onMouseOver",
     value: function onMouseOver(e) {
       var ul = e.currentTarget;
-      var li = ul.children[3]; // console.log(ul.children[3].children)
-
+      var li = ul.children[3];
       var ellipsis = li.querySelector(".fa-ellipsis-h").style.visibility = "visible";
     }
   }, {
@@ -3622,7 +3616,6 @@ var Song = /*#__PURE__*/function (_React$Component) {
       }
 
       var loc = e.currentTarget.getBoundingClientRect();
-      console.log(loc);
       var menu = document.getElementById("".concat(this.props.song.song_title, "-").concat(this.props.song.id));
       menu.style.left = "".concat(loc.x - 120, "px");
       menu.style.top = "".concat(loc.y - 66, "px");
@@ -3888,8 +3881,6 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
           user_id: this.currentUserID
         }
       }).then(function (playlist) {
-        console.log(_this2.props.history);
-
         _this2.props.history.push("/playlist/".concat(playlist.playlist.id));
       });
     }

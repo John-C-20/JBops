@@ -58,9 +58,7 @@ export default class Playlist extends React.Component {
                 </li>
             ))
         )
-                        
 
-        console.log(this.props.currentUser)
         return (
             <div className="homepage">
                 <ul className="playlist_row">

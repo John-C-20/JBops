@@ -26,15 +26,12 @@ class Search extends React.Component {
             url: '/api/searches/',
             data: { title }
         }).then(res => {
-            console.log("in the promise: ", res)
             this.setState({ results: res })
-            console.log("in promise after setState: ", this.state.results)
             }
             )
     } 
 
     render(){
-        console.log("in the render: ", this.state.results)
         return(
             <div className="splash logged-in">
                 <Sidebar/>

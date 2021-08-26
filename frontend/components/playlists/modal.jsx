@@ -43,7 +43,6 @@ class Modal extends React.Component {
             artwork = this.props.playlist.artUrl
         }
 
-        console.log(this.props.playlist)
         return(
             this.props.modalOpen ? 
             <div className="modal">
