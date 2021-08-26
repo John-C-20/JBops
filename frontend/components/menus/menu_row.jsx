@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import PlaylistsMenu from './playlists_menu';
 import {deletePlaylist} from '../../actions/playlist_actions';
 import {queueSong, queuePlaylist} from '../../actions/queue_actions';
+import { removeSongFromPlaylist } from '../../util/playlist_song_api_util';
 import { addSongToPlaylist } from '../../util/playlist_song_api_util';
-import {Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class MenuRow extends React.Component{
     constructor(props){
@@ -72,6 +73,18 @@ class MenuRow extends React.Component{
                 if (playlistId == this.props.playlist.id) {this.props.history.push('/')}
                 this.props.deletePlaylist(this.props.playlist.id)
                 break;
+            case 'deleteSong' : 
+                $.ajax({
+                    method: 'GET',
+                    url: '/api/playlist_songs',
+                    data: {playlistId: this.props.playlist.id, songId: this.props.song.id}
+                }).then(res => {
+                    console.log(res)
+                    res.forEach ( playlistSong => removeSongFromPlaylist(playlistSong.id))
+                    this.props.getPlaylist(this.props.playlist.id)
+                    // this.props.removeSongFromPlaylist(res)
+                })
+                break;
             case 'rename':
                 // rename playlist 
                 break;
@@ -89,6 +102,8 @@ class MenuRow extends React.Component{
 
     render(){
         return(
+            (this.props.type === "deleteSong") && (!this.props.playlist) ?  
+            null : 
            <li className={this.props.border ? "menu-row bottom-border-gray" : "menu-row"} onMouseEnter={this.onHover} onMouseLeave={this.unHover} onClick={this.onClick}> 
                 {this.props.text}
                 {this.props.type=="addToPlaylist" ? 
@@ -104,6 +119,7 @@ const mstp = state => ({})
 const mdtp = dispatch => ({
     deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
     queuePlaylist: playlistId => dispatch(queuePlaylist(playlistId)),
-    queueSong: songId => dispatch(queueSong(songId))
+    queueSong: songId => dispatch(queueSong(songId)),
+    removeSongFromPlaylist: playlistSongId => dispatch(removeSongFromPlaylist(playlistSongId))
 })
 export default withRouter(connect(mstp, mdtp)(MenuRow));

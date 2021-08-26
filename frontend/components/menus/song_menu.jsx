@@ -15,6 +15,7 @@ class SongMenu extends React.Component{
                 <MenuRow song={this.props.song} type="queueSong" text="Add to Queue" border="bottom"/>
                 <MenuRow song={this.props.song} type="artist" text="Go to artist" border=""/>
                 <MenuRow song={this.props.song} type="album" text="Go to album" border=""/>
+                <MenuRow song={this.props.song} playlist={this.props.playlist} getPlaylist={this.props.getPlaylist} type="deleteSong" text="Remove from this playlist" border="" />
                 <MenuRow song={this.props.song} type="addToPlaylist" text="Add to playlist" border="" />
             </ul>
         )

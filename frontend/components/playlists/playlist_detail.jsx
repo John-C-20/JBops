@@ -68,7 +68,7 @@ export default class PlaylistDetail extends React.Component {
                     return (
                         <button className="song" key={song.id} onDoubleClick={this.onDoubleClick(song)} onContextMenu={this.onRightClick(song)}>
                         <Song song={song} openSongMenu={this.openSongMenu}/>
-                        <SongMenu song={song} />
+                        <SongMenu song={song} playlist={this.props.playlist} getPlaylist={this.props.getPlaylist}/>
                     </button>
                     )
                 })

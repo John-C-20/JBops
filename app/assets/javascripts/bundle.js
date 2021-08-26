@@ -1185,6 +1185,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var MenuRow = /*#__PURE__*/function (_React$Component) {
   _inherits(MenuRow, _React$Component);
 
@@ -1251,6 +1252,8 @@ var MenuRow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onClick",
     value: function onClick() {
+      var _this2 = this;
+
       switch (this.props.type) {
         case 'queueSong':
           this.props.queueSong(this.props.song.id);
@@ -1278,6 +1281,25 @@ var MenuRow = /*#__PURE__*/function (_React$Component) {
           this.props.deletePlaylist(this.props.playlist.id);
           break;
 
+        case 'deleteSong':
+          $.ajax({
+            method: 'GET',
+            url: '/api/playlist_songs',
+            data: {
+              playlistId: this.props.playlist.id,
+              songId: this.props.song.id
+            }
+          }).then(function (res) {
+            console.log(res);
+            res.forEach(function (playlistSong) {
+              return (0,_util_playlist_song_api_util__WEBPACK_IMPORTED_MODULE_5__.removeSongFromPlaylist)(playlistSong.id);
+            });
+
+            _this2.props.getPlaylist(_this2.props.playlist.id); // this.props.removeSongFromPlaylist(res)
+
+          });
+          break;
+
         case 'rename':
           // rename playlist 
           break;
@@ -1298,7 +1320,7 @@ var MenuRow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      return this.props.type === "deleteSong" && !this.props.playlist ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: this.props.border ? "menu-row bottom-border-gray" : "menu-row",
         onMouseEnter: this.onHover,
         onMouseLeave: this.unHover,
@@ -1326,6 +1348,9 @@ var mdtp = function mdtp(dispatch) {
     },
     queueSong: function queueSong(songId) {
       return dispatch((0,_actions_queue_actions__WEBPACK_IMPORTED_MODULE_4__.queueSong)(songId));
+    },
+    removeSongFromPlaylist: function removeSongFromPlaylist(playlistSongId) {
+      return dispatch((0,_util_playlist_song_api_util__WEBPACK_IMPORTED_MODULE_5__.removeSongFromPlaylist)(playlistSongId));
     }
   };
 };
@@ -1576,6 +1601,13 @@ var SongMenu = /*#__PURE__*/function (_React$Component) {
         song: this.props.song,
         type: "album",
         text: "Go to album",
+        border: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_menu_row__WEBPACK_IMPORTED_MODULE_1__.default, {
+        song: this.props.song,
+        playlist: this.props.playlist,
+        getPlaylist: this.props.getPlaylist,
+        type: "deleteSong",
+        text: "Remove from this playlist",
         border: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_menu_row__WEBPACK_IMPORTED_MODULE_1__.default, {
         song: this.props.song,
@@ -2455,7 +2487,9 @@ var PlaylistDetail = /*#__PURE__*/function (_React$Component) {
               song: song,
               openSongMenu: _this4.openSongMenu
             }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_menus_song_menu__WEBPACK_IMPORTED_MODULE_5__.default, {
-              song: song
+              song: song,
+              playlist: _this4.props.playlist,
+              getPlaylist: _this4.props.getPlaylist
             }));
           });
         }
