@@ -79,10 +79,8 @@ class MenuRow extends React.Component{
                     url: '/api/playlist_songs',
                     data: {playlistId: this.props.playlist.id, songId: this.props.song.id}
                 }).then(res => {
-                    console.log(res)
                     res.forEach ( playlistSong => removeSongFromPlaylist(playlistSong.id))
                     this.props.getPlaylist(this.props.playlist.id)
-                    // this.props.removeSongFromPlaylist(res)
                 })
                 break;
             case 'rename':
