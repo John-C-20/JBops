@@ -8,8 +8,18 @@ const UserDropdown = (props) => (
         </button>
         
         <div id="myDropdown" className="dropdown-content">
-            <div>DOB: {props.currentUser.dob_month} {props.currentUser.dob_day}, {props.currentUser.dob_year}</div>
-            <div>Gender: {props.currentUser.gender}</div>
+            {/* <div>DOB: {props.currentUser.dob_month} {props.currentUser.dob_day}, {props.currentUser.dob_year}</div>
+            <div>Gender: {props.currentUser.gender}</div> */}
+            {/* <div>
+                <a href="https://john-cheung.me">Portfolio</a>
+            </div> */}
+            <div className="links">
+                <a href="https://www.linkedin.com/in/john-cheung-9535a213b/">Linked <i class="fa fa-linkedin-square"></i></a>
+            </div>
+            <div className="links">
+                <a href="https://github.com/john-c-20">GitHub <i class="fa fa-github"></i></a>
+            </div>
+
             <div>
                 <Link to='/' onClick={props.logout}>Log Out</Link>
             </div>

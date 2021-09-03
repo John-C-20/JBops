@@ -1290,13 +1290,11 @@ var MenuRow = /*#__PURE__*/function (_React$Component) {
               songId: this.props.song.id
             }
           }).then(function (res) {
-            console.log(res);
             res.forEach(function (playlistSong) {
               return (0,_util_playlist_song_api_util__WEBPACK_IMPORTED_MODULE_5__.removeSongFromPlaylist)(playlistSong.id);
             });
 
-            _this2.props.getPlaylist(_this2.props.playlist.id); // this.props.removeSongFromPlaylist(res)
-
+            _this2.props.getPlaylist(_this2.props.playlist.id);
           });
           break;
 
@@ -4187,7 +4185,19 @@ var UserDropdown = function UserDropdown(props) {
   }, props.currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "myDropdown",
     className: "dropdown-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "DOB: ", props.currentUser.dob_month, " ", props.currentUser.dob_day, ", ", props.currentUser.dob_year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Gender: ", props.currentUser.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/in/john-cheung-9535a213b/"
+  }, "Linked ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    "class": "fa fa-linkedin-square"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/john-c-20"
+  }, "GitHub ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    "class": "fa fa-github"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/",
     onClick: props.logout
   }, "Log Out"))));
