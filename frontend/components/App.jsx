@@ -1,6 +1,6 @@
 import React from 'react' 
 import SignupFormContainer from './signup/signup_form_container';
-import LoginFormContainer from './login/login_form_container';
+import LoginForm from './login/login_form';
 import PlaylistDetailContainer from './playlists/playlist_detail_container';
 import Splash from './splash/splash';
 import {Route, Switch, Link}  from 'react-router-dom'
@@ -15,7 +15,7 @@ const App = () => (
         <Switch>
             <Route exact path="/" component={Splash} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
-            <AuthRoute path="/login" component={LoginFormContainer} />
+            <AuthRoute path="/login" component={LoginForm} />
             <ProtectedRoute path="/playlist/:playlistId" component={PlaylistDetailContainer} /> 
             <ProtectedRoute path="/search" component={Search} />
             <ProtectedRoute path="/genres/:genre" component={GenreDetail} /> 

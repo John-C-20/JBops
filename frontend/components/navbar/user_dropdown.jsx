@@ -14,10 +14,10 @@ const UserDropdown = (props) => (
                 <a href="https://john-cheung.me">Portfolio</a>
             </div> */}
             <div className="links">
-                <a href="https://www.linkedin.com/in/john-cheung-9535a213b/" target="_blank">Linked <i class="fa fa-linkedin-square"></i></a>
+                <a href="https://www.linkedin.com/in/john-cheung-9535a213b/" target="_blank">Linked <i className="fa fa-linkedin-square"></i></a>
             </div>
             <div className="links">
-                <a href="https://github.com/john-c-20" target="_blank">GitHub <i class="fa fa-github"></i></a>
+                <a href="https://github.com/john-c-20" target="_blank">GitHub <i className="fa fa-github"></i></a>
             </div>
 
             <div>

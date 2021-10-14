@@ -1,7 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
+import { login, clearErrors } from '../../actions/session_actions';
 
-export default class LoginForm extends React.Component {
+
+class LoginForm extends React.Component {
     componentDidMount() {
         this.props.clearErrors()
     }
@@ -106,3 +109,22 @@ export default class LoginForm extends React.Component {
         </div> 
         )}
 }
+
+const mstp = (state) => {
+
+    return {
+        user: {
+            name_or_email: '',
+            password: ''
+        },
+        errors: state.errors.session,
+        formType: "Log In!"
+    }
+};
+
+const mdtp = dispatch => ({
+    action: user => dispatch(login(user)),
+    clearErrors: () => dispatch(clearErrors())
+});
+
+export default connect(mstp, mdtp)(LoginForm)
