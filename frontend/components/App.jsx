@@ -22,7 +22,6 @@ const App = () => (
         </Switch>
         <Player />
         <Modal poop="poopooopoo"/>
-        {/* change this path later ^  */}
     </div>
 )
 

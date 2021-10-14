@@ -23,9 +23,13 @@ a {
     cursor:pointer
 }
 
+html, body, main {
+    height: 100%;
+}
+
 body {
     font-family: spotify-circular, Helvetica, Arial, sans-serif;
     color: rgb(24,24,24);
-    display: block;
-    margin: 0px auto;
+    margin: 0;
+    padding: 0;
 }

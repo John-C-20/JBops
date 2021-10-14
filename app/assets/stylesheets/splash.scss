@@ -1,0 +1,11 @@
+.splash {
+    height: 100%; 
+    background: rgb(30,30,30);
+    background: linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(16,16,16,1) 45%);
+}
+
+.splash.logged-in {
+    background: linear-gradient(180deg, rgba(88,48,67,1) 0%, rgba(16,16,16,1) 100%); 
+    background: rgb(88,48,67);
+    background: linear-gradient(180deg, rgba(88,48,67,1) 0%, rgba(16,16,16,1) 45%);
+}
