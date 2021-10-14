@@ -1,8 +1,8 @@
 import React from 'react' 
-import UserDropdown from '../splash/user_dropdown'
+import UserDropdown from '../navbar/user_dropdown'
 import Sidebar from '../splash/sidebar'
 import Song from '../songs/song'
-import HistoryButtons from "../splash/history_buttons";
+import HistoryButtons from "../navbar/history_buttons";
 import SongMenu from '../menus/song_menu';
 import Modal from "./modal";
 

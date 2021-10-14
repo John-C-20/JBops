@@ -2,8 +2,8 @@ import {connect} from 'react-redux';
 import React from 'react' ;
 import Sidebar from '../splash/sidebar';
 import Song from '../songs/song';
-import HistoryButtons from "../splash/history_buttons"; 
-import UserDropdown from '../splash/user_dropdown';
+import HistoryButtons from "../navbar/history_buttons"; 
+import UserDropdown from '../navbar/user_dropdown';
 import SongMenu from '../menus/song_menu';
 import {playSong} from '../../actions/queue_actions';
 
