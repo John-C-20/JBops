@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'; 
 import Playlist from './playlist'; 
 import {fetchPlaylists} from '../../actions/playlist_actions';
-import { fetchSongs } from '../../actions/song_actions'
+// import { fetchSongs } from '../../actions/song_actions'
 
 
 const mstp = state => ({
@@ -12,7 +12,7 @@ const mstp = state => ({
 })
 
 const mdtp = dispatch => ({
-    getSongs: () => dispatch(fetchSongs()),
+    // getSongs: () => dispatch(fetchSongs()),
     getPlaylists: () => dispatch(fetchPlaylists())
 })
 

@@ -9,7 +9,7 @@ export default class Playlist extends React.Component {
 
     componentDidMount() {
         this.props.getPlaylists();
-        this.props.getSongs()
+        // this.props.getSongs()
     }
 
     render() {

@@ -446,37 +446,28 @@ var setCurrentProgress = function setCurrentProgress(currentProgress) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GET_SONGS": () => (/* binding */ GET_SONGS),
 /* harmony export */   "GET_SONG": () => (/* binding */ GET_SONG),
-/* harmony export */   "fetchSongs": () => (/* binding */ fetchSongs),
 /* harmony export */   "fetchSong": () => (/* binding */ fetchSong)
 /* harmony export */ });
 /* harmony import */ var _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/song_api_util */ "./frontend/util/song_api_util.js");
+ // export const GET_SONGS = 'GET_SONGS'
 
-var GET_SONGS = 'GET_SONGS';
-var GET_SONG = 'GET_SONG';
-
-var getSongs = function getSongs(songs) {
-  return {
-    type: GET_SONGS,
-    songs: songs
-  };
-};
+var GET_SONG = 'GET_SONG'; // const getSongs = (songs) => ({
+//     type: GET_SONGS,
+//     songs
+// })
 
 var getSong = function getSong(song) {
   return {
     type: GET_SONG,
     song: song
   };
-};
+}; // export const fetchSongs = () => dispatch => (
+//     SongAPIUtil.fetchSongs()
+//         .then((songs) => dispatch(getSongs(songs)))
+// )
 
-var fetchSongs = function fetchSongs() {
-  return function (dispatch) {
-    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSongs().then(function (songs) {
-      return dispatch(getSongs(songs));
-    });
-  };
-};
+
 var fetchSong = function fetchSong(songId) {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSong(songId).then(function (song) {
@@ -2525,8 +2516,7 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
   _createClass(Playlist, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getPlaylists();
-      this.props.getSongs();
+      this.props.getPlaylists(); // this.props.getSongs()
     }
   }, {
     key: "render",
@@ -2614,11 +2604,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _playlist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./playlist */ "./frontend/components/playlists/playlist.jsx");
 /* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
-/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
 
 
-
-
+ // import { fetchSongs } from '../../actions/song_actions'
 
 var mstp = function mstp(state) {
   return {
@@ -2630,9 +2618,7 @@ var mstp = function mstp(state) {
 
 var mdtp = function mdtp(dispatch) {
   return {
-    getSongs: function getSongs() {
-      return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_3__.fetchSongs)());
-    },
+    // getSongs: () => dispatch(fetchSongs()),
     getPlaylists: function getPlaylists() {
       return dispatch((0,_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPlaylists)());
     }
@@ -4213,130 +4199,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _navbar_user_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/user_dropdown */ "./frontend/components/navbar/user_dropdown.jsx");
-/* harmony import */ var _components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/jbops/jbops_container */ "./frontend/components/jbops/jbops_container.jsx");
-/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/splash/sidebar.jsx");
-/* harmony import */ var _navbar_navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../navbar/navbar */ "./frontend/components/navbar/navbar.jsx");
-/* harmony import */ var _navbar_history_buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../navbar/history_buttons */ "./frontend/components/navbar/history_buttons.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+/* harmony import */ var _components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/jbops/jbops_container */ "./frontend/components/jbops/jbops_container.jsx");
+/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/splash/sidebar.jsx");
+/* harmony import */ var _navbar_navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../navbar/navbar */ "./frontend/components/navbar/navbar.jsx");
 
 
 
 
 
-
-
-
-
-
-
-
-var Splash = /*#__PURE__*/function (_React$Component) {
-  _inherits(Splash, _React$Component);
-
-  var _super = _createSuper(Splash);
-
-  function Splash(props) {
-    _classCallCheck(this, Splash);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(Splash, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchSongs();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      //     const sessionLinks = () => {
-      //         return(
-      //         <div className="splash">
-      //             <div className="navbar">
-      //                     <HistoryButtons />
-      //                 <ul>
-      //                     <li><Link to="/signup"><button className="signup">Sign Up</button></Link></li>
-      //                     <li><Link to="/login"><button className="login">Log In</button></Link></li>
-      //                 </ul> 
-      //             </div>
-      //             <Sidebar /> 
-      //             <div className="jbops">
-      //                 <JbopsContainer /> 
-      //             </div> 
-      //         </div>
-      //         )}
-      //     const loggedInUI = () => {
-      //         return(
-      //         <div className="splash logged-in">
-      //             <div className="navbar logged-in">
-      //                 <HistoryButtons />
-      //                 <UserDropdown logout={this.props.logout} currentUser={this.props.currentUser} /> 
-      //             </div>
-      //             <Sidebar />
-      //             <div className="jbops">
-      //                 <JbopsContainer /> 
-      //             </div>
-      //             {/* <Player currentSong={this.props.currentSong}/> */}
-      //         </div>
-      //         )}
-      //     return (
-      //         this.props.currentUser ? loggedInUI() : sessionLinks()
-      //     )
-      // }
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "splash"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_3__.default, null));
-    }
-  }]);
-
-  return Splash;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-var mstp = function mstp(state) {
-  return {
-    currentUser: state.entities.users[state.session.currentUserId],
-    currentSong: state.session.currentSong,
-    songs: state.entities.songs
-  };
+var Splash = function Splash(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "splash"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_jbops_jbops_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
 };
 
-var mdtp = function mdtp(dispatch) {
-  return {
-    logout: function logout() {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_8__.logout)());
-    },
-    fetchSongs: function fetchSongs() {
-      return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_9__.fetchSongs)());
-    }
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_7__.connect)(mstp, mdtp)(Splash));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Splash);
 
 /***/ }),
 
